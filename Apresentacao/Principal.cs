@@ -16,8 +16,6 @@ namespace Biblion.Apresentacao
         public Principal()
         {
             InitializeComponent();
-            Form1 f_Login = new Form1(this);
-            f_Login.ShowDialog();
             if (Globais.logado != true)
             {
                 Application.Exit();
@@ -41,6 +39,18 @@ namespace Biblion.Apresentacao
             {
                 MessageBox.Show("Necessário Estar Logado");
             }
+        }
+
+        private void Principal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Globais.logado = false;
+            Application.Exit();
+        }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Globais.logado = false;
+            Application.Exit();
         }
 
         private void usuáriosToolStripMenuItem_Click(object sender, EventArgs e)

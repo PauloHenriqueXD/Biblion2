@@ -28,6 +28,12 @@ namespace Biblion
             F_Principal = f;
         }
 
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -61,11 +67,10 @@ namespace Biblion
             {
                 if (controle.tem)
                 {
-                    MessageBox.Show("Logado com sucesso", "Entrando", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Globais.logado = true;
                     Principal principal = new Principal();
                     principal.Show();
-                    Globais.logado = true;
-                    this.Close();
+                    this.Hide();
                 }
                 else
                 {
