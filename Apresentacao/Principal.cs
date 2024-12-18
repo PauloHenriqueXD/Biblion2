@@ -29,6 +29,7 @@ namespace Biblion.Apresentacao
                 if (Globais.nivel >= nivel)
                 {
                     f.ShowDialog();
+                    lbversao.Text = "Versão: " + Globais.versao;
                 }
                 else
                 {
@@ -47,15 +48,16 @@ namespace Biblion.Apresentacao
             Application.Exit();
         }
 
-        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        private void sairToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Globais.logado = false;
             Application.Exit();
         }
 
-        private void usuáriosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void usuáriosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            F_Usuarios f_Usuarios = new F_Usuarios();
+            AbreForm(0, f_Usuarios);
         }
     }
 }

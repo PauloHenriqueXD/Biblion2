@@ -68,6 +68,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Apresentacao\F_Usuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apresentacao\F_Usuarios.Designer.cs">
+      <DependentUpon>F_Usuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Apresentacao\Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,11 +89,16 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Entities\Globais.cs" />
+    <Compile Include="Entities\Usuarios.cs" />
     <Compile Include="Modelo\Controle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\UsuarioController.cs" />
     <EmbeddedResource Include="Apresentacao\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apresentacao\F_Usuarios.resx">
+      <DependentUpon>F_Usuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Apresentacao\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
@@ -116,9 +127,32 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Logout_37127.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\login_gov_icon_146024 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_remove_page_document_16678.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\business_ordering_pencil_table_2333.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new_page_document_16676.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_bottom_15602.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_right_15600.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_left_15601.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_top_15603.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -27,7 +27,7 @@ namespace Biblion.DAL
             try
             {
                 // Usando SQLiteCommand para o SQLite
-                cmd.Connection = conexao.conectar(); // Método para conectar ao SQLite
+                cmd.Connection = conexao.Conectar(); // Método para conectar ao SQLite
                 dr = cmd.ExecuteReader(); // Executa o leitor no SQLite
                 if (dr.HasRows)
                 {
