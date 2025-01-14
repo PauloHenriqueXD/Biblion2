@@ -136,6 +136,8 @@
             this.dgv_usuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_usuarios.Size = new System.Drawing.Size(957, 402);
             this.dgv_usuarios.TabIndex = 13;
+            this.dgv_usuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_usuarios_CellDoubleClick);
+            this.dgv_usuarios.SelectionChanged += new System.EventHandler(this.dgv_usuarios_SelectionChanged);
             // 
             // tbp_dados
             // 
@@ -169,6 +171,7 @@
             this.btn_cancelar.TabIndex = 3;
             this.btn_cancelar.Text = "Cancelar";
             this.btn_cancelar.UseVisualStyleBackColor = true;
+            this.btn_cancelar.Click += new System.EventHandler(this.btn_cancelar_Click);
             // 
             // btn_gravar
             // 
@@ -179,6 +182,7 @@
             this.btn_gravar.TabIndex = 2;
             this.btn_gravar.Text = "Gravar";
             this.btn_gravar.UseVisualStyleBackColor = true;
+            this.btn_gravar.Click += new System.EventHandler(this.btn_gravar_Click);
             // 
             // panel3
             // 
@@ -221,6 +225,7 @@
             this.btn_addFoto.TabIndex = 32;
             this.btn_addFoto.Text = "Add Imagem";
             this.btn_addFoto.UseVisualStyleBackColor = true;
+            this.btn_addFoto.Click += new System.EventHandler(this.btn_addFoto_Click);
             // 
             // label8
             // 
@@ -460,6 +465,7 @@
             this.tsb_alterar.Size = new System.Drawing.Size(56, 51);
             this.tsb_alterar.Text = "Alterar";
             this.tsb_alterar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsb_alterar.Click += new System.EventHandler(this.tsb_alterar_Click);
             // 
             // tsb_excluir
             // 

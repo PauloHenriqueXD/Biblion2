@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,8 @@ namespace Biblion.Apresentacao
         }
 
         private UsuarioController usuarioController;
+        private string idSelecionado = "";
+        private string destinoCompleto = "";
 
         private void tsb_sair_Click(object sender, EventArgs e)
         {
@@ -91,6 +94,8 @@ namespace Biblion.Apresentacao
                 dgv_usuarios.Columns[2].Width = (int)(dgv_usuarios.Width * 0.2);
                 dgv_usuarios.Columns[3].Width = (int)(dgv_usuarios.Width * 0.15);
                 dgv_usuarios.Columns[4].Width = (int)(dgv_usuarios.Width * 0.15);
+
+                idSelecionado = dgv_usuarios.Columns[0].ToString();
             }
             catch (Exception ex)
             {
@@ -152,6 +157,8 @@ namespace Biblion.Apresentacao
             cb_status.DataSource = new BindingSource(status, null);
             cb_status.DisplayMember = "Value";
             cb_status.ValueMember = "Key";
+
+            idSelecionado = dgv_usuarios.Rows[0].Cells[0].Value.ToString();
 
             // Carregando dados na Grid
             carregarGrid();
@@ -246,6 +253,127 @@ namespace Biblion.Apresentacao
                 else
                 {
                     MessageBox.Show("Não foi possível excluir o registro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void dgv_usuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            alterarDados();
+        }
+
+        private void dgv_usuarios_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+            int contlinhas = dgv.SelectedRows.Count;
+
+            if (contlinhas > 0)
+            {
+                string vid = dgv.SelectedRows[0].Cells[0].Value.ToString();
+
+                if (int.TryParse(vid, out int idSelecionado))
+                {
+                    UsuarioController usuarioController = new UsuarioController();
+                    Usuarios usuarioSelecionado = usuarioController.ObterUsuarioPorId(idSelecionado);
+
+                    if (usuarioSelecionado != null)
+                    {
+                        tb_id.Text = usuarioSelecionado.Id.ToString();
+                        tb_nome.Text = usuarioSelecionado.Nome;
+                        tb_login.Text = usuarioSelecionado.Login;
+                        tb_senha.Text = usuarioSelecionado.Senha;
+                        cb_status.SelectedValue = usuarioSelecionado.Status;
+                        n_nivel.Value = usuarioSelecionado.Acesso;
+                        pb_foto.ImageLocation = usuarioSelecionado.Img;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao converter o ID selecionado.");
+                }
+            }
+        }
+
+        private void tsb_alterar_Click(object sender, EventArgs e)
+        {
+            alterarDados();
+        }
+
+        private void btn_cancelar_Click(object sender, EventArgs e)
+        {
+            tbc_control.SelectedTab = tbp_lista;
+            tb_nome.Enabled = false;
+            tb_login.Enabled = false;
+            tb_senha.Enabled = false;
+            cb_status.Enabled = false;
+            n_nivel.Enabled = false;
+            btn_addFoto.Enabled = false;
+            btn_gravar.Enabled = false;
+            btn_cancelar.Enabled = false;
+        }
+
+        private void btn_gravar_Click(object sender, EventArgs e)
+        {
+            if (destinoCompleto == "")
+            {
+                if (MessageBox.Show("Sem foto selecionada, deseja continuar?", "Atenção!", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+            try
+            {
+                Usuarios usuario = new Usuarios
+                {
+                    Id = int.Parse(tb_id.Text),
+                    Nome = tb_nome.Text,
+                    Login = tb_login.Text,
+                    Senha = tb_senha.Text,
+                    Status = cb_status.SelectedValue.ToString(),
+                    Acesso = (int)n_nivel.Value,
+                    Img = pb_foto.ImageLocation // Caminho atual da imagem
+                };
+
+                // Chama o método para atualizar o usuário
+                string caminhoImagemSelecionada = destinoCompleto; // Caminho da imagem carregada pelo usuário
+                usuarioController.AtualizarUsuario(usuario, caminhoImagemSelecionada);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao salvar alterações: {ex.Message}");
+            }
+            tbc_control.SelectedTab = tbp_lista;
+            tb_nome.Enabled = false;
+            tb_login.Enabled = false;
+            tb_senha.Enabled = false;
+            cb_status.Enabled = false;
+            n_nivel.Enabled = false;
+            btn_addFoto.Enabled = false;
+            btn_gravar.Enabled = false;
+            btn_cancelar.Enabled = false;
+        }
+
+        private void btn_addFoto_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                // Verifica se a pasta existe; se não, cria
+                string pastaImg = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img");
+                if (!Directory.Exists(pastaImg))
+                {
+                    Directory.CreateDirectory(pastaImg);
+                }
+
+                openFileDialog.Filter = "Imagens (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
+                openFileDialog.Title = "Selecione uma Imagem";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string caminhoImagem = openFileDialog.FileName;
+                    pb_foto.ImageLocation = caminhoImagem; // Mostra a imagem no PictureBox
+
+                    // Opcional: Salvar o caminho em uma variável para uso posterior
+                    destinoCompleto = caminhoImagem;
                 }
             }
         }

@@ -3,6 +3,7 @@ using Biblion.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data; // Para DataTable
+using System.IO;
 using System.Windows.Forms; // Para o DataGridView
 
 public class UsuarioController
@@ -192,5 +193,136 @@ public class UsuarioController
             return false;
         }
     }
+
+    public Usuarios ObterUsuarioPorId(int id)
+    {
+        Usuarios usuario = null;
+
+        try
+        {
+            string query = "SELECT id, nome, login, senha, status, acesso, img FROM tbusuarios WHERE id = @id";
+
+            using (var conexao = new Conexao())
+            {
+                conexao.Conectar();
+
+                using (var cmd = conexao.CriarComando(query))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            usuario = new Usuarios
+                            {
+                                Id = Convert.ToInt32(reader["id"]),
+                                Nome = reader["nome"].ToString(),
+                                Login = reader["login"].ToString(),
+                                Senha = reader["senha"].ToString(),
+                                Status = reader["status"].ToString(),
+                                Acesso = Convert.ToInt32(reader["acesso"]),
+                                Img = reader["img"].ToString()
+                            };
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Erro ao obter dados do usuário: {ex.Message}");
+        }
+
+        return usuario;
+    }
+
+    public void AtualizarUsuario(Usuarios usuario, string caminhoImagemSelecionada)
+    {
+        try
+        {
+            string pastaImg = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img");
+
+            // Garante que a pasta "img" existe
+            if (!Directory.Exists(pastaImg))
+            {
+                Directory.CreateDirectory(pastaImg);
+            }
+
+            string caminhoImagemAntiga = "";
+
+            // Recupera o caminho atual da imagem do banco de dados
+            using (var conexao = new Conexao())
+            {
+                string queryBusca = "SELECT img FROM tbusuarios WHERE id = @id";
+                using (var comandoBusca = conexao.CriarComando(queryBusca))
+                {
+                    comandoBusca.Parameters.AddWithValue("@id", usuario.Id);
+                    var reader = comandoBusca.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        caminhoImagemAntiga = reader["img"].ToString(); // Obtém o caminho da imagem do banco
+                    }
+
+                    reader.Close();
+                }
+            }
+
+            //MessageBox.Show(caminhoImagemAntiga);
+
+            // Verifica se uma nova imagem foi selecionada
+            if (!string.IsNullOrEmpty(caminhoImagemSelecionada))
+            {
+                // Gera um nome único para a nova imagem
+                string nomeArquivo = Guid.NewGuid().ToString() + Path.GetExtension(caminhoImagemSelecionada);
+                string novoCaminhoImagem = Path.Combine(pastaImg, nomeArquivo);
+
+                // Copia a nova imagem para a pasta "img"
+                File.Copy(caminhoImagemSelecionada, novoCaminhoImagem, true);
+
+                // Exclui a imagem antiga da pasta do sistema
+                if (!string.IsNullOrEmpty(caminhoImagemAntiga))
+                {
+                    string caminhoCompletoImagemAntiga = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, caminhoImagemAntiga);
+
+                    if (File.Exists(caminhoCompletoImagemAntiga))
+                    {
+                        File.Delete(caminhoCompletoImagemAntiga);
+                    }
+                }
+
+                // Atualiza o caminho completo da nova imagem no objeto
+                usuario.Img = novoCaminhoImagem; // Salva o caminho completo
+            }
+
+            // Atualiza o banco de dados
+            using (var conexao = new Conexao())
+            {
+                string query = "UPDATE tbusuarios SET nome = @nome, login = @login, senha = @senha, status = @status, acesso = @acesso, img = @img WHERE id = @id";
+                using (var comando = conexao.CriarComando(query))
+                {
+                    comando.Parameters.AddWithValue("@nome", usuario.Nome);
+                    comando.Parameters.AddWithValue("@login", usuario.Login);
+                    comando.Parameters.AddWithValue("@senha", usuario.Senha);
+                    comando.Parameters.AddWithValue("@status", usuario.Status);
+                    comando.Parameters.AddWithValue("@acesso", usuario.Acesso);
+                    comando.Parameters.AddWithValue("@img", usuario.Img); // Salva o caminho completo no banco
+                    comando.Parameters.AddWithValue("@id", usuario.Id);
+
+                    comando.ExecuteNonQuery();
+                }
+            }
+
+            MessageBox.Show("Usuário atualizado com sucesso!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Erro ao atualizar o usuário: {ex.Message}");
+        }
+    }
+
+
+
 
 }
