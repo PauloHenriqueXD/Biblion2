@@ -322,7 +322,65 @@ public class UsuarioController
         }
     }
 
+    public bool InserirUsuario(Usuarios usuario)
+    {
+        bool sucesso = false;
 
+        try
+        {
+            // Caminho para a pasta "img"
+            string pastaImg = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img");
+
+            // Garante que a pasta "img" existe
+            if (!Directory.Exists(pastaImg))
+            {
+                Directory.CreateDirectory(pastaImg);
+            }
+
+            // Copia a imagem para a pasta "img" caso tenha sido fornecida
+            if (!string.IsNullOrEmpty(usuario.Img))
+            {
+                string nomeArquivo = Guid.NewGuid().ToString() + Path.GetExtension(usuario.Img);
+                string caminhoCompletoImagem = Path.Combine(pastaImg, nomeArquivo);
+
+                File.Copy(usuario.Img, caminhoCompletoImagem, true);
+
+                // Atualiza o caminho no objeto usuário
+                usuario.Img = caminhoCompletoImagem;
+            }
+
+            // Insere os dados no banco de dados
+            using (var conexao = new Conexao())
+            {
+                string query = @"
+                INSERT INTO tbusuarios (guid, id, nome, login, senha, status, acesso, img)
+                VALUES (@guid, @id, @nome, @login, @senha, @status, @acesso, @img)";
+
+                using (var comando = conexao.CriarComando(query))
+                {
+                    comando.Parameters.AddWithValue("@guid", Guid.NewGuid());
+                    comando.Parameters.AddWithValue("@id", Globais.gerarNovoID("tbusuarios"));
+                    comando.Parameters.AddWithValue("@nome", usuario.Nome);
+                    comando.Parameters.AddWithValue("@login", usuario.Login);
+                    comando.Parameters.AddWithValue("@senha", usuario.Senha);
+                    comando.Parameters.AddWithValue("@status", usuario.Status);
+                    comando.Parameters.AddWithValue("@acesso", usuario.Acesso);
+                    comando.Parameters.AddWithValue("@img", usuario.Img);
+
+                    comando.ExecuteNonQuery();
+                    sucesso = true;
+                }
+            }
+
+            MessageBox.Show("Usuário cadastrado com sucesso!");
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Erro ao cadastrar usuário: {ex.Message}");
+        }
+
+        return sucesso;
+    }
 
 
 }

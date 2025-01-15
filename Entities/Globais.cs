@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SQLite;
 using System.Windows.Forms;
+using Biblion.DAL;
 
 namespace Biblion.Entities
 {
@@ -19,6 +20,30 @@ namespace Biblion.Entities
         public static string nomeBanco = "bd_biblion.db";
         public static string caminhoBanco = @"C:\Users\ph_ma\OneDrive\Documentos\Programação\C#\Biblion2\Biblion\bd\";
         public static string caminhoFotos = @"C:\Users\ph_ma\OneDrive\Documentos\Programação\C#\Biblion2\Biblion\Resources\";
+
+        public static int gerarNovoID(string tabela)
+        {
+            // Recupera o caminho atual da imagem do banco de dados
+            using (var conexao = new Conexao())
+            {
+                string queryBusca = "";
+                int id = 0;
+
+                queryBusca = "Select COALESCE(Max(id),0) As 'id' from " + tabela;
+                using (var comandoBusca = conexao.CriarComando(queryBusca))
+                {
+                    var reader = comandoBusca.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        id = int.Parse(reader["id"].ToString()); // Obtém o caminho da imagem do banco
+                        id++;
+                    }
+                    reader.Close();
+                    return id;
+                }
+            }
+        }
 
         public static void primeiro(DataGridView dgv)
         {

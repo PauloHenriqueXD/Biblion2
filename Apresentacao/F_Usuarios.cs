@@ -23,6 +23,7 @@ namespace Biblion.Apresentacao
 
         private UsuarioController usuarioController;
         private string idSelecionado = "";
+        private string tipoAcao = "";
         private string destinoCompleto = "";
 
         private void tsb_sair_Click(object sender, EventArgs e)
@@ -68,7 +69,6 @@ namespace Biblion.Apresentacao
             btn_addFoto.Enabled = true;
             btn_gravar.Enabled = true;
             btn_cancelar.Enabled = true;
-            //origemCompleto = pb_foto.ImageLocation;
         }
 
         private void carregarGrid()
@@ -133,6 +133,16 @@ namespace Biblion.Apresentacao
             {
                 MessageBox.Show("Erro ao Filtrar Grid: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void LimparFormulario()
+        {
+            tb_nome.Clear();
+            tb_login.Clear();
+            tb_senha.Clear();
+            cb_status.SelectedIndex = 0;
+            n_nivel.Value = 0;
+            pb_foto.ImageLocation = null;
         }
 
         private void F_Usuarios_Load(object sender, EventArgs e)
@@ -259,6 +269,7 @@ namespace Biblion.Apresentacao
 
         private void dgv_usuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            tipoAcao = "alteracao";
             alterarDados();
         }
 
@@ -296,6 +307,7 @@ namespace Biblion.Apresentacao
 
         private void tsb_alterar_Click(object sender, EventArgs e)
         {
+            tipoAcao = "alteracao";
             alterarDados();
         }
 
@@ -310,47 +322,18 @@ namespace Biblion.Apresentacao
             btn_addFoto.Enabled = false;
             btn_gravar.Enabled = false;
             btn_cancelar.Enabled = false;
-        }
 
-        private void btn_gravar_Click(object sender, EventArgs e)
-        {
-            if (destinoCompleto == "")
+            if(tipoAcao == "alteracao")
             {
-                if (MessageBox.Show("Sem foto selecionada, deseja continuar?", "Atenção!", MessageBoxButtons.YesNo) == DialogResult.No)
-                {
-                    return;
-                }
+                idSelecionado = dgv_usuarios.Rows[0].Cells[0].Value.ToString();
             }
-            try
+            else
             {
-                Usuarios usuario = new Usuarios
-                {
-                    Id = int.Parse(tb_id.Text),
-                    Nome = tb_nome.Text,
-                    Login = tb_login.Text,
-                    Senha = tb_senha.Text,
-                    Status = cb_status.SelectedValue.ToString(),
-                    Acesso = (int)n_nivel.Value,
-                    Img = pb_foto.ImageLocation // Caminho atual da imagem
-                };
+                carregarGrid();
+            }
 
-                // Chama o método para atualizar o usuário
-                string caminhoImagemSelecionada = destinoCompleto; // Caminho da imagem carregada pelo usuário
-                usuarioController.AtualizarUsuario(usuario, caminhoImagemSelecionada);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Erro ao salvar alterações: {ex.Message}");
-            }
-            tbc_control.SelectedTab = tbp_lista;
-            tb_nome.Enabled = false;
-            tb_login.Enabled = false;
-            tb_senha.Enabled = false;
-            cb_status.Enabled = false;
-            n_nivel.Enabled = false;
-            btn_addFoto.Enabled = false;
-            btn_gravar.Enabled = false;
-            btn_cancelar.Enabled = false;
+            tipoAcao = "";
+            
         }
 
         private void btn_addFoto_Click(object sender, EventArgs e)
@@ -376,6 +359,113 @@ namespace Biblion.Apresentacao
                     destinoCompleto = caminhoImagem;
                 }
             }
+        }
+
+        private void tsb_incluir_Click(object sender, EventArgs e)
+        {
+            //Corrigindo campos após Cadastro
+            tb_id.Text = Globais.gerarNovoID("tbusuarios").ToString();
+            tb_nome.Clear();
+            tb_login.Clear();
+            tb_senha.Clear();
+            cb_status.SelectedIndex = 0;
+            n_nivel.Value = 0;
+            pb_foto.ImageLocation = "";
+            tipoAcao = "inclusao";
+            alterarDados();
+        }
+
+        private void btn_gravar_Click(object sender, EventArgs e)
+        {
+            //Verifica se foi selecionada foto e pergunta se deseja continuar
+            if (destinoCompleto == "")
+            {
+                if (MessageBox.Show("Sem foto selecionada, deseja continuar?", "Atenção!", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+            if (tipoAcao == "alteracao")
+            {
+                try
+                {
+                    Usuarios usuario = new Usuarios
+                    {
+                        Id = int.Parse(tb_id.Text),
+                        Nome = tb_nome.Text,
+                        Login = tb_login.Text,
+                        Senha = tb_senha.Text,
+                        Status = cb_status.SelectedValue.ToString(),
+                        Acesso = (int)n_nivel.Value,
+                        Img = pb_foto.ImageLocation // Caminho atual da imagem
+                    };
+
+                    // Chama o método para atualizar o usuário
+                    string caminhoImagemSelecionada = destinoCompleto; // Caminho da imagem carregada pelo usuário
+                    usuarioController.AtualizarUsuario(usuario, caminhoImagemSelecionada);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao salvar alterações: {ex.Message}");
+                }
+                tbc_control.SelectedTab = tbp_lista;
+                tb_nome.Enabled = false;
+                tb_login.Enabled = false;
+                tb_senha.Enabled = false;
+                cb_status.Enabled = false;
+                n_nivel.Enabled = false;
+                btn_addFoto.Enabled = false;
+                btn_gravar.Enabled = false;
+                btn_cancelar.Enabled = false;
+            }
+            else if (tipoAcao == "inclusao")
+            {
+                try
+                {
+                    Usuarios novoUsuario = new Usuarios
+                    {
+                        Nome = tb_nome.Text,
+                        Login = tb_login.Text,
+                        Senha = tb_senha.Text,
+                        Status = cb_status.SelectedValue.ToString(),
+                        Acesso = (int)n_nivel.Value,
+                        Img = !string.IsNullOrEmpty(pb_foto.ImageLocation) ? pb_foto.ImageLocation : null
+                    };
+
+                    UsuarioController usuarioController = new UsuarioController();
+                    bool sucesso = usuarioController.InserirUsuario(novoUsuario);
+
+                    if (sucesso)
+                    {
+                        // limpa o formulário
+                        LimparFormulario();
+
+                        // Atualiza lista do formulário
+                        carregarGrid();
+
+                        //Gera novo id após cadastro de usuario
+                        tb_id.Text = Globais.gerarNovoID("tbusuarios").ToString();
+
+                        //Verifica se foi selecionada foto e pergunta se deseja continuar
+                        if (MessageBox.Show("Deseja Cadastrar mais um registro?", "Atenção!", MessageBoxButtons.YesNo) == DialogResult.No)
+                        {
+                            tbc_control.SelectedTab = tbp_lista;
+                            return;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao salvar alterações: {ex.Message}");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Erro ao salvar dados");
+            }
+            
         }
     }
 }

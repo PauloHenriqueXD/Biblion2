@@ -454,6 +454,7 @@
             this.tsb_incluir.Size = new System.Drawing.Size(56, 51);
             this.tsb_incluir.Text = "Incluir";
             this.tsb_incluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsb_incluir.Click += new System.EventHandler(this.tsb_incluir_Click);
             // 
             // tsb_alterar
             // 
