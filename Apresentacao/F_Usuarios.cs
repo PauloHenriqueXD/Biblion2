@@ -225,6 +225,7 @@ namespace Biblion.Apresentacao
 
         private void tsb_excluir_Click(object sender, EventArgs e)
         {
+            // Verifica se tem algum usuário Selecionado para Excluir, caso não avisa
             if (dgv_usuarios.CurrentRow == null)
             {
                 MessageBox.Show("Selecione um registro para excluir.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);

@@ -173,6 +173,38 @@ public class UsuarioController
 
         try
         {
+
+
+            // Recupera o caminho atual da imagem do banco de dados
+            string caminhoImagem = "";
+            using (var conexao = new Conexao())
+            {
+                string queryBusca = "SELECT img FROM tbusuarios WHERE id = @id";
+                using (var comandoBusca = conexao.CriarComando(queryBusca))
+                {
+                    comandoBusca.Parameters.AddWithValue("@id", usuario.Id);
+                    var reader = comandoBusca.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        caminhoImagem = reader["img"].ToString(); // Obtém o caminho da imagem do banco
+                    }
+
+                    reader.Close();
+                }
+            }
+
+            // Exclui a imagem da pasta do sistema
+            if (!string.IsNullOrEmpty(caminhoImagem))
+            {
+                string caminhoCompletoImagemAntiga = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, caminhoImagem);
+
+                if (File.Exists(caminhoCompletoImagemAntiga))
+                {
+                    File.Delete(caminhoCompletoImagemAntiga);
+                }
+            }
+
             // Usando o bloco using para garantir que a conexão será fechada automaticamente
             using (var conexao = new Conexao())
             {
@@ -358,7 +390,7 @@ public class UsuarioController
 
                 using (var comando = conexao.CriarComando(query))
                 {
-                    comando.Parameters.AddWithValue("@guid", Guid.NewGuid());
+                    comando.Parameters.AddWithValue("@guid", Guid.NewGuid().ToString());
                     comando.Parameters.AddWithValue("@id", Globais.gerarNovoID("tbusuarios"));
                     comando.Parameters.AddWithValue("@nome", usuario.Nome);
                     comando.Parameters.AddWithValue("@login", usuario.Login);
