@@ -59,5 +59,11 @@ namespace Biblion.Apresentacao
             F_Usuarios f_Usuarios = new F_Usuarios();
             AbreForm(0, f_Usuarios);
         }
+
+        private void clientesToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            F_Clientes f_Clientes = new F_Clientes();
+            AbreForm(0, f_Clientes);
+        }
     }
 }

@@ -76,33 +76,34 @@
             // usuáriosToolStripMenuItem1
             // 
             this.usuáriosToolStripMenuItem1.Name = "usuáriosToolStripMenuItem1";
-            this.usuáriosToolStripMenuItem1.Size = new System.Drawing.Size(127, 22);
+            this.usuáriosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.usuáriosToolStripMenuItem1.Text = "Usuários";
             this.usuáriosToolStripMenuItem1.Click += new System.EventHandler(this.usuáriosToolStripMenuItem1_Click);
             // 
             // estadosToolStripMenuItem1
             // 
             this.estadosToolStripMenuItem1.Name = "estadosToolStripMenuItem1";
-            this.estadosToolStripMenuItem1.Size = new System.Drawing.Size(127, 22);
+            this.estadosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.estadosToolStripMenuItem1.Text = "Estados";
             // 
             // cidadesToolStripMenuItem1
             // 
             this.cidadesToolStripMenuItem1.Name = "cidadesToolStripMenuItem1";
-            this.cidadesToolStripMenuItem1.Size = new System.Drawing.Size(127, 22);
+            this.cidadesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.cidadesToolStripMenuItem1.Text = "Cidades";
             // 
             // clientesToolStripMenuItem1
             // 
             this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
-            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(127, 22);
+            this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.clientesToolStripMenuItem1.Text = "Livros";
             // 
             // clientesToolStripMenuItem2
             // 
             this.clientesToolStripMenuItem2.Name = "clientesToolStripMenuItem2";
-            this.clientesToolStripMenuItem2.Size = new System.Drawing.Size(127, 22);
+            this.clientesToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
             this.clientesToolStripMenuItem2.Text = "Clientes";
+            this.clientesToolStripMenuItem2.Click += new System.EventHandler(this.clientesToolStripMenuItem2_Click);
             // 
             // relatóriosToolStripMenuItem
             // 

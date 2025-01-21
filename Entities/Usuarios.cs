@@ -30,9 +30,5 @@ namespace Biblion.Entities
             Acesso = acesso;
             Img = img;
         }
-
-
-
-
     }
 }
