@@ -38,20 +38,32 @@
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_gravar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.tb_senha = new System.Windows.Forms.TextBox();
-            this.btn_addFoto = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.pb_foto = new System.Windows.Forms.PictureBox();
-            this.tb_id = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.cb_cidades = new System.Windows.Forms.ComboBox();
             this.tb_nome = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tb_login = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.cb_status = new System.Windows.Forms.ComboBox();
-            this.n_nivel = new System.Windows.Forms.NumericUpDown();
+            this.tb_id = new System.Windows.Forms.TextBox();
+            this.n_numero = new System.Windows.Forms.NumericUpDown();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cb_sexo = new System.Windows.Forms.ComboBox();
+            this.tb_endereco = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tb_email = new System.Windows.Forms.TextBox();
+            this.tb_bairro = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.mtb_Telefone = new System.Windows.Forms.MaskedTextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cb_uf = new System.Windows.Forms.ComboBox();
+            this.mtb_documento = new System.Windows.Forms.MaskedTextBox();
+            this.dtp_datanasc = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lb_registros = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -80,8 +92,7 @@
             this.tbp_dados.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_foto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.n_nivel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.n_numero)).BeginInit();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.gb_filtros.SuspendLayout();
@@ -136,8 +147,8 @@
             this.dgv_clientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_clientes.Size = new System.Drawing.Size(957, 402);
             this.dgv_clientes.TabIndex = 13;
-            this.dgv_clientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_usuarios_CellDoubleClick);
-            this.dgv_clientes.SelectionChanged += new System.EventHandler(this.dgv_usuarios_SelectionChanged);
+            this.dgv_clientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_clientes_CellDoubleClick);
+            this.dgv_clientes.SelectionChanged += new System.EventHandler(this.dgv_clientes_SelectionChanged);
             // 
             // tbp_dados
             // 
@@ -187,156 +198,276 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.tb_senha);
-            this.panel3.Controls.Add(this.btn_addFoto);
-            this.panel3.Controls.Add(this.label8);
-            this.panel3.Controls.Add(this.pb_foto);
-            this.panel3.Controls.Add(this.tb_id);
-            this.panel3.Controls.Add(this.label6);
-            this.panel3.Controls.Add(this.label7);
-            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.cb_cidades);
             this.panel3.Controls.Add(this.tb_nome);
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.tb_login);
-            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.label13);
+            this.panel3.Controls.Add(this.label15);
             this.panel3.Controls.Add(this.cb_status);
-            this.panel3.Controls.Add(this.n_nivel);
+            this.panel3.Controls.Add(this.tb_id);
+            this.panel3.Controls.Add(this.n_numero);
+            this.panel3.Controls.Add(this.label14);
+            this.panel3.Controls.Add(this.label12);
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.label11);
+            this.panel3.Controls.Add(this.cb_sexo);
+            this.panel3.Controls.Add(this.tb_endereco);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Controls.Add(this.tb_email);
+            this.panel3.Controls.Add(this.tb_bairro);
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.mtb_Telefone);
+            this.panel3.Controls.Add(this.label8);
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.cb_uf);
+            this.panel3.Controls.Add(this.mtb_documento);
+            this.panel3.Controls.Add(this.dtp_datanasc);
+            this.panel3.Controls.Add(this.label7);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(957, 356);
             this.panel3.TabIndex = 34;
             // 
-            // tb_senha
+            // cb_cidades
             // 
-            this.tb_senha.Enabled = false;
-            this.tb_senha.Location = new System.Drawing.Point(202, 84);
-            this.tb_senha.Name = "tb_senha";
-            this.tb_senha.PasswordChar = '*';
-            this.tb_senha.Size = new System.Drawing.Size(198, 20);
-            this.tb_senha.TabIndex = 25;
-            // 
-            // btn_addFoto
-            // 
-            this.btn_addFoto.Enabled = false;
-            this.btn_addFoto.Location = new System.Drawing.Point(440, 143);
-            this.btn_addFoto.Name = "btn_addFoto";
-            this.btn_addFoto.Size = new System.Drawing.Size(85, 23);
-            this.btn_addFoto.TabIndex = 32;
-            this.btn_addFoto.Text = "Add Imagem";
-            this.btn_addFoto.UseVisualStyleBackColor = true;
-            this.btn_addFoto.Click += new System.EventHandler(this.btn_addFoto_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 8);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(18, 13);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "ID";
-            // 
-            // pb_foto
-            // 
-            this.pb_foto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pb_foto.Location = new System.Drawing.Point(440, 24);
-            this.pb_foto.Name = "pb_foto";
-            this.pb_foto.Size = new System.Drawing.Size(85, 113);
-            this.pb_foto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb_foto.TabIndex = 33;
-            this.pb_foto.TabStop = false;
-            // 
-            // tb_id
-            // 
-            this.tb_id.Location = new System.Drawing.Point(14, 24);
-            this.tb_id.Name = "tb_id";
-            this.tb_id.ReadOnly = true;
-            this.tb_id.Size = new System.Drawing.Size(70, 20);
-            this.tb_id.TabIndex = 21;
-            this.tb_id.TabStop = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(199, 126);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 13);
-            this.label6.TabIndex = 31;
-            this.label6.Text = "Nível de Acesso";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(87, 8);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "Nome";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 126);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 13);
-            this.label5.TabIndex = 30;
-            this.label5.Text = "Status";
+            this.cb_cidades.Enabled = false;
+            this.cb_cidades.FormattingEnabled = true;
+            this.cb_cidades.Location = new System.Drawing.Point(263, 119);
+            this.cb_cidades.Name = "cb_cidades";
+            this.cb_cidades.Size = new System.Drawing.Size(164, 21);
+            this.cb_cidades.TabIndex = 82;
             // 
             // tb_nome
             // 
             this.tb_nome.Enabled = false;
-            this.tb_nome.Location = new System.Drawing.Point(90, 24);
+            this.tb_nome.Location = new System.Drawing.Point(90, 25);
             this.tb_nome.Name = "tb_nome";
-            this.tb_nome.Size = new System.Drawing.Size(310, 20);
-            this.tb_nome.TabIndex = 23;
+            this.tb_nome.Size = new System.Drawing.Size(337, 20);
+            this.tb_nome.TabIndex = 75;
             // 
-            // label4
+            // label13
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(199, 68);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
-            this.label4.TabIndex = 29;
-            this.label4.Text = "Senha";
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(430, 102);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(37, 13);
+            this.label13.TabIndex = 100;
+            this.label13.Text = "Status";
             // 
-            // tb_login
+            // label15
             // 
-            this.tb_login.Enabled = false;
-            this.tb_login.Location = new System.Drawing.Point(14, 84);
-            this.tb_login.Name = "tb_login";
-            this.tb_login.Size = new System.Drawing.Size(182, 20);
-            this.tb_login.TabIndex = 24;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 68);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
-            this.label3.TabIndex = 28;
-            this.label3.Text = "Usuário";
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(11, 9);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(18, 13);
+            this.label15.TabIndex = 87;
+            this.label15.Text = "ID";
             // 
             // cb_status
             // 
             this.cb_status.Enabled = false;
             this.cb_status.FormattingEnabled = true;
-            this.cb_status.Location = new System.Drawing.Point(14, 142);
+            this.cb_status.Location = new System.Drawing.Point(433, 118);
             this.cb_status.Name = "cb_status";
-            this.cb_status.Size = new System.Drawing.Size(182, 21);
-            this.cb_status.TabIndex = 26;
+            this.cb_status.Size = new System.Drawing.Size(116, 21);
+            this.cb_status.TabIndex = 83;
             // 
-            // n_nivel
+            // tb_id
             // 
-            this.n_nivel.Enabled = false;
-            this.n_nivel.Location = new System.Drawing.Point(202, 143);
-            this.n_nivel.Maximum = new decimal(new int[] {
-            3,
-            0,
+            this.tb_id.Location = new System.Drawing.Point(14, 25);
+            this.tb_id.Name = "tb_id";
+            this.tb_id.ReadOnly = true;
+            this.tb_id.Size = new System.Drawing.Size(70, 20);
+            this.tb_id.TabIndex = 88;
+            this.tb_id.TabStop = false;
+            // 
+            // n_numero
+            // 
+            this.n_numero.Enabled = false;
+            this.n_numero.Location = new System.Drawing.Point(460, 169);
+            this.n_numero.Maximum = new decimal(new int[] {
+            1410065408,
+            2,
             0,
             0});
-            this.n_nivel.Name = "n_nivel";
-            this.n_nivel.Size = new System.Drawing.Size(198, 20);
-            this.n_nivel.TabIndex = 27;
+            this.n_numero.Name = "n_numero";
+            this.n_numero.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.n_numero.Size = new System.Drawing.Size(89, 20);
+            this.n_numero.TabIndex = 86;
+            this.n_numero.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(87, 9);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(35, 13);
+            this.label14.TabIndex = 89;
+            this.label14.Text = "Nome";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(457, 152);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(44, 13);
+            this.label12.TabIndex = 99;
+            this.label12.Text = "Numero";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 54);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(31, 13);
+            this.label3.TabIndex = 90;
+            this.label3.Text = "Sexo";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(161, 152);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(53, 13);
+            this.label11.TabIndex = 98;
+            this.label11.Text = "Endereço";
+            // 
+            // cb_sexo
+            // 
+            this.cb_sexo.Enabled = false;
+            this.cb_sexo.FormattingEnabled = true;
+            this.cb_sexo.Location = new System.Drawing.Point(14, 70);
+            this.cb_sexo.Name = "cb_sexo";
+            this.cb_sexo.Size = new System.Drawing.Size(116, 21);
+            this.cb_sexo.TabIndex = 77;
+            // 
+            // tb_endereco
+            // 
+            this.tb_endereco.Enabled = false;
+            this.tb_endereco.Location = new System.Drawing.Point(163, 168);
+            this.tb_endereco.Name = "tb_endereco";
+            this.tb_endereco.Size = new System.Drawing.Size(291, 20);
+            this.tb_endereco.TabIndex = 85;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(133, 54);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(36, 13);
+            this.label4.TabIndex = 91;
+            this.label4.Text = "E-Mail";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(11, 152);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(34, 13);
+            this.label10.TabIndex = 97;
+            this.label10.Text = "Bairro";
+            // 
+            // tb_email
+            // 
+            this.tb_email.Enabled = false;
+            this.tb_email.Location = new System.Drawing.Point(136, 70);
+            this.tb_email.Name = "tb_email";
+            this.tb_email.Size = new System.Drawing.Size(291, 20);
+            this.tb_email.TabIndex = 78;
+            // 
+            // tb_bairro
+            // 
+            this.tb_bairro.Enabled = false;
+            this.tb_bairro.Location = new System.Drawing.Point(14, 168);
+            this.tb_bairro.Name = "tb_bairro";
+            this.tb_bairro.Size = new System.Drawing.Size(143, 20);
+            this.tb_bairro.TabIndex = 84;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(430, 54);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 13);
+            this.label5.TabIndex = 92;
+            this.label5.Text = "Telefone";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(260, 102);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(40, 13);
+            this.label9.TabIndex = 96;
+            this.label9.Text = "Cidade";
+            // 
+            // mtb_Telefone
+            // 
+            this.mtb_Telefone.Enabled = false;
+            this.mtb_Telefone.Location = new System.Drawing.Point(433, 70);
+            this.mtb_Telefone.Mask = "(99) 0,0000-0000";
+            this.mtb_Telefone.Name = "mtb_Telefone";
+            this.mtb_Telefone.Size = new System.Drawing.Size(116, 20);
+            this.mtb_Telefone.TabIndex = 79;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(134, 102);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(40, 13);
+            this.label8.TabIndex = 95;
+            this.label8.Text = "Estado";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(430, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(62, 13);
+            this.label6.TabIndex = 93;
+            this.label6.Text = "Documento";
+            // 
+            // cb_uf
+            // 
+            this.cb_uf.Enabled = false;
+            this.cb_uf.FormattingEnabled = true;
+            this.cb_uf.Location = new System.Drawing.Point(136, 118);
+            this.cb_uf.Name = "cb_uf";
+            this.cb_uf.Size = new System.Drawing.Size(121, 21);
+            this.cb_uf.TabIndex = 81;
+            // 
+            // mtb_documento
+            // 
+            this.mtb_documento.Enabled = false;
+            this.mtb_documento.Location = new System.Drawing.Point(433, 25);
+            this.mtb_documento.Mask = "000,000,000-00";
+            this.mtb_documento.Name = "mtb_documento";
+            this.mtb_documento.Size = new System.Drawing.Size(116, 20);
+            this.mtb_documento.TabIndex = 76;
+            // 
+            // dtp_datanasc
+            // 
+            this.dtp_datanasc.Enabled = false;
+            this.dtp_datanasc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_datanasc.Location = new System.Drawing.Point(14, 119);
+            this.dtp_datanasc.MaxDate = new System.DateTime(2200, 12, 31, 0, 0, 0, 0);
+            this.dtp_datanasc.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtp_datanasc.Name = "dtp_datanasc";
+            this.dtp_datanasc.Size = new System.Drawing.Size(116, 20);
+            this.dtp_datanasc.TabIndex = 80;
+            this.dtp_datanasc.Value = new System.DateTime(2024, 3, 25, 0, 0, 0, 0);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(11, 103);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(104, 13);
+            this.label7.TabIndex = 94;
+            this.label7.Text = "Data de Nascimento";
             // 
             // openFileDialog1
             // 
@@ -571,8 +702,8 @@
             this.Name = "F_Clientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestão de Clientes";
-            this.Load += new System.EventHandler(this.F_Usuarios_Load);
-            this.Shown += new System.EventHandler(this.F_Usuarios_Shown);
+            this.Load += new System.EventHandler(this.F_Clientes_Load);
+            this.Shown += new System.EventHandler(this.F_Clientes_Shown_1);
             this.tbc_control.ResumeLayout(false);
             this.tbp_lista.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_clientes)).EndInit();
@@ -580,8 +711,7 @@
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb_foto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.n_nivel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.n_numero)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -604,20 +734,6 @@
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.Button btn_gravar;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox tb_senha;
-        private System.Windows.Forms.Button btn_addFoto;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.PictureBox pb_foto;
-        private System.Windows.Forms.TextBox tb_id;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tb_nome;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tb_login;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cb_status;
-        private System.Windows.Forms.NumericUpDown n_nivel;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label lb_registros;
         private System.Windows.Forms.Panel panel1;
@@ -640,5 +756,31 @@
         private System.Windows.Forms.TextBox tb_filtroNome;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ComboBox cb_cidades;
+        private System.Windows.Forms.TextBox tb_nome;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox cb_status;
+        private System.Windows.Forms.TextBox tb_id;
+        private System.Windows.Forms.NumericUpDown n_numero;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox cb_sexo;
+        private System.Windows.Forms.TextBox tb_endereco;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tb_email;
+        private System.Windows.Forms.TextBox tb_bairro;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.MaskedTextBox mtb_Telefone;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cb_uf;
+        private System.Windows.Forms.MaskedTextBox mtb_documento;
+        private System.Windows.Forms.DateTimePicker dtp_datanasc;
+        private System.Windows.Forms.Label label7;
     }
 }

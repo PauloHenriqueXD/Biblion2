@@ -78,7 +78,7 @@ public class ClienteController
         table.Columns.Add("Email", typeof(string));
         table.Columns.Add("Telefone", typeof(string));
         table.Columns.Add("Status", typeof(string));
-        table.Columns.Add("Sexo", typeof(int));
+        table.Columns.Add("Sexo", typeof(string));
         table.Columns.Add("Documento", typeof(string));
         table.Columns.Add("Datanasc", typeof(string));
         table.Columns.Add("Uf", typeof(string));
@@ -90,7 +90,7 @@ public class ClienteController
 
         foreach (var cliente in clientes)
         {
-            table.Rows.Add(cliente.Id, cliente.Nome, cliente.Email, cliente.Telefone, cliente.Status, cliente.Documento, cliente.Datanasc, cliente.Uf, cliente.Cidade, cliente.Bairro, cliente.Bairro, cliente.Endereco, cliente.Numero);
+            table.Rows.Add(cliente.Id, cliente.Nome, cliente.Email, cliente.Telefone, cliente.Status, cliente.Documento, cliente.Datanasc, cliente.Uf, cliente.Cidade, cliente.Bairro, cliente.Endereco, cliente.Numero);
         }
 
         grid.DataSource = table;
@@ -274,7 +274,8 @@ public class ClienteController
             // Atualiza o banco de dados
             using (var conexao = new Conexao())
             {
-                string query = "UPDATE tbcliente SET nome = @nome, email = @email, telefone = @telefone, status = @status, sexo = @sexo, documento = @documento, @datanasc = datanasc, @uf = uf, @cidade = cidade, @bairro = bairro, @endereco = endereco, @numero = numero WHERE id = @id";
+                string query = "UPDATE tbcliente SET nome = @nome, email = @email, telefone = @telefone, status = @status, sexo = @sexo, documento = @documento, datanasc = @datanasc, uf = @uf, cidade = @cidade, bairro = @bairro, endereco = @endereco, numero = @numero WHERE id = @id";
+
                 using (var comando = conexao.CriarComando(query))
                 {
                     comando.Parameters.AddWithValue("@nome", cliente.Nome);
@@ -314,7 +315,7 @@ public class ClienteController
             {
                 string query = @"
                 INSERT INTO tbcliente (id, nome, email, telefone, status, sexo, documento, datanasc, uf, cidade, bairro, endereco, numero)
-                VALUES (@guid, @id, @nome, @email, @teleofne, @status, @sexo, @documento, @datanasc, @uf, @cidade, @bairro, @endereco, @numero)";
+                VALUES (@guid, @id, @nome, @email, @telefone, @status, @sexo, @documento, @datanasc, @uf, @cidade, @bairro, @endereco, @numero)";
 
                 using (var comando = conexao.CriarComando(query))
                 {
