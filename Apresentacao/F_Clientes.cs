@@ -24,7 +24,6 @@ namespace Biblion.Apresentacao
         private ClienteController clienteController;
         private string idSelecionado = "";
         private string tipoAcao = "";
-        private string destinoCompleto = "";
 
         private void tsb_sair_Click(object sender, EventArgs e)
         {

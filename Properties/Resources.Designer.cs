@@ -123,6 +123,16 @@ namespace Biblion.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap funcoes2 {
+            get {
+                object obj = ResourceManager.GetObject("funcoes2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap login_gov_icon_146024__1_ {
             get {
                 object obj = ResourceManager.GetObject("login_gov_icon_146024 (1)", resourceCulture);

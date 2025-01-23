@@ -65,5 +65,11 @@ namespace Biblion.Apresentacao
             F_Clientes f_Clientes = new F_Clientes();
             AbreForm(0, f_Clientes);
         }
+
+        private void estadosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            F_Estados f_estados = new F_Estados();
+            AbreForm (0, f_estados);
+        }
     }
 }

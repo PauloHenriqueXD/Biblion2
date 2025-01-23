@@ -85,6 +85,7 @@
             this.estadosToolStripMenuItem1.Name = "estadosToolStripMenuItem1";
             this.estadosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.estadosToolStripMenuItem1.Text = "Estados";
+            this.estadosToolStripMenuItem1.Click += new System.EventHandler(this.estadosToolStripMenuItem1_Click);
             // 
             // cidadesToolStripMenuItem1
             // 
