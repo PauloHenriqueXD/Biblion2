@@ -78,19 +78,11 @@ public class ClienteController
         table.Columns.Add("Email", typeof(string));
         table.Columns.Add("Telefone", typeof(string));
         table.Columns.Add("Status", typeof(string));
-        table.Columns.Add("Sexo", typeof(string));
-        table.Columns.Add("Documento", typeof(string));
-        table.Columns.Add("Datanasc", typeof(string));
-        table.Columns.Add("Uf", typeof(string));
-        table.Columns.Add("Cidade", typeof(string));
-        table.Columns.Add("Bairro", typeof(string));
-        table.Columns.Add("Endereco", typeof(string));
-        table.Columns.Add("Numero", typeof(int));
 
 
         foreach (var cliente in clientes)
         {
-            table.Rows.Add(cliente.Id, cliente.Nome, cliente.Email, cliente.Telefone, cliente.Status, cliente.Documento, cliente.Datanasc, cliente.Uf, cliente.Cidade, cliente.Bairro, cliente.Endereco, cliente.Numero);
+            table.Rows.Add(cliente.Id, cliente.Nome, cliente.Email, cliente.Telefone, cliente.Status);
         }
 
         grid.DataSource = table;
@@ -169,18 +161,10 @@ public class ClienteController
         table.Columns.Add("Email", typeof(string));
         table.Columns.Add("Telefone", typeof(string));
         table.Columns.Add("Status", typeof(string));
-        table.Columns.Add("Sexo", typeof(int));
-        table.Columns.Add("Documento", typeof(string));
-        table.Columns.Add("Datanasc", typeof(string));
-        table.Columns.Add("Uf", typeof(string));
-        table.Columns.Add("Cidade", typeof(string));
-        table.Columns.Add("Bairro", typeof(string));
-        table.Columns.Add("Endereco", typeof(string));
-        table.Columns.Add("Numero", typeof(int));
 
         foreach (var cliente in clientes)
         {
-            table.Rows.Add(cliente.Id, cliente.Nome, cliente.Email, cliente.Telefone, cliente.Status, cliente.Documento, cliente.Datanasc, cliente.Uf, cliente.Cidade, cliente.Bairro, cliente.Bairro, cliente.Endereco, cliente.Numero);
+            table.Rows.Add(cliente.Id, cliente.Nome, cliente.Email, cliente.Telefone, cliente.Status);
         }
 
         grid.DataSource = table;
