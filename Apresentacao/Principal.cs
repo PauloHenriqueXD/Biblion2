@@ -69,7 +69,13 @@ namespace Biblion.Apresentacao
         private void estadosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             F_Estados f_estados = new F_Estados();
-            AbreForm (0, f_estados);
+            AbreForm(0, f_estados);
+        }
+
+        private void cidadesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            F_Cidades f_Cidades = new F_Cidades();
+            AbreForm(0, f_Cidades);
         }
     }
 }

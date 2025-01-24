@@ -6,22 +6,22 @@ using System.Data; // Para DataTable
 using System.IO;
 using System.Windows.Forms; // Para o DataGridView
 
-public class EstadoController
+public class CidadeController
 {
     private Conexao conexao;
 
-    public EstadoController()
+    public CidadeController()
     {
         conexao = new Conexao(); // Supondo que você já tenha a classe Conexao implementada
     }
 
-    public List<Estados> ObterEstados()
+    public List<Cidades> ObterCidade()
     {
-        List<Estados> estados = new List<Estados>();
+        List<Cidades> cidades = new List<Cidades>();
 
         try
         {
-            string query = "SELECT id, sigla, descricao FROM tbestados";
+            string query = "SELECT id, descricao, codMunicipio, uf FROM tbcidades";
 
             // Abre a conexão
             using (var conexao = new Conexao()) // Usando 'using' para garantir o fechamento adequado da conexão
@@ -37,14 +37,15 @@ public class EstadoController
                 {
                     while (reader.Read())
                     {
-                        Estados estado = new Estados
+                        Cidades cidade = new Cidades
                         {
                             Id = Convert.ToInt32(reader["id"]),
-                            Sigla = reader["sigla"].ToString(),
-                            Descricao = reader["descricao"].ToString()
+                            Descricao = reader["descricao"].ToString(),
+                            codMunicipio = Convert.ToInt32(reader["codMunicipio"]),
+                            Uf = reader["uf"].ToString()
                         };
 
-                        estados.Add(estado);
+                        cidades.Add(cidade);
                     }
                 } // O reader será fechado automaticamente aqui
             } // A conexão será fechada automaticamente aqui, ao sair do bloco 'using'
@@ -54,22 +55,23 @@ public class EstadoController
             MessageBox.Show("Erro ao buscar usuários: " + ex.Message);
         }
 
-        return estados;
+        return cidades;
     }
 
     public void PreencherDataGridView(DataGridView grid)
     {
-        var estados = ObterEstados();
+        var cidades = ObterCidade();
 
         // Converte a lista para um DataTable (opcional, mas recomendado para grids)
         DataTable table = new DataTable();
         table.Columns.Add("Id", typeof(int));
-        table.Columns.Add("Sigla", typeof(string));
         table.Columns.Add("Descrição", typeof(string));
+        table.Columns.Add("Cod. Município", typeof(int));
+        table.Columns.Add("UF", typeof(string));
 
-        foreach (var estado in estados)
+        foreach (var cidade in cidades)
         {
-            table.Rows.Add(estado.Id, estado.Sigla, estado.Descricao);
+            table.Rows.Add(cidade.Id, cidade.Descricao, cidade.codMunicipio, cidade.Uf);
         }
 
         grid.DataSource = table;
@@ -78,16 +80,16 @@ public class EstadoController
         grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
     }
 
-    public List<Estados> FiltrarEstados(string termo)
+    public List<Cidades> FiltrarCidades(string termo)
     {
-        List<Estados> estados = new List<Estados>();
+        List<Cidades> cidades = new List<Cidades>();
 
         try
         {
             // Define a consulta SQL
-            string query = "SELECT id, sigla, descricao " +
-                           "FROM tbestados " +
-                           "WHERE (sigla LIKE @Termo OR descricao LIKE @Termo)";
+            string query = "SELECT id, descricao, codMunicipio, uf " +
+                           "FROM tbcidades " +
+                           "WHERE (descricao LIKE @Termo OR codMunicipio LIKE @Termo OR uf LIKE @Termo)";
 
             using (var command = conexao.CriarComando(query))
             {
@@ -97,14 +99,15 @@ public class EstadoController
 
                 while (reader.Read())
                 {
-                    Estados estado = new Estados
+                    Cidades cidade = new Cidades
                     {
                         Id = Convert.ToInt32(reader["Id"]),
-                        Sigla = reader["Sigla"].ToString(),
-                        Descricao = reader["Descrição"].ToString()
+                        Descricao = reader["Descrição"].ToString(),
+                        codMunicipio = Convert.ToInt32(reader["Cod. Município"]),
+                        Uf = reader["UF"].ToString()
                     };
 
-                    estados.Add(estado);
+                    cidades.Add(cidade);
                 }
 
                 reader.Close();
@@ -115,19 +118,20 @@ public class EstadoController
             MessageBox.Show("Erro ao filtrar usuários: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        return estados;
+        return cidades;
     }
 
-    public void AtualizarDataGridView(DataGridView grid, List<Estados> estados)
+    public void AtualizarDataGridView(DataGridView grid, List<Cidades> cidades)
     {
         DataTable table = new DataTable();
         table.Columns.Add("Id", typeof(int));
-        table.Columns.Add("Sigla", typeof(string));
-        table.Columns.Add("Descricao", typeof(string));
+        table.Columns.Add("Descrição", typeof(string));
+        table.Columns.Add("Cod. Município", typeof(int));
+        table.Columns.Add("UF", typeof(string));
 
-        foreach (var estado in estados)
+        foreach (var cidade in cidades)
         {
-            table.Rows.Add(estado.Id, estado.Sigla, estado.Descricao);
+            table.Rows.Add(cidade.Id, cidade.Descricao, cidade.codMunicipio, cidade.Uf);
         }
 
         grid.DataSource = table;
@@ -136,19 +140,19 @@ public class EstadoController
         grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
     }
 
-    public bool ExcluirEstado(Estados estado)
+    public bool ExcluirCidade(Cidades cidade)
     {
-        if (estado == null || estado.Id <= 0)
-            throw new ArgumentException("Estado inválido para exclusão.");
+        if (cidade == null || cidade.Id <= 0)
+            throw new ArgumentException("Registro inválido para exclusão.");
 
         try
         {
             // Usando o bloco using para garantir que a conexão será fechada automaticamente
             using (var conexao = new Conexao())
             {
-                string query = "DELETE FROM tbestados WHERE id = @Id";
+                string query = "DELETE FROM tbcidades WHERE id = @Id";
                 var command = conexao.CriarComando(query);
-                command.Parameters.AddWithValue("@Id", estado.Id);
+                command.Parameters.AddWithValue("@Id", cidade.Id);
 
                 conexao.Conectar(); // Certifica-se de que a conexão está aberta
                 int linhasAfetadas = command.ExecuteNonQuery();
@@ -158,19 +162,19 @@ public class EstadoController
         }
         catch (Exception ex)
         {
-            // Lidar com o erro (log ou mensagem ao estado)
-            MessageBox.Show($"Erro ao excluir estado: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            // Lidar com o erro (log ou mensagem ao Registro)
+            MessageBox.Show($"Erro ao excluir Registro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
         }
     }
 
-    public Estados ObterEstadoPorId(int id)
+    public Cidades ObterCidadePorId(int id)
     {
-        Estados estado = null;
+        Cidades cidade = null;
 
         try
         {
-            string query = "SELECT id, sigla, descricao FROM tbestados WHERE id = @id";
+            string query = "SELECT id, descricao, codMunicipio, uf FROM tbcidades WHERE id = @id";
 
             using (var conexao = new Conexao())
             {
@@ -184,11 +188,12 @@ public class EstadoController
                     {
                         if (reader.Read())
                         {
-                            estado = new Estados
+                            cidade = new Cidades
                             {
                                 Id = Convert.ToInt32(reader["id"]),
-                                Sigla = reader["Sigla"].ToString(),
-                                Descricao = reader["Descricao"].ToString()
+                                Descricao = reader["descricao"].ToString(),
+                                codMunicipio = Convert.ToInt32(reader["codMunicipio"]),
+                                Uf = reader["uf"].ToString()
                             };
                         }
                     }
@@ -200,36 +205,37 @@ public class EstadoController
             MessageBox.Show($"Erro ao obter dados do Registro: {ex.Message}");
         }
 
-        return estado;
+        return cidade;
     }
 
-    public void AtualizarEstado(Estados estado)
+    public void AtualizarCidade(Cidades cidade)
     {
         try
         {
-           // Atualiza o banco de dados
+            // Atualiza o banco de dados
             using (var conexao = new Conexao())
             {
-                string query = "UPDATE tbestados SET sigla = @sigla, descricao = @descricao WHERE id = @id";
+                string query = "UPDATE tbcidade SET descricao = @descricao, codMunicipio = #codMunicipio, uf = @uf WHERE id = @id";
                 using (var comando = conexao.CriarComando(query))
                 {
-                    comando.Parameters.AddWithValue("@sigla", estado.Sigla);
-                    comando.Parameters.AddWithValue("@descricao", estado.Descricao);
-                    comando.Parameters.AddWithValue("@id", estado.Id);
+                    comando.Parameters.AddWithValue("@descricao", cidade.Descricao);
+                    comando.Parameters.AddWithValue("@codMunicipio", cidade.codMunicipio);
+                    comando.Parameters.AddWithValue("@uf", cidade.Uf);
+                    comando.Parameters.AddWithValue("@id", cidade.Id);
 
                     comando.ExecuteNonQuery();
                 }
             }
 
-            MessageBox.Show("Estado atualizado com sucesso!");
+            MessageBox.Show("Registro atualizado com sucesso!");
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Erro ao atualizar o Estado: {ex.Message}");
+            MessageBox.Show($"Erro ao atualizar o Registro: {ex.Message}");
         }
     }
 
-    public bool InserirEstados(Estados estado)
+    public bool InserirCidades(Cidades cidade)
     {
         bool sucesso = false;
 
@@ -239,29 +245,30 @@ public class EstadoController
             using (var conexao = new Conexao())
             {
                 string query = @"
-                INSERT INTO tbestados (guid, id, sigla, descricao)
-                VALUES (@guid, @id, @sigla, @descricao)";
+                INSERT INTO tbcidades (guid, id, descricao, codMunicipio, uf)
+                VALUES (@guid, @id, @descricao, @codMunicipio, @uf)";
 
                 using (var comando = conexao.CriarComando(query))
                 {
                     comando.Parameters.AddWithValue("@guid", Guid.NewGuid().ToString());
-                    comando.Parameters.AddWithValue("@id", Globais.gerarNovoID("tbestados"));
-                    comando.Parameters.AddWithValue("@sigla", estado.Sigla);
-                    comando.Parameters.AddWithValue("@descricao", estado.Descricao);
-                    
+                    comando.Parameters.AddWithValue("@id", Globais.gerarNovoID("tbcidades"));
+                    comando.Parameters.AddWithValue("@descricao", cidade.Descricao);
+                    comando.Parameters.AddWithValue("@codMunicipio", cidade.codMunicipio);
+                    comando.Parameters.AddWithValue("@uf", cidade.Uf);
+
                     comando.ExecuteNonQuery();
                     sucesso = true;
                 }
             }
 
-            MessageBox.Show("Estado cadastrado com sucesso!");
+            MessageBox.Show("Registro cadastrado com sucesso!");
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Erro ao cadastrar Estado: {ex.Message}");
+            MessageBox.Show($"Erro ao cadastrar o Registro: {ex.Message}");
         }
 
         return sucesso;
     }
 
-}//Fim EstadoController
+}//Fim CidadeController

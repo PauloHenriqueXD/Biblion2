@@ -6,26 +6,23 @@ using System.Threading.Tasks;
 
 namespace Biblion.Entities
 {
-    public class Estados
+    public class Cidades
     {
         public int Id { get; set; }
-        public string Sigla { get; set; }
         public string Descricao { get; set; }
+        public int codMunicipio { get; set; }
+        public string Uf { get; set; }
 
         // Construtor sem parâmetros
-        public Estados() { }
+        public Cidades() { }
 
         // Construtor com parâmetros
-        public Estados(int id, string sigla, string descricao)
+        public Cidades(int id, string descricao, int codMunicipio, string uf)
         {
             Id = id;
-            Sigla = sigla;
             Descricao = descricao;
-        }
-
-        public override string ToString()
-        {
-            return $"{Sigla} - {Descricao}";
+            this.codMunicipio = codMunicipio;
+            Uf = uf;
         }
     }
 }

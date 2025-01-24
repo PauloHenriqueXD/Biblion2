@@ -1,6 +1,6 @@
 ﻿namespace Biblion.Apresentacao
 {
-    partial class F_Estados
+    partial class F_Cidades
     {
         /// <summary>
         /// Required designer variable.
@@ -29,21 +29,15 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_Estados));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_Cidades));
             this.tbc_control = new System.Windows.Forms.TabControl();
             this.tbp_lista = new System.Windows.Forms.TabPage();
-            this.dgv_estados = new System.Windows.Forms.DataGridView();
+            this.dgv_cidades = new System.Windows.Forms.DataGridView();
             this.tbp_dados = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_gravar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tb_descricao = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tb_sigla = new System.Windows.Forms.TextBox();
-            this.tb_id = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lb_registros = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -57,6 +51,9 @@
             this.tsb_incluir = new System.Windows.Forms.ToolStripButton();
             this.tsb_alterar = new System.Windows.Forms.ToolStripButton();
             this.tsb_excluir = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsb_funcoes = new System.Windows.Forms.ToolStripSplitButton();
+            this.importarEstadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_sair = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -64,12 +61,17 @@
             this.tb_filtroNome = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.tsb_funcoes = new System.Windows.Forms.ToolStripSplitButton();
-            this.importarEstadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.tb_codMunicipio = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cb_estados = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tb_id = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tb_cidade = new System.Windows.Forms.TextBox();
             this.tbc_control.SuspendLayout();
             this.tbp_lista.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_estados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_cidades)).BeginInit();
             this.tbp_dados.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -93,7 +95,7 @@
             // 
             // tbp_lista
             // 
-            this.tbp_lista.Controls.Add(this.dgv_estados);
+            this.tbp_lista.Controls.Add(this.dgv_cidades);
             this.tbp_lista.Location = new System.Drawing.Point(4, 22);
             this.tbp_lista.Name = "tbp_lista";
             this.tbp_lista.Padding = new System.Windows.Forms.Padding(3);
@@ -102,12 +104,12 @@
             this.tbp_lista.Text = "Lista";
             this.tbp_lista.UseVisualStyleBackColor = true;
             // 
-            // dgv_estados
+            // dgv_cidades
             // 
-            this.dgv_estados.AllowUserToAddRows = false;
-            this.dgv_estados.AllowUserToDeleteRows = false;
-            this.dgv_estados.AllowUserToResizeRows = false;
-            this.dgv_estados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_cidades.AllowUserToAddRows = false;
+            this.dgv_cidades.AllowUserToDeleteRows = false;
+            this.dgv_cidades.AllowUserToResizeRows = false;
+            this.dgv_cidades.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -115,20 +117,20 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_estados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgv_estados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_estados.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_estados.EnableHeadersVisualStyles = false;
-            this.dgv_estados.Location = new System.Drawing.Point(3, 3);
-            this.dgv_estados.MultiSelect = false;
-            this.dgv_estados.Name = "dgv_estados";
-            this.dgv_estados.ReadOnly = true;
-            this.dgv_estados.RowHeadersVisible = false;
-            this.dgv_estados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_estados.Size = new System.Drawing.Size(957, 402);
-            this.dgv_estados.TabIndex = 13;
-            this.dgv_estados.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_estados_CellDoubleClick);
-            this.dgv_estados.SelectionChanged += new System.EventHandler(this.dgv_estados_SelectionChanged);
+            this.dgv_cidades.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_cidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_cidades.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_cidades.EnableHeadersVisualStyles = false;
+            this.dgv_cidades.Location = new System.Drawing.Point(3, 3);
+            this.dgv_cidades.MultiSelect = false;
+            this.dgv_cidades.Name = "dgv_cidades";
+            this.dgv_cidades.ReadOnly = true;
+            this.dgv_cidades.RowHeadersVisible = false;
+            this.dgv_cidades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_cidades.Size = new System.Drawing.Size(957, 402);
+            this.dgv_cidades.TabIndex = 13;
+            this.dgv_cidades.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_cidades_CellDoubleClick);
+            this.dgv_cidades.SelectionChanged += new System.EventHandler(this.dgv_cidades_SelectionChanged);
             // 
             // tbp_dados
             // 
@@ -178,10 +180,12 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.tb_descricao);
+            this.panel3.Controls.Add(this.tb_cidade);
+            this.panel3.Controls.Add(this.tb_codMunicipio);
             this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.tb_sigla);
+            this.panel3.Controls.Add(this.cb_estados);
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.tb_id);
             this.panel3.Controls.Add(this.label5);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -189,57 +193,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(957, 356);
             this.panel3.TabIndex = 34;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(124, 96);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 13);
-            this.label3.TabIndex = 30;
-            this.label3.Text = "Estado";
-            // 
-            // tb_descricao
-            // 
-            this.tb_descricao.Location = new System.Drawing.Point(127, 112);
-            this.tb_descricao.Name = "tb_descricao";
-            this.tb_descricao.Size = new System.Drawing.Size(423, 20);
-            this.tb_descricao.TabIndex = 26;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 96);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(30, 13);
-            this.label4.TabIndex = 29;
-            this.label4.Text = "Sigla";
-            // 
-            // tb_sigla
-            // 
-            this.tb_sigla.Location = new System.Drawing.Point(12, 112);
-            this.tb_sigla.MaxLength = 2;
-            this.tb_sigla.Name = "tb_sigla";
-            this.tb_sigla.Size = new System.Drawing.Size(109, 20);
-            this.tb_sigla.TabIndex = 25;
-            // 
-            // tb_id
-            // 
-            this.tb_id.Location = new System.Drawing.Point(12, 25);
-            this.tb_id.Name = "tb_id";
-            this.tb_id.ReadOnly = true;
-            this.tb_id.Size = new System.Drawing.Size(70, 20);
-            this.tb_id.TabIndex = 28;
-            this.tb_id.TabStop = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(18, 13);
-            this.label5.TabIndex = 27;
-            this.label5.Text = "ID";
             // 
             // openFileDialog1
             // 
@@ -279,9 +232,9 @@
             this.tsb_incluir,
             this.tsb_alterar,
             this.tsb_excluir,
-            this.toolStripSeparator2,
-            this.tsb_funcoes,
             this.toolStripSeparator5,
+            this.tsb_funcoes,
+            this.toolStripSeparator2,
             this.tsb_sair,
             this.toolStripSeparator3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -385,6 +338,30 @@
             this.tsb_excluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsb_excluir.Click += new System.EventHandler(this.tsb_excluir_Click);
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 54);
+            // 
+            // tsb_funcoes
+            // 
+            this.tsb_funcoes.AutoSize = false;
+            this.tsb_funcoes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importarEstadosToolStripMenuItem});
+            this.tsb_funcoes.Image = global::Biblion.Properties.Resources.funcoes2;
+            this.tsb_funcoes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsb_funcoes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_funcoes.Name = "tsb_funcoes";
+            this.tsb_funcoes.Size = new System.Drawing.Size(65, 51);
+            this.tsb_funcoes.Text = "Funções";
+            this.tsb_funcoes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // importarEstadosToolStripMenuItem
+            // 
+            this.importarEstadosToolStripMenuItem.Name = "importarEstadosToolStripMenuItem";
+            this.importarEstadosToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.importarEstadosToolStripMenuItem.Text = "Importar Estados";
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -444,31 +421,75 @@
             this.panel2.Size = new System.Drawing.Size(971, 20);
             this.panel2.TabIndex = 20;
             // 
-            // tsb_funcoes
+            // tb_codMunicipio
             // 
-            this.tsb_funcoes.AutoSize = false;
-            this.tsb_funcoes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importarEstadosToolStripMenuItem});
-            this.tsb_funcoes.Image = global::Biblion.Properties.Resources.funcoes2;
-            this.tsb_funcoes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsb_funcoes.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb_funcoes.Name = "tsb_funcoes";
-            this.tsb_funcoes.Size = new System.Drawing.Size(65, 51);
-            this.tsb_funcoes.Text = "Funções";
-            this.tsb_funcoes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tb_codMunicipio.Location = new System.Drawing.Point(397, 147);
+            this.tb_codMunicipio.Name = "tb_codMunicipio";
+            this.tb_codMunicipio.Size = new System.Drawing.Size(100, 20);
+            this.tb_codMunicipio.TabIndex = 43;
+            this.tb_codMunicipio.Text = "0";
             // 
-            // importarEstadosToolStripMenuItem
+            // label4
             // 
-            this.importarEstadosToolStripMenuItem.Name = "importarEstadosToolStripMenuItem";
-            this.importarEstadosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.importarEstadosToolStripMenuItem.Text = "Importar Estados";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(11, 72);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.TabIndex = 41;
+            this.label4.Text = "Estado";
             // 
-            // toolStripSeparator5
+            // cb_estados
             // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 54);
+            this.cb_estados.FormattingEnabled = true;
+            this.cb_estados.Location = new System.Drawing.Point(12, 88);
+            this.cb_estados.Name = "cb_estados";
+            this.cb_estados.Size = new System.Drawing.Size(337, 21);
+            this.cb_estados.TabIndex = 40;
             // 
-            // F_Estados
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(394, 129);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 13);
+            this.label3.TabIndex = 39;
+            this.label3.Text = "Cod. Municipio";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 129);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 38;
+            this.label1.Text = "Cidade";
+            // 
+            // tb_id
+            // 
+            this.tb_id.Location = new System.Drawing.Point(12, 27);
+            this.tb_id.Name = "tb_id";
+            this.tb_id.ReadOnly = true;
+            this.tb_id.Size = new System.Drawing.Size(70, 20);
+            this.tb_id.TabIndex = 37;
+            this.tb_id.TabStop = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(18, 13);
+            this.label5.TabIndex = 36;
+            this.label5.Text = "ID";
+            // 
+            // tb_cidade
+            // 
+            this.tb_cidade.Location = new System.Drawing.Point(12, 145);
+            this.tb_cidade.Name = "tb_cidade";
+            this.tb_cidade.Size = new System.Drawing.Size(337, 20);
+            this.tb_cidade.TabIndex = 44;
+            // 
+            // F_Cidades
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(971, 555);
@@ -477,14 +498,14 @@
             this.Controls.Add(this.gb_filtros);
             this.Controls.Add(this.panel2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "F_Estados";
+            this.Name = "F_Cidades";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Gestão de Estados";
-            this.Load += new System.EventHandler(this.F_Estados_Load);
-            this.Shown += new System.EventHandler(this.F_Estados_Shown);
+            this.Text = "Gestão de Cidades";
+            this.Load += new System.EventHandler(this.F_Cidades_Load);
+            this.Shown += new System.EventHandler(this.F_Cidades_Shown);
             this.tbc_control.ResumeLayout(false);
             this.tbp_lista.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_estados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_cidades)).EndInit();
             this.tbp_dados.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -505,7 +526,7 @@
 
         private System.Windows.Forms.TabControl tbc_control;
         private System.Windows.Forms.TabPage tbp_lista;
-        private System.Windows.Forms.DataGridView dgv_estados;
+        private System.Windows.Forms.DataGridView dgv_cidades;
         private System.Windows.Forms.TabPage tbp_dados;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btn_cancelar;
@@ -531,14 +552,16 @@
         private System.Windows.Forms.TextBox tb_filtroNome;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tb_descricao;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tb_sigla;
-        private System.Windows.Forms.TextBox tb_id;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripSplitButton tsb_funcoes;
         public System.Windows.Forms.ToolStripMenuItem importarEstadosToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.TextBox tb_codMunicipio;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cb_estados;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tb_id;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tb_cidade;
     }
 }
