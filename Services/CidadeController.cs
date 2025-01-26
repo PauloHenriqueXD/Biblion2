@@ -88,23 +88,23 @@ public class CidadeController
         {
             // Define a consulta SQL
             string query = "SELECT id, descricao, codMunicipio, uf " +
-                           "FROM tbcidades " +
-                           "WHERE (descricao LIKE @Termo OR codMunicipio LIKE @Termo OR uf LIKE @Termo)";
+               "FROM tbcidades " +
+               "WHERE (descricao LIKE @termo OR codMunicipio LIKE @termo OR uf LIKE @termo)";
 
             using (var command = conexao.CriarComando(query))
             {
-                command.Parameters.AddWithValue("@Termo", $"%{termo}%");
+                command.Parameters.AddWithValue("@termo", $"%{termo}%");
 
                 var reader = command.ExecuteReader();
-
+              
                 while (reader.Read())
                 {
                     Cidades cidade = new Cidades
                     {
-                        Id = Convert.ToInt32(reader["Id"]),
-                        Descricao = reader["Descrição"].ToString(),
-                        codMunicipio = Convert.ToInt32(reader["Cod. Município"]),
-                        Uf = reader["UF"].ToString()
+                        Id = Convert.ToInt32(reader["id"]),
+                        Descricao = reader["descricao"].ToString(),
+                        codMunicipio = Convert.ToInt32(reader["codMunicipio"]),
+                        Uf = reader["uf"].ToString()
                     };
 
                     cidades.Add(cidade);
@@ -115,7 +115,7 @@ public class CidadeController
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Erro ao filtrar usuários: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Erro ao filtrar Registros: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         return cidades;

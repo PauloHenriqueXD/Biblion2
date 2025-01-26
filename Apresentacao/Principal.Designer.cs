@@ -39,9 +39,9 @@
             this.relatóriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.utilitáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sairToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbversao = new System.Windows.Forms.Label();
-            this.sairToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -65,10 +65,10 @@
             // 
             this.gerenciamentoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.usuáriosToolStripMenuItem1,
-            this.estadosToolStripMenuItem1,
+            this.clientesToolStripMenuItem2,
             this.cidadesToolStripMenuItem1,
-            this.clientesToolStripMenuItem1,
-            this.clientesToolStripMenuItem2});
+            this.estadosToolStripMenuItem1,
+            this.clientesToolStripMenuItem1});
             this.gerenciamentoToolStripMenuItem.Name = "gerenciamentoToolStripMenuItem";
             this.gerenciamentoToolStripMenuItem.Size = new System.Drawing.Size(170, 21);
             this.gerenciamentoToolStripMenuItem.Text = "Gerenciamento De Dados";
@@ -125,6 +125,14 @@
             this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(53, 21);
             this.ajudaToolStripMenuItem.Text = "Ajuda";
             // 
+            // sairToolStripMenuItem1
+            // 
+            this.sairToolStripMenuItem1.Image = global::Biblion.Properties.Resources.Logout_37127;
+            this.sairToolStripMenuItem1.Name = "sairToolStripMenuItem1";
+            this.sairToolStripMenuItem1.Size = new System.Drawing.Size(58, 21);
+            this.sairToolStripMenuItem1.Text = "Sair";
+            this.sairToolStripMenuItem1.Click += new System.EventHandler(this.sairToolStripMenuItem1_Click);
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Window;
@@ -145,14 +153,6 @@
             this.lbversao.Size = new System.Drawing.Size(46, 13);
             this.lbversao.TabIndex = 0;
             this.lbversao.Text = "Versão: ";
-            // 
-            // sairToolStripMenuItem1
-            // 
-            this.sairToolStripMenuItem1.Image = global::Biblion.Properties.Resources.Logout_37127;
-            this.sairToolStripMenuItem1.Name = "sairToolStripMenuItem1";
-            this.sairToolStripMenuItem1.Size = new System.Drawing.Size(58, 21);
-            this.sairToolStripMenuItem1.Text = "Sair";
-            this.sairToolStripMenuItem1.Click += new System.EventHandler(this.sairToolStripMenuItem1_Click);
             // 
             // Principal
             // 
