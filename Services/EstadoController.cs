@@ -264,4 +264,36 @@ public class EstadoController
         return sucesso;
     }
 
+    public List<KeyValuePair<string, string>> ComboBoxEstados()
+    {
+        List<KeyValuePair<string, string>> estados = new List<KeyValuePair<string, string>>();
+
+        try
+        {
+            string query = "SELECT sigla, descricao FROM tbestados ORDER BY descricao";
+
+            using (var conexao = new Conexao())
+            {
+                using (var comando = conexao.CriarComando(query))
+                {
+                    using (var reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string sigla = reader["sigla"].ToString();
+                            string descricao = reader["descricao"].ToString();
+                            estados.Add(new KeyValuePair<string, string>(sigla, descricao));
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Erro ao obter cidades: {ex.Message}");
+        }
+
+        return estados;
+    }
+
 }//Fim EstadoController

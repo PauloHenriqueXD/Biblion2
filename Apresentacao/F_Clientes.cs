@@ -189,6 +189,51 @@ namespace Biblion.Apresentacao
             cb_sexo.DisplayMember = "Value";
             cb_sexo.ValueMember = "Key";
 
+            //Popular ComboBox Cidades
+            try
+            {
+                CidadeController cidadeController = new CidadeController();
+                List<KeyValuePair<int, string>> cidades = cidadeController.ComboBoxCidades();
+
+                if (cidades.Any())
+                {
+                    cb_cidades.DataSource = new BindingSource(cidades, null);
+                    cb_cidades.DisplayMember = "Value";
+                    cb_cidades.ValueMember = "Key";
+                }
+                else
+                {
+                    MessageBox.Show("Nenhuma cidade encontrada no banco de dados.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao popular ComboBox de cidades: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //Popular ComboBox Estados
+            try
+            {
+                EstadoController estadoController = new EstadoController();
+                List<KeyValuePair<string, string>> estado = estadoController.ComboBoxEstados();
+
+                if (estado.Any())
+                {
+                    cb_uf.DataSource = new BindingSource(estado, null);
+                    cb_uf.DisplayMember = "Value";
+                    cb_uf.ValueMember = "Key";
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum estado encontrado no banco de dados.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao popular ComboBox de estados: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //selecionando idSelecionado
             idSelecionado = dgv_clientes.Rows[0].Cells[0].Value.ToString();
 
             // Carregando dados na Grid

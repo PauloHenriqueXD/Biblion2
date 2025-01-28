@@ -271,4 +271,36 @@ public class CidadeController
         return sucesso;
     }
 
+    public List<KeyValuePair<int, string>> ComboBoxCidades()
+    {
+        List<KeyValuePair<int, string>> cidades = new List<KeyValuePair<int, string>>();
+
+        try
+        {
+            string query = "SELECT codMunicipio, descricao FROM tbcidades ORDER BY descricao";
+
+            using (var conexao = new Conexao())
+            {
+                using (var comando = conexao.CriarComando(query))
+                {
+                    using (var reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int codMunicipio = Convert.ToInt32(reader["codMunicipio"]);
+                            string descricao = reader["descricao"].ToString();
+                            cidades.Add(new KeyValuePair<int, string>(codMunicipio, descricao));
+                        }
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Erro ao obter cidades: {ex.Message}");
+        }
+
+        return cidades;
+    }
+
 }//Fim CidadeController
