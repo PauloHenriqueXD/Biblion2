@@ -17,7 +17,7 @@ namespace Biblion.Entities
         public string Documento { get; set; }
         public string Datanasc { get; set; }
         public string Uf { get; set; }
-        public string Cidade { get; set; }
+        public int CodMunicipio { get; set; }
         public string Bairro { get; set; }
         public string Endereco { get; set; }
         public int Numero { get; set; }
@@ -26,7 +26,7 @@ namespace Biblion.Entities
         public Clientes() { }
 
         // Construtor com parâmetros
-        public Clientes(int id, string nome, string email, string telefone, string status, string sexo, string documento, string datanasc, string uf, string cidade, string bairro, string endereco, int numero)
+        public Clientes(int id, string nome, string email, string telefone, string status, string sexo, string documento, string datanasc, string uf, int codMunicipio, string bairro, string endereco, int numero)
         {
             Id = id;
             Nome = nome;
@@ -37,7 +37,7 @@ namespace Biblion.Entities
             Documento = documento;
             Datanasc = datanasc;
             Uf = uf;
-            Cidade = cidade;
+            CodMunicipio = codMunicipio;
             Bairro = bairro;
             Endereco = endereco;
             Numero = numero;

@@ -21,7 +21,7 @@ public class ClienteController
 
         try
         {
-            string query = "SELECT id, nome, email, telefone, status, sexo, documento, datanasc, uf, cidade, bairro, endereco, numero FROM tbcliente";
+            string query = "SELECT id, nome, email, telefone, status, sexo, documento, datanasc, uf, codMunicipio, bairro, endereco, numero FROM tbcliente";
 
             // Abre a conexão
             using (var conexao = new Conexao()) // Usando 'using' para garantir o fechamento adequado da conexão
@@ -48,7 +48,7 @@ public class ClienteController
                             Documento = reader["documento"].ToString(),
                             Datanasc = reader["datanasc"].ToString(),
                             Uf = reader["uf"].ToString(),
-                            Cidade = reader["cidade"].ToString(),
+                            CodMunicipio = Convert.ToInt32(reader["codMunicipio"]),
                             Bairro = reader["bairro"].ToString(),
                             Endereco = reader["endereco"].ToString(),
                             Numero = Convert.ToInt32(reader["numero"])
@@ -99,7 +99,7 @@ public class ClienteController
         try
         {
             // Define a consulta SQL
-            string query = "SELECT id, nome, email, telefone, status, sexo, documento, datanasc, uf, cidade, bairro, endereco, numero " +
+            string query = "SELECT id, nome, email, telefone, status, sexo, documento, datanasc, uf, codMunicipio, bairro, endereco, numero " +
                            "FROM tbcliente " +
                            "WHERE (nome LIKE @Termo OR email LIKE @Termo OR documento LIKE @Termo)";
 
@@ -133,7 +133,7 @@ public class ClienteController
                         Documento = reader["documento"].ToString(),
                         Datanasc = reader["datanasc"].ToString(),
                         Uf = reader["uf"].ToString(),
-                        Cidade = reader["cidade"].ToString(),
+                        CodMunicipio = Convert.ToInt32(reader["codMunicipio"]),
                         Bairro = reader["bairro"].ToString(),
                         Endereco = reader["endereco"].ToString(),
                         Numero = Convert.ToInt32(reader["numero"])
@@ -147,7 +147,7 @@ public class ClienteController
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Erro ao filtrar usuários: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Erro ao filtrar Registros: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         return clientes;
@@ -171,7 +171,6 @@ public class ClienteController
 
         // Ajusta o layout das colunas (opcional)
         grid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        //grid.Columns["Senha"].Visible = false; // Oculta a senha, se necessário
     }
 
     public bool ExcluirCliente(Clientes cliente)
@@ -208,7 +207,7 @@ public class ClienteController
 
         try
         {
-            string query = "SELECT id, nome, email, telefone, status, sexo, documento, datanasc, uf, cidade, bairro, endereco, numero FROM tbcliente WHERE id = @id";
+            string query = "SELECT id, nome, email, telefone, status, sexo, documento, datanasc, uf, codMunicipio, bairro, endereco, numero FROM tbcliente WHERE id = @id";
 
             using (var conexao = new Conexao())
             {
@@ -233,7 +232,7 @@ public class ClienteController
                                 Documento = reader["documento"].ToString(),
                                 Datanasc = reader["datanasc"].ToString(),
                                 Uf = reader["uf"].ToString(),
-                                Cidade = reader["cidade"].ToString(),
+                                CodMunicipio = Convert.ToInt32(reader["codMunicipio"]),
                                 Bairro = reader["bairro"].ToString(),
                                 Endereco = reader["endereco"].ToString(),
                                 Numero = Convert.ToInt32(reader["numero"])
@@ -258,7 +257,7 @@ public class ClienteController
             // Atualiza o banco de dados
             using (var conexao = new Conexao())
             {
-                string query = "UPDATE tbcliente SET nome = @nome, email = @email, telefone = @telefone, status = @status, sexo = @sexo, documento = @documento, datanasc = @datanasc, uf = @uf, cidade = @cidade, bairro = @bairro, endereco = @endereco, numero = @numero WHERE id = @id";
+                string query = "UPDATE tbcliente SET nome = @nome, email = @email, telefone = @telefone, status = @status, sexo = @sexo, documento = @documento, datanasc = @datanasc, uf = @uf, codMunicipio = @codMunicipio, bairro = @bairro, endereco = @endereco, numero = @numero WHERE id = @id";
 
                 using (var comando = conexao.CriarComando(query))
                 {
@@ -270,7 +269,7 @@ public class ClienteController
                     comando.Parameters.AddWithValue("@documento", cliente.Documento);
                     comando.Parameters.AddWithValue("@datanasc", cliente.Datanasc);
                     comando.Parameters.AddWithValue("@uf", cliente.Uf);
-                    comando.Parameters.AddWithValue("@cidade", cliente.Cidade);
+                    comando.Parameters.AddWithValue("@codMunicipio", cliente.CodMunicipio);
                     comando.Parameters.AddWithValue("@bairro", cliente.Bairro);
                     comando.Parameters.AddWithValue("@endereco", cliente.Endereco);
                     comando.Parameters.AddWithValue("@numero", cliente.Numero);
@@ -298,8 +297,8 @@ public class ClienteController
             using (var conexao = new Conexao())
             {
                 string query = @"
-                INSERT INTO tbcliente (id, nome, email, telefone, status, sexo, documento, datanasc, uf, cidade, bairro, endereco, numero)
-                VALUES (@guid, @id, @nome, @email, @telefone, @status, @sexo, @documento, @datanasc, @uf, @cidade, @bairro, @endereco, @numero)";
+                INSERT INTO tbcliente (id, nome, email, telefone, status, sexo, documento, datanasc, uf, codMunicipio, bairro, endereco, numero)
+                VALUES (@guid, @id, @nome, @email, @telefone, @status, @sexo, @documento, @datanasc, @uf, @codMunicipio, @bairro, @endereco, @numero)";
 
                 using (var comando = conexao.CriarComando(query))
                 {
@@ -313,7 +312,7 @@ public class ClienteController
                     comando.Parameters.AddWithValue("@documento", cliente.Documento);
                     comando.Parameters.AddWithValue("@datanasc", cliente.Datanasc);
                     comando.Parameters.AddWithValue("@uf", cliente.Uf);
-                    comando.Parameters.AddWithValue("@cidade", cliente.Cidade);
+                    comando.Parameters.AddWithValue("@codMunicipio", cliente.CodMunicipio);
                     comando.Parameters.AddWithValue("@bairro", cliente.Bairro);
                     comando.Parameters.AddWithValue("@endereco", cliente.Endereco);
                     comando.Parameters.AddWithValue("@numero", cliente.Numero);

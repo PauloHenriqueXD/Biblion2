@@ -310,7 +310,7 @@ namespace Biblion.Apresentacao
                 Documento = dgv_clientes.CurrentRow.Cells["Documento"].Value.ToString(),
                 Datanasc = dgv_clientes.CurrentRow.Cells["Datanasc"].Value.ToString(),
                 Uf = dgv_clientes.CurrentRow.Cells["Uf"].Value.ToString(),
-                Cidade = dgv_clientes.CurrentRow.Cells["Cidade"].Value.ToString(),
+                CodMunicipio = Convert.ToInt32(dgv_clientes.CurrentRow.Cells["Cidade"].Value),
                 Bairro = dgv_clientes.CurrentRow.Cells["Bairro"].Value.ToString(),
                 Endereco = dgv_clientes.CurrentRow.Cells["Endereco"].Value.ToString(),
                 Numero = Convert.ToInt32(dgv_clientes.CurrentRow.Cells["Numero"].Value)
@@ -371,7 +371,7 @@ namespace Biblion.Apresentacao
                         mtb_Telefone.Text = clienteSelecionado.Telefone;
                         dtp_datanasc.Value = DateTime.Parse(clienteSelecionado.Datanasc);
                         cb_uf.SelectedValue = clienteSelecionado.Uf;
-                        cb_cidades.SelectedValue = clienteSelecionado.Cidade;
+                        cb_cidades.SelectedValue = clienteSelecionado.CodMunicipio;
                         cb_status.SelectedValue = clienteSelecionado.Status;
                         tb_bairro.Text = clienteSelecionado.Bairro;
                         tb_endereco.Text = clienteSelecionado.Endereco;
@@ -446,7 +446,7 @@ namespace Biblion.Apresentacao
                         Telefone = mtb_Telefone.Text,
                         Datanasc = dtp_datanasc.Value.ToString(),
                         Uf = cb_uf.SelectedValue?.ToString() ?? string.Empty,
-                        Cidade = cb_cidades.SelectedValue?.ToString() ?? string.Empty,
+                        CodMunicipio = int.TryParse(cb_cidades.SelectedValue?.ToString(), out int cod) ? cod : 0,
                         Bairro = tb_bairro.Text,
                         Endereco = tb_endereco.Text,
                         Numero = (int)n_numero.Value
@@ -488,7 +488,7 @@ namespace Biblion.Apresentacao
                         Telefone = mtb_Telefone.Text,
                         Datanasc = dtp_datanasc.Value.ToString(),
                         Uf = cb_uf.SelectedValue?.ToString() ?? string.Empty,
-                        Cidade = cb_cidades.SelectedValue?.ToString() ?? string.Empty,
+                        CodMunicipio = int.TryParse(cb_cidades.SelectedValue?.ToString(), out int cod) ? cod : 0,
                         Bairro = tb_bairro.Text,
                         Endereco = tb_endereco.Text,
                         Numero = (int)n_numero.Value
