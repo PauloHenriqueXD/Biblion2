@@ -50,6 +50,11 @@ namespace Biblion.Apresentacao
             Globais.ultimo(dgv_estados);
         }
 
+        private void tbc_control_KeyDown(object sender, KeyEventArgs e)
+        {
+            Globais.ControleDeKeys(dgv_estados, tbc_control, e, tipoAcao);
+        }
+
         private string contaResultados()
         {
             //Função para pegar resultados de um grid e informar em um lb
@@ -62,8 +67,8 @@ namespace Biblion.Apresentacao
             tbc_control.SelectedTab = tbp_dados;
             tb_sigla.Enabled = true;
             tb_descricao.Enabled = true;
-            btn_gravar.Enabled = true;
-            btn_cancelar.Enabled = true;
+            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
+            Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
         }
 
         private void carregarGrid()
@@ -154,28 +159,6 @@ namespace Biblion.Apresentacao
         private void cb_filtroStatus_SelectedValueChanged(object sender, EventArgs e)
         {
             atualizaDados();
-        }
-
-        private void tbc_control_KeyDown(object sender, KeyEventArgs e)
-        {
-            int tecla = e.KeyValue;
-            switch (tecla)
-            {
-                case 40: //baixo
-                    Globais.proximo(dgv_estados);
-                    break;
-                case 38: //cima
-                    Globais.anterior(dgv_estados);
-                    break;
-                case 39: //direita
-                    Globais.MoverParaProximaAba(tbc_control); // Usando a classe global
-                    e.Handled = true;
-                    break;
-                case 37: //esquerda
-                    Globais.MoverParaAbaAnterior(tbc_control); // Usando a classe global
-                    e.Handled = true;
-                    break;
-            }
         }
 
         private void F_Estados_Shown(object sender, EventArgs e)
@@ -282,7 +265,9 @@ namespace Biblion.Apresentacao
                 carregarGrid();
             }
 
-            tipoAcao = "";
+            tipoAcao = null;
+            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
+            Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
 
         }
 

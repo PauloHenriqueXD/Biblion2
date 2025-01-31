@@ -52,6 +52,11 @@ namespace Biblion.Apresentacao
             Globais.ultimo(dgv_cidades);
         }
 
+        private void tbc_control_KeyDown(object sender, KeyEventArgs e)
+        {
+            Globais.ControleDeKeys(dgv_cidades, tbc_control, e, tipoAcao);
+        }
+
         private string contaResultados()
         {
             //Função para pegar resultados de um grid e informar em um lb
@@ -65,8 +70,8 @@ namespace Biblion.Apresentacao
             cb_estados.Enabled = true;
             tb_cidade.Enabled = true;
             tb_codMunicipio.Enabled = true;
-            btn_gravar.Enabled = true;
-            btn_cancelar.Enabled = true;
+            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
+            Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
         }
 
         private void carregarGrid()
@@ -185,28 +190,6 @@ namespace Biblion.Apresentacao
             atualizaDados();
         }
 
-        private void tbc_control_KeyDown(object sender, KeyEventArgs e)
-        {
-            int tecla = e.KeyValue;
-            switch (tecla)
-            {
-                case 40: //baixo
-                    Globais.proximo(dgv_cidades);
-                    break;
-                case 38: //cima
-                    Globais.anterior(dgv_cidades);
-                    break;
-                case 39: //direita
-                    Globais.MoverParaProximaAba(tbc_control); // Usando a classe global
-                    e.Handled = true;
-                    break;
-                case 37: //esquerda
-                    Globais.MoverParaAbaAnterior(tbc_control); // Usando a classe global
-                    e.Handled = true;
-                    break;
-            }
-        }
-
         private void F_Cidades_Shown(object sender, EventArgs e)
         {
             dgv_cidades.Focus();
@@ -314,7 +297,9 @@ namespace Biblion.Apresentacao
                 carregarGrid();
             }
 
-            tipoAcao = "";
+            tipoAcao = null;
+            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
+            Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
 
         }
 

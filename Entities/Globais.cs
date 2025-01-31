@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.Windows.Forms;
 using Biblion.DAL;
+using System.Drawing;
 
 namespace Biblion.Entities
 {
@@ -93,6 +94,64 @@ namespace Biblion.Entities
             if (tabControl.SelectedIndex > 0)
             {
                 tabControl.SelectedIndex--;
+            }
+        }
+
+        public static void ControleDeKeys(DataGridView dgv, TabControl tbc_control, KeyEventArgs e, string tipoAcao)
+        {
+            if (tipoAcao == "")
+            {
+                int tecla = e.KeyValue;
+                switch (tecla)
+                {
+                    case 40: //baixo
+                        Globais.proximo(dgv);
+                        break;
+                    case 38: //cima
+                        Globais.anterior(dgv);
+                        break;
+                    case 39: //direita
+                        Globais.MoverParaProximaAba(tbc_control); // Usando a classe global
+                        e.Handled = true;
+                        break;
+                    case 37: //esquerda
+                        Globais.MoverParaAbaAnterior(tbc_control); // Usando a classe global
+                        e.Handled = true;
+                        break;
+                }
+            }
+        }
+
+        public static void ConfiguraBotoes(string tipoAcao, List<Button> botoes, params ToolStripButton[] tsm_buttons)
+        {
+            try
+            {
+                if (tipoAcao != null)
+                {
+                    foreach (var btn in botoes)
+                    {
+                        btn.Enabled = true;
+                    }
+                    foreach (var btn in tsm_buttons)
+                    {
+                        btn.Enabled = false;
+                    }
+                }
+                else
+                {
+                    foreach (var btn in botoes)
+                    {
+                        btn.Enabled = false;
+                    }
+                    foreach (var btn in tsm_buttons)
+                    {
+                        btn.Enabled = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro configurar Botões: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -50,6 +50,11 @@ namespace Biblion.Apresentacao
             Globais.ultimo(dgv_clientes);
         }
 
+        private void tbc_control_KeyDown(object sender, KeyEventArgs e)
+        {
+            Globais.ControleDeKeys(dgv_clientes, tbc_control, e, tipoAcao);
+        }
+
         private string contaResultados()
         {
             //Função para pegar resultados de um grid e informar em um lb
@@ -72,8 +77,8 @@ namespace Biblion.Apresentacao
             tb_bairro.Enabled = true;
             tb_endereco.Enabled = true;
             n_numero.Enabled = true;
-            btn_gravar.Enabled = true;
-            btn_cancelar.Enabled = true;
+            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
+            Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
         }
 
         private void carregarGrid()
@@ -262,28 +267,6 @@ namespace Biblion.Apresentacao
             atualizaDados();
         }
 
-        private void tbc_control_KeyDown(object sender, KeyEventArgs e)
-        {
-            int tecla = e.KeyValue;
-            switch (tecla)
-            {
-                case 40: //baixo
-                    Globais.proximo(dgv_clientes);
-                    break;
-                case 38: //cima
-                    Globais.anterior(dgv_clientes);
-                    break;
-                case 39: //direita
-                    Globais.MoverParaProximaAba(tbc_control); // Usando a classe global
-                    e.Handled = true;
-                    break;
-                case 37: //esquerda
-                    Globais.MoverParaAbaAnterior(tbc_control); // Usando a classe global
-                    e.Handled = true;
-                    break;
-            }
-        }
-
         private void F_Clientes_Shown_1(object sender, EventArgs e)
         {
             dgv_clientes.Focus();
@@ -418,7 +401,9 @@ namespace Biblion.Apresentacao
                 carregarGrid();
             }
 
-            tipoAcao = "";
+            tipoAcao = null;
+            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
+            Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
 
         }
 
@@ -429,6 +414,8 @@ namespace Biblion.Apresentacao
             LimparFormulario();
             tipoAcao = "inclusao";
             alterarDados();
+            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
+            Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
         }
 
         private void btn_gravar_Click(object sender, EventArgs e)
@@ -444,14 +431,16 @@ namespace Biblion.Apresentacao
                         Sexo = cb_sexo.SelectedValue?.ToString() ?? string.Empty,
                         Email = tb_email.Text,
                         Telefone = mtb_Telefone.Text,
+                        Status = cb_status.SelectedValue?.ToString() ?? string.Empty,
                         Datanasc = dtp_datanasc.Value.ToString(),
                         Uf = cb_uf.SelectedValue?.ToString() ?? string.Empty,
                         CodMunicipio = int.TryParse(cb_cidades.SelectedValue?.ToString(), out int cod) ? cod : 0,
                         Bairro = tb_bairro.Text,
                         Endereco = tb_endereco.Text,
-                        Numero = (int)n_numero.Value
+                        Numero = (int)n_numero.Value,
+                        Id = int.TryParse(tb_id.Text, out int id) ? id : 0
                     };
-
+                    
                     // Chama o método para atualizar o Cliente
                     clienteController.AtualizarCliente(cliente);
                 }
@@ -459,21 +448,6 @@ namespace Biblion.Apresentacao
                 {
                     MessageBox.Show($"Erro ao salvar alterações: {ex.Message}");
                 }
-                tbc_control.SelectedTab = tbp_lista;
-                tb_nome.Enabled = false;
-                mtb_documento.Enabled = false;
-                cb_sexo.Enabled = false;
-                tb_email.Enabled = false;
-                mtb_Telefone.Enabled = false;
-                dtp_datanasc.Enabled = false;
-                cb_uf.Enabled = false;
-                cb_cidades.Enabled = false;
-                cb_status.Enabled = false;
-                tb_bairro.Enabled = false;
-                tb_endereco.Enabled = false;
-                n_numero.Enabled = false;
-                btn_gravar.Enabled = false;
-                btn_cancelar.Enabled = false;
             }
             else if (tipoAcao == "inclusao")
             {
@@ -486,6 +460,7 @@ namespace Biblion.Apresentacao
                         Sexo = cb_sexo.SelectedValue?.ToString() ?? string.Empty,
                         Email = tb_email.Text,
                         Telefone = mtb_Telefone.Text,
+                        Status = cb_status.SelectedValue?.ToString() ?? string.Empty,
                         Datanasc = dtp_datanasc.Value.ToString(),
                         Uf = cb_uf.SelectedValue?.ToString() ?? string.Empty,
                         CodMunicipio = int.TryParse(cb_cidades.SelectedValue?.ToString(), out int cod) ? cod : 0,
@@ -499,16 +474,10 @@ namespace Biblion.Apresentacao
 
                     if (sucesso)
                     {
-                        // limpa o formulário
-                        LimparFormulario();
-
-                        // Atualiza lista do formulário
-                        carregarGrid();
-
                         //Gera novo id após cadastro de usuario
                         tb_id.Text = Globais.gerarNovoID("tbcliente").ToString();
 
-                        //Verifica se foi selecionada foto e pergunta se deseja continuar
+                        //Verifica se deseja cadastrar mais ou se deseja continuar
                         if (MessageBox.Show("Deseja Cadastrar mais um registro?", "Atenção!", MessageBoxButtons.YesNo) == DialogResult.No)
                         {
                             tbc_control.SelectedTab = tbp_lista;
@@ -518,14 +487,36 @@ namespace Biblion.Apresentacao
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Erro ao salvar alterações: {ex.Message}");
+                    MessageBox.Show($"Erro ao salvar inclusão: {ex.Message}");
                 }
-
             }
             else
             {
                 MessageBox.Show("Erro ao salvar dados");
             }
+
+            // limpa o formulário
+            LimparFormulario();
+
+            // Atualiza lista do formulário
+            carregarGrid();
+
+            tbc_control.SelectedTab = tbp_lista;
+            tb_nome.Enabled = false;
+            mtb_documento.Enabled = false;
+            cb_sexo.Enabled = false;
+            tb_email.Enabled = false;
+            mtb_Telefone.Enabled = false;
+            dtp_datanasc.Enabled = false;
+            cb_uf.Enabled = false;
+            cb_cidades.Enabled = false;
+            cb_status.Enabled = false;
+            tb_bairro.Enabled = false;
+            tb_endereco.Enabled = false;
+            n_numero.Enabled = false;
+            tipoAcao = null;
+            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
+            Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
 
         }
     }

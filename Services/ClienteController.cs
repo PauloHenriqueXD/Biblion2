@@ -254,6 +254,9 @@ public class ClienteController
     {
         try
         {
+            //Mensagem de teste para verificar os dados enviados
+            //MessageBox.Show("Nome: " + cliente.Nome + " email: " + cliente.Email + " telefone: " + cliente.Telefone + " status: " + cliente.Status + " sexo: " + cliente.Sexo + " documento: " + cliente.Documento + " uf: " + cliente.Uf + " codMunicipio: " + cliente.CodMunicipio + " bairro: " + cliente.Bairro + " endereco: " + cliente.Endereco + " numero: " + cliente.Numero + " id: " + cliente.Id);
+            
             // Atualiza o banco de dados
             using (var conexao = new Conexao())
             {
@@ -297,7 +300,7 @@ public class ClienteController
             using (var conexao = new Conexao())
             {
                 string query = @"
-                INSERT INTO tbcliente (id, nome, email, telefone, status, sexo, documento, datanasc, uf, codMunicipio, bairro, endereco, numero)
+                INSERT INTO tbcliente (guid, id, nome, email, telefone, status, sexo, documento, datanasc, uf, codMunicipio, bairro, endereco, numero)
                 VALUES (@guid, @id, @nome, @email, @telefone, @status, @sexo, @documento, @datanasc, @uf, @codMunicipio, @bairro, @endereco, @numero)";
 
                 using (var comando = conexao.CriarComando(query))
@@ -316,7 +319,6 @@ public class ClienteController
                     comando.Parameters.AddWithValue("@bairro", cliente.Bairro);
                     comando.Parameters.AddWithValue("@endereco", cliente.Endereco);
                     comando.Parameters.AddWithValue("@numero", cliente.Numero);
-                    comando.Parameters.AddWithValue("@id", cliente.Id);
 
                     comando.ExecuteNonQuery();
                     sucesso = true;
