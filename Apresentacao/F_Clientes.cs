@@ -288,15 +288,7 @@ namespace Biblion.Apresentacao
                 Nome = dgv_clientes.CurrentRow.Cells["Nome"].Value.ToString(),
                 Email = dgv_clientes.CurrentRow.Cells["Email"].Value.ToString(),
                 Telefone = dgv_clientes.CurrentRow.Cells["Telefone"].Value.ToString(),
-                Status = dgv_clientes.CurrentRow.Cells["Status"].Value.ToString(),
-                Sexo = dgv_clientes.CurrentRow.Cells["Sexo"].Value.ToString(),
-                Documento = dgv_clientes.CurrentRow.Cells["Documento"].Value.ToString(),
-                Datanasc = dgv_clientes.CurrentRow.Cells["Datanasc"].Value.ToString(),
-                Uf = dgv_clientes.CurrentRow.Cells["Uf"].Value.ToString(),
-                CodMunicipio = Convert.ToInt32(dgv_clientes.CurrentRow.Cells["Cidade"].Value),
-                Bairro = dgv_clientes.CurrentRow.Cells["Bairro"].Value.ToString(),
-                Endereco = dgv_clientes.CurrentRow.Cells["Endereco"].Value.ToString(),
-                Numero = Convert.ToInt32(dgv_clientes.CurrentRow.Cells["Numero"].Value)
+                Status = dgv_clientes.CurrentRow.Cells["Status"].Value.ToString()
             };
 
             // Confirmação do usuário
@@ -481,6 +473,7 @@ namespace Biblion.Apresentacao
                         if (MessageBox.Show("Deseja Cadastrar mais um registro?", "Atenção!", MessageBoxButtons.YesNo) == DialogResult.No)
                         {
                             tbc_control.SelectedTab = tbp_lista;
+                            goto fim_gravar;
                             return;
                         }
                     }
@@ -494,6 +487,8 @@ namespace Biblion.Apresentacao
             {
                 MessageBox.Show("Erro ao salvar dados");
             }
+
+            fim_gravar:
 
             // limpa o formulário
             LimparFormulario();
