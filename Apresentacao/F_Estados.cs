@@ -1,4 +1,5 @@
 ﻿using Biblion.Entities;
+using Biblion.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -180,7 +181,7 @@ namespace Biblion.Apresentacao
             {
                 Id = Convert.ToInt32(dgv_estados.CurrentRow.Cells["Id"].Value),
                 Sigla = dgv_estados.CurrentRow.Cells["Sigla"].Value.ToString(),
-                Descricao = dgv_estados.CurrentRow.Cells["Descricao"].Value.ToString()
+                Descricao = dgv_estados.CurrentRow.Cells["Descrição"].Value.ToString()
             };
 
             // Confirmação do Registro
@@ -347,6 +348,13 @@ namespace Biblion.Apresentacao
                 MessageBox.Show("Erro ao salvar dados");
             }
 
+        }
+
+        private async void importarEstadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EstadoService service = new EstadoService();
+            await service.AtualizarEstados();
+            MessageBox.Show("Estados importados com sucesso!");
         }
     }
 }

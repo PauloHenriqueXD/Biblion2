@@ -58,15 +58,15 @@
             this.tsb_alterar = new System.Windows.Forms.ToolStripButton();
             this.tsb_excluir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsb_funcoes = new System.Windows.Forms.ToolStripSplitButton();
+            this.importarEstadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_sair = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.gb_filtros = new System.Windows.Forms.GroupBox();
             this.tb_filtroNome = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.tsb_funcoes = new System.Windows.Forms.ToolStripSplitButton();
-            this.importarEstadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tbc_control.SuspendLayout();
             this.tbp_lista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_estados)).BeginInit();
@@ -390,6 +390,31 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 54);
             // 
+            // tsb_funcoes
+            // 
+            this.tsb_funcoes.AutoSize = false;
+            this.tsb_funcoes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importarEstadosToolStripMenuItem});
+            this.tsb_funcoes.Image = global::Biblion.Properties.Resources.funcoes2;
+            this.tsb_funcoes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsb_funcoes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsb_funcoes.Name = "tsb_funcoes";
+            this.tsb_funcoes.Size = new System.Drawing.Size(65, 51);
+            this.tsb_funcoes.Text = "Funções";
+            this.tsb_funcoes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // importarEstadosToolStripMenuItem
+            // 
+            this.importarEstadosToolStripMenuItem.Name = "importarEstadosToolStripMenuItem";
+            this.importarEstadosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importarEstadosToolStripMenuItem.Text = "Importar Estados";
+            this.importarEstadosToolStripMenuItem.Click += new System.EventHandler(this.importarEstadosToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 54);
+            // 
             // tsb_sair
             // 
             this.tsb_sair.AutoSize = false;
@@ -443,30 +468,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(971, 20);
             this.panel2.TabIndex = 20;
-            // 
-            // tsb_funcoes
-            // 
-            this.tsb_funcoes.AutoSize = false;
-            this.tsb_funcoes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importarEstadosToolStripMenuItem});
-            this.tsb_funcoes.Image = global::Biblion.Properties.Resources.funcoes2;
-            this.tsb_funcoes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsb_funcoes.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb_funcoes.Name = "tsb_funcoes";
-            this.tsb_funcoes.Size = new System.Drawing.Size(65, 51);
-            this.tsb_funcoes.Text = "Funções";
-            this.tsb_funcoes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // importarEstadosToolStripMenuItem
-            // 
-            this.importarEstadosToolStripMenuItem.Name = "importarEstadosToolStripMenuItem";
-            this.importarEstadosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.importarEstadosToolStripMenuItem.Text = "Importar Estados";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 54);
             // 
             // F_Estados
             // 
