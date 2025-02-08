@@ -299,11 +299,7 @@ namespace Biblion.Apresentacao
                 {
                     MessageBox.Show($"Erro ao salvar alterações: {ex.Message}");
                 }
-                tbc_control.SelectedTab = tbp_lista;
-                tb_sigla.Enabled = false;
-                tb_descricao.Enabled = false;
-                btn_gravar.Enabled = false;
-                btn_cancelar.Enabled = false;
+                
             }
             else if (tipoAcao == "inclusao")
             {
@@ -333,6 +329,7 @@ namespace Biblion.Apresentacao
                         if (MessageBox.Show("Deseja Cadastrar mais um registro?", "Atenção!", MessageBoxButtons.YesNo) == DialogResult.No)
                         {
                             tbc_control.SelectedTab = tbp_lista;
+                            goto fim_gravar;
                             return;
                         }
                     }
@@ -341,20 +338,42 @@ namespace Biblion.Apresentacao
                 {
                     MessageBox.Show($"Erro ao salvar alterações: {ex.Message}");
                 }
-
+                MessageBox.Show("Estado cadastrado com sucesso!");
             }
             else
             {
                 MessageBox.Show("Erro ao salvar dados");
             }
 
+            fim_gravar:
+
+            // limpa o formulário
+            LimparFormulario();
+
+            // Atualiza lista do formulário
+            carregarGrid();
+
+            tbc_control.SelectedTab = tbp_lista;
+            tb_sigla.Enabled = false;
+            tb_descricao.Enabled = false;
+            tipoAcao = null;
+            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
+            Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
+
         }
 
         private async void importarEstadosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EstadoService service = new EstadoService();
-            await service.AtualizarEstados();
-            MessageBox.Show("Estados importados com sucesso!");
+            // Chamando Método de importação da API
+            if (MessageBox.Show("Deseja Importar Estados da Internet?", "Atenção!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                EstadoService service = new EstadoService();
+                await service.AtualizarEstados();
+                MessageBox.Show("Estados importados com sucesso!");
+
+                // Atualiza lista do formulário
+                carregarGrid();
+            }
         }
     }
 }

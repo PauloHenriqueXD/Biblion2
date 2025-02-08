@@ -13,6 +13,8 @@ namespace Biblion.Entities
     {
         public int Id { get; set; }
         public string Sigla { get; set; }
+
+        [JsonProperty("nome")]
         public string Descricao { get; set; }
 
         // Construtor sem parâmetros

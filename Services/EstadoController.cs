@@ -246,21 +246,18 @@ public class EstadoController
                 {
                     comando.Parameters.AddWithValue("@guid", Guid.NewGuid().ToString());
                     comando.Parameters.AddWithValue("@id", Globais.gerarNovoID("tbestados"));
-                    comando.Parameters.AddWithValue("@sigla", estado.Sigla);
-                    comando.Parameters.AddWithValue("@descricao", estado.Descricao);
-                    
+                    comando.Parameters.AddWithValue("@sigla", estado.Sigla.ToUpper()); 
+                    comando.Parameters.AddWithValue("@descricao", estado.Descricao.ToUpper());
+
                     comando.ExecuteNonQuery();
                     sucesso = true;
                 }
             }
-
-            MessageBox.Show("Estado cadastrado com sucesso!");
         }
         catch (Exception ex)
         {
             MessageBox.Show($"Erro ao cadastrar Estado: {ex.Message}");
         }
-
         return sucesso;
     }
 
