@@ -38,6 +38,14 @@
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_gravar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.tb_cidade = new System.Windows.Forms.TextBox();
+            this.tb_codMunicipio = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cb_estados = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tb_id = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lb_registros = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -61,14 +69,6 @@
             this.tb_filtroNome = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.tb_codMunicipio = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cb_estados = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tb_id = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tb_cidade = new System.Windows.Forms.TextBox();
             this.tbc_control.SuspendLayout();
             this.tbp_lista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_cidades)).BeginInit();
@@ -193,6 +193,74 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(957, 356);
             this.panel3.TabIndex = 34;
+            // 
+            // tb_cidade
+            // 
+            this.tb_cidade.Location = new System.Drawing.Point(12, 145);
+            this.tb_cidade.Name = "tb_cidade";
+            this.tb_cidade.Size = new System.Drawing.Size(337, 20);
+            this.tb_cidade.TabIndex = 44;
+            // 
+            // tb_codMunicipio
+            // 
+            this.tb_codMunicipio.Location = new System.Drawing.Point(397, 147);
+            this.tb_codMunicipio.Name = "tb_codMunicipio";
+            this.tb_codMunicipio.Size = new System.Drawing.Size(100, 20);
+            this.tb_codMunicipio.TabIndex = 43;
+            this.tb_codMunicipio.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(11, 72);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.TabIndex = 41;
+            this.label4.Text = "Estado";
+            // 
+            // cb_estados
+            // 
+            this.cb_estados.FormattingEnabled = true;
+            this.cb_estados.Location = new System.Drawing.Point(12, 88);
+            this.cb_estados.Name = "cb_estados";
+            this.cb_estados.Size = new System.Drawing.Size(337, 21);
+            this.cb_estados.TabIndex = 40;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(394, 129);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 13);
+            this.label3.TabIndex = 39;
+            this.label3.Text = "Cod. Municipio";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 129);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 38;
+            this.label1.Text = "Cidade";
+            // 
+            // tb_id
+            // 
+            this.tb_id.Location = new System.Drawing.Point(12, 27);
+            this.tb_id.Name = "tb_id";
+            this.tb_id.ReadOnly = true;
+            this.tb_id.Size = new System.Drawing.Size(70, 20);
+            this.tb_id.TabIndex = 37;
+            this.tb_id.TabStop = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(18, 13);
+            this.label5.TabIndex = 36;
+            this.label5.Text = "ID";
             // 
             // openFileDialog1
             // 
@@ -359,8 +427,9 @@
             // importarEstadosToolStripMenuItem
             // 
             this.importarEstadosToolStripMenuItem.Name = "importarEstadosToolStripMenuItem";
-            this.importarEstadosToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.importarEstadosToolStripMenuItem.Text = "Importar Estados";
+            this.importarEstadosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importarEstadosToolStripMenuItem.Text = "Importar Cidades";
+            this.importarEstadosToolStripMenuItem.Click += new System.EventHandler(this.importarEstadosToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -420,74 +489,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(971, 20);
             this.panel2.TabIndex = 20;
-            // 
-            // tb_codMunicipio
-            // 
-            this.tb_codMunicipio.Location = new System.Drawing.Point(397, 147);
-            this.tb_codMunicipio.Name = "tb_codMunicipio";
-            this.tb_codMunicipio.Size = new System.Drawing.Size(100, 20);
-            this.tb_codMunicipio.TabIndex = 43;
-            this.tb_codMunicipio.Text = "0";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 72);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 13);
-            this.label4.TabIndex = 41;
-            this.label4.Text = "Estado";
-            // 
-            // cb_estados
-            // 
-            this.cb_estados.FormattingEnabled = true;
-            this.cb_estados.Location = new System.Drawing.Point(12, 88);
-            this.cb_estados.Name = "cb_estados";
-            this.cb_estados.Size = new System.Drawing.Size(337, 21);
-            this.cb_estados.TabIndex = 40;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(394, 129);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 13);
-            this.label3.TabIndex = 39;
-            this.label3.Text = "Cod. Municipio";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 129);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 38;
-            this.label1.Text = "Cidade";
-            // 
-            // tb_id
-            // 
-            this.tb_id.Location = new System.Drawing.Point(12, 27);
-            this.tb_id.Name = "tb_id";
-            this.tb_id.ReadOnly = true;
-            this.tb_id.Size = new System.Drawing.Size(70, 20);
-            this.tb_id.TabIndex = 37;
-            this.tb_id.TabStop = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 11);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(18, 13);
-            this.label5.TabIndex = 36;
-            this.label5.Text = "ID";
-            // 
-            // tb_cidade
-            // 
-            this.tb_cidade.Location = new System.Drawing.Point(12, 145);
-            this.tb_cidade.Name = "tb_cidade";
-            this.tb_cidade.Size = new System.Drawing.Size(337, 20);
-            this.tb_cidade.TabIndex = 44;
             // 
             // F_Cidades
             // 

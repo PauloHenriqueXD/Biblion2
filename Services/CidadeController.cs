@@ -212,10 +212,11 @@ public class CidadeController
     {
         try
         {
+            //MessageBox.Show("Descrição: " + cidade.Descricao + " codMunicipio: " + cidade.codMunicipio + " UF: " + cidade.Uf + " ID: " + cidade.Id);
             // Atualiza o banco de dados
             using (var conexao = new Conexao())
             {
-                string query = "UPDATE tbcidade SET descricao = @descricao, codMunicipio = #codMunicipio, uf = @uf WHERE id = @id";
+                string query = "UPDATE tbcidades SET descricao = @descricao, codMunicipio = @codMunicipio, uf = @uf WHERE id = @id";
                 using (var comando = conexao.CriarComando(query))
                 {
                     comando.Parameters.AddWithValue("@descricao", cidade.Descricao);
@@ -226,8 +227,6 @@ public class CidadeController
                     comando.ExecuteNonQuery();
                 }
             }
-
-            MessageBox.Show("Registro atualizado com sucesso!");
         }
         catch (Exception ex)
         {
@@ -252,16 +251,14 @@ public class CidadeController
                 {
                     comando.Parameters.AddWithValue("@guid", Guid.NewGuid().ToString());
                     comando.Parameters.AddWithValue("@id", Globais.gerarNovoID("tbcidades"));
-                    comando.Parameters.AddWithValue("@descricao", cidade.Descricao);
+                    comando.Parameters.AddWithValue("@descricao", cidade.Descricao.ToUpper());
                     comando.Parameters.AddWithValue("@codMunicipio", cidade.codMunicipio);
-                    comando.Parameters.AddWithValue("@uf", cidade.Uf);
+                    comando.Parameters.AddWithValue("@uf", cidade.Uf.ToUpper());
 
                     comando.ExecuteNonQuery();
                     sucesso = true;
                 }
             }
-
-            MessageBox.Show("Registro cadastrado com sucesso!");
         }
         catch (Exception ex)
         {

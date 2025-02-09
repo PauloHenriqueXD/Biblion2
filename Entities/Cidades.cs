@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,9 @@ namespace Biblion.Entities
     public class Cidades
     {
         public int Id { get; set; }
+        [JsonProperty("nome")]
         public string Descricao { get; set; }
+        [JsonProperty("id")]
         public int codMunicipio { get; set; }
         public string Uf { get; set; }
 

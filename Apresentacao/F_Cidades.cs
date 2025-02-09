@@ -146,7 +146,7 @@ namespace Biblion.Apresentacao
                 List<Estados> estados = estadoController.ObterEstados();
                 cb_estados.DataSource = estados;
                 cb_estados.DisplayMember = "Descricao";
-                cb_estados.ValueMember = "Id";
+                cb_estados.ValueMember = "Sigla";
 
                 carregarGrid();
 
@@ -325,19 +325,32 @@ namespace Biblion.Apresentacao
                         Id = int.Parse(tb_id.Text),
                         Descricao = tb_cidade.Text,
                         codMunicipio = int.Parse(tb_codMunicipio.Text),
-                        Uf = cb_estados.Text
+                        Uf = cb_estados.SelectedValue.ToString()
                     };
+
+                    // Chama o método para atualizar o Registro
+                    cidadeController.AtualizarCidade(cidade);
+
+                    // limpa o formulário
+                    LimparFormulario();
+
+                    // Atualiza lista do formulário
+                    carregarGrid();
+
+                    MessageBox.Show("Cidade Alterada com sucesso!");
+
+                    tbc_control.SelectedTab = tbp_lista;
+                    tb_cidade.Enabled = false;
+                    cb_estados.Enabled = false;
+                    tb_codMunicipio.Enabled = false;
+                    tipoAcao = null;
+                    List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
+                    Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Erro ao salvar alterações: {ex.Message}");
                 }
-                tbc_control.SelectedTab = tbp_lista;
-                tb_cidade.Enabled = false;
-                cb_estados.Enabled = false;
-                tb_codMunicipio.Enabled = false;
-                btn_gravar.Enabled = false;
-                btn_cancelar.Enabled = false;
             }
             else if (tipoAcao == "inclusao")
             {
@@ -346,7 +359,7 @@ namespace Biblion.Apresentacao
                     Cidades novaCidade = new Cidades
                     {
                         Descricao = tb_cidade.Text,
-                        Uf = cb_estados.SelectedText,
+                        Uf = cb_estados.SelectedValue.ToString(),
                         codMunicipio = int.Parse(tb_codMunicipio.Text)
                     };
 
@@ -364,10 +377,25 @@ namespace Biblion.Apresentacao
                         //Gera novo id após cadastro de cidade
                         tb_id.Text = Globais.gerarNovoID("tbcidades").ToString();
 
+                        MessageBox.Show("Cidade cadastrada com sucesso!");
+
                         //Verifica se foi selecionada foto e pergunta se deseja continuar
                         if (MessageBox.Show("Deseja Cadastrar mais um registro?", "Atenção!", MessageBoxButtons.YesNo) == DialogResult.No)
                         {
                             tbc_control.SelectedTab = tbp_lista;
+                            tb_cidade.Enabled = false;
+                            cb_estados.Enabled = false;
+                            tb_codMunicipio.Enabled = false;
+                            tipoAcao = null;
+                            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
+                            Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
+                            
+                        }
+                        else
+                        {
+                            // limpa o formulário
+                            LimparFormulario();
+
                             return;
                         }
                     }
@@ -383,6 +411,15 @@ namespace Biblion.Apresentacao
                 MessageBox.Show("Erro ao salvar dados");
             }
 
+        }
+
+        private void importarEstadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            F_ImportaCidades f_ImportaCidades = new F_ImportaCidades();
+            f_ImportaCidades.ShowDialog();
+            
+            // Atualiza lista do formulário
+            carregarGrid();
         }
     }
 }

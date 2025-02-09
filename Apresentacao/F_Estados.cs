@@ -280,6 +280,8 @@ namespace Biblion.Apresentacao
             tb_descricao.Clear();
             tipoAcao = "inclusao";
             alterarDados();
+            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
+            Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
         }
 
         private void btn_gravar_Click(object sender, EventArgs e)
@@ -294,6 +296,23 @@ namespace Biblion.Apresentacao
                         Sigla = tb_sigla.Text,
                         Descricao = tb_descricao.Text,
                     };
+
+                    // Chama o método para atualizar o Estado
+                    estadoController.AtualizarEstado(estado);
+
+                    // limpa o formulário
+                    LimparFormulario();
+
+                    // Atualiza lista do formulário
+                    carregarGrid();
+
+                    MessageBox.Show("Estado Alterado com sucesso!");
+
+                    tbc_control.SelectedTab = tbp_lista;
+                    tipoAcao = null;
+                    List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
+                    Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
+
                 }
                 catch (Exception ex)
                 {
@@ -325,11 +344,23 @@ namespace Biblion.Apresentacao
                         //Gera novo id após cadastro de usuario
                         tb_id.Text = Globais.gerarNovoID("tbestados").ToString();
 
+                        MessageBox.Show("Estado cadastrado com sucesso!");
+
                         //Verifica se foi selecionada foto e pergunta se deseja continuar
                         if (MessageBox.Show("Deseja Cadastrar mais um registro?", "Atenção!", MessageBoxButtons.YesNo) == DialogResult.No)
                         {
                             tbc_control.SelectedTab = tbp_lista;
-                            goto fim_gravar;
+                            tb_sigla.Enabled = false;
+                            tb_descricao.Enabled = false;
+                            tipoAcao = null;
+                            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
+                            Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
+                        }
+                        else
+                        {
+                            // limpa o formulário
+                            LimparFormulario();
+                            
                             return;
                         }
                     }
@@ -338,28 +369,11 @@ namespace Biblion.Apresentacao
                 {
                     MessageBox.Show($"Erro ao salvar alterações: {ex.Message}");
                 }
-                MessageBox.Show("Estado cadastrado com sucesso!");
             }
             else
             {
                 MessageBox.Show("Erro ao salvar dados");
             }
-
-            fim_gravar:
-
-            // limpa o formulário
-            LimparFormulario();
-
-            // Atualiza lista do formulário
-            carregarGrid();
-
-            tbc_control.SelectedTab = tbp_lista;
-            tb_sigla.Enabled = false;
-            tb_descricao.Enabled = false;
-            tipoAcao = null;
-            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
-            Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
-
         }
 
         private async void importarEstadosToolStripMenuItem_Click(object sender, EventArgs e)

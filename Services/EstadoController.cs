@@ -101,7 +101,7 @@ public class EstadoController
                     {
                         Id = Convert.ToInt32(reader["Id"]),
                         Sigla = reader["Sigla"].ToString(),
-                        Descricao = reader["Descrição"].ToString()
+                        Descricao = reader["Descricao"].ToString()
                     };
 
                     estados.Add(estado);
@@ -207,7 +207,8 @@ public class EstadoController
     {
         try
         {
-           // Atualiza o banco de dados
+            //MessageBox.Show("Sigla: " + estado.Sigla + " Descrição: " + estado.Descricao + " ID: " + estado.Id);
+            // Atualiza o banco de dados
             using (var conexao = new Conexao())
             {
                 string query = "UPDATE tbestados SET sigla = @sigla, descricao = @descricao WHERE id = @id";
@@ -220,8 +221,6 @@ public class EstadoController
                     comando.ExecuteNonQuery();
                 }
             }
-
-            MessageBox.Show("Estado atualizado com sucesso!");
         }
         catch (Exception ex)
         {
