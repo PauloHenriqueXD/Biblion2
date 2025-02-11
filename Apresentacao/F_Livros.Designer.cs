@@ -1,6 +1,6 @@
 ﻿namespace Biblion.Apresentacao
 {
-    partial class F_Cidades
+    partial class F_Livros
     {
         /// <summary>
         /// Required designer variable.
@@ -29,52 +29,59 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_Cidades));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_Livros));
             this.tbc_control = new System.Windows.Forms.TabControl();
             this.tbp_lista = new System.Windows.Forms.TabPage();
-            this.dgv_cidades = new System.Windows.Forms.DataGridView();
+            this.dgv_usuarios = new System.Windows.Forms.DataGridView();
             this.tbp_dados = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_gravar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.tb_cidade = new System.Windows.Forms.TextBox();
-            this.tb_codMunicipio = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cb_estados = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tb_senha = new System.Windows.Forms.TextBox();
+            this.btn_addFoto = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.pb_foto = new System.Windows.Forms.PictureBox();
             this.tb_id = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.tb_nome = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tb_login = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cb_status = new System.Windows.Forms.ComboBox();
+            this.n_nivel = new System.Windows.Forms.NumericUpDown();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lb_registros = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.gb_filtros = new System.Windows.Forms.GroupBox();
-            this.tb_filtroNome = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.tsb_primeiro = new System.Windows.Forms.ToolStripButton();
             this.tsb_anterior = new System.Windows.Forms.ToolStripButton();
             this.tsb_proximo = new System.Windows.Forms.ToolStripButton();
             this.tsb_ultimo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_incluir = new System.Windows.Forms.ToolStripButton();
             this.tsb_alterar = new System.Windows.Forms.ToolStripButton();
             this.tsb_excluir = new System.Windows.Forms.ToolStripButton();
-            this.tsb_funcoes = new System.Windows.Forms.ToolStripSplitButton();
-            this.importarEstadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsb_sair = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.gb_filtros = new System.Windows.Forms.GroupBox();
+            this.cb_filtroStatus = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tb_filtroNome = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.tbc_control.SuspendLayout();
             this.tbp_lista.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_cidades)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_usuarios)).BeginInit();
             this.tbp_dados.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_foto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.n_nivel)).BeginInit();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.gb_filtros.SuspendLayout();
@@ -95,7 +102,7 @@
             // 
             // tbp_lista
             // 
-            this.tbp_lista.Controls.Add(this.dgv_cidades);
+            this.tbp_lista.Controls.Add(this.dgv_usuarios);
             this.tbp_lista.Location = new System.Drawing.Point(4, 22);
             this.tbp_lista.Name = "tbp_lista";
             this.tbp_lista.Padding = new System.Windows.Forms.Padding(3);
@@ -104,12 +111,12 @@
             this.tbp_lista.Text = "Lista";
             this.tbp_lista.UseVisualStyleBackColor = true;
             // 
-            // dgv_cidades
+            // dgv_usuarios
             // 
-            this.dgv_cidades.AllowUserToAddRows = false;
-            this.dgv_cidades.AllowUserToDeleteRows = false;
-            this.dgv_cidades.AllowUserToResizeRows = false;
-            this.dgv_cidades.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_usuarios.AllowUserToAddRows = false;
+            this.dgv_usuarios.AllowUserToDeleteRows = false;
+            this.dgv_usuarios.AllowUserToResizeRows = false;
+            this.dgv_usuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -117,20 +124,20 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_cidades.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgv_cidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_cidades.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_cidades.EnableHeadersVisualStyles = false;
-            this.dgv_cidades.Location = new System.Drawing.Point(3, 3);
-            this.dgv_cidades.MultiSelect = false;
-            this.dgv_cidades.Name = "dgv_cidades";
-            this.dgv_cidades.ReadOnly = true;
-            this.dgv_cidades.RowHeadersVisible = false;
-            this.dgv_cidades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_cidades.Size = new System.Drawing.Size(957, 402);
-            this.dgv_cidades.TabIndex = 13;
-            this.dgv_cidades.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_cidades_CellDoubleClick);
-            this.dgv_cidades.SelectionChanged += new System.EventHandler(this.dgv_cidades_SelectionChanged);
+            this.dgv_usuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_usuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_usuarios.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_usuarios.EnableHeadersVisualStyles = false;
+            this.dgv_usuarios.Location = new System.Drawing.Point(3, 3);
+            this.dgv_usuarios.MultiSelect = false;
+            this.dgv_usuarios.Name = "dgv_usuarios";
+            this.dgv_usuarios.ReadOnly = true;
+            this.dgv_usuarios.RowHeadersVisible = false;
+            this.dgv_usuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_usuarios.Size = new System.Drawing.Size(957, 402);
+            this.dgv_usuarios.TabIndex = 13;
+            this.dgv_usuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_usuarios_CellDoubleClick);
+            this.dgv_usuarios.SelectionChanged += new System.EventHandler(this.dgv_usuarios_SelectionChanged);
             // 
             // tbp_dados
             // 
@@ -180,87 +187,156 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.tb_cidade);
-            this.panel3.Controls.Add(this.tb_codMunicipio);
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.cb_estados);
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.tb_senha);
+            this.panel3.Controls.Add(this.btn_addFoto);
+            this.panel3.Controls.Add(this.label8);
+            this.panel3.Controls.Add(this.pb_foto);
             this.panel3.Controls.Add(this.tb_id);
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.tb_nome);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.Add(this.tb_login);
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Controls.Add(this.cb_status);
+            this.panel3.Controls.Add(this.n_nivel);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(957, 356);
             this.panel3.TabIndex = 34;
             // 
-            // tb_cidade
+            // tb_senha
             // 
-            this.tb_cidade.Location = new System.Drawing.Point(12, 145);
-            this.tb_cidade.Name = "tb_cidade";
-            this.tb_cidade.Size = new System.Drawing.Size(337, 20);
-            this.tb_cidade.TabIndex = 2;
+            this.tb_senha.Enabled = false;
+            this.tb_senha.Location = new System.Drawing.Point(202, 84);
+            this.tb_senha.Name = "tb_senha";
+            this.tb_senha.PasswordChar = '*';
+            this.tb_senha.Size = new System.Drawing.Size(198, 20);
+            this.tb_senha.TabIndex = 25;
             // 
-            // tb_codMunicipio
+            // btn_addFoto
             // 
-            this.tb_codMunicipio.Location = new System.Drawing.Point(373, 145);
-            this.tb_codMunicipio.Name = "tb_codMunicipio";
-            this.tb_codMunicipio.Size = new System.Drawing.Size(100, 20);
-            this.tb_codMunicipio.TabIndex = 3;
-            this.tb_codMunicipio.Text = "0";
+            this.btn_addFoto.Enabled = false;
+            this.btn_addFoto.Location = new System.Drawing.Point(440, 143);
+            this.btn_addFoto.Name = "btn_addFoto";
+            this.btn_addFoto.Size = new System.Drawing.Size(85, 23);
+            this.btn_addFoto.TabIndex = 32;
+            this.btn_addFoto.Text = "Add Imagem";
+            this.btn_addFoto.UseVisualStyleBackColor = true;
+            this.btn_addFoto.Click += new System.EventHandler(this.btn_addFoto_Click);
             // 
-            // label4
+            // label8
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 72);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 13);
-            this.label4.TabIndex = 41;
-            this.label4.Text = "Estado";
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(11, 8);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(18, 13);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "ID";
             // 
-            // cb_estados
+            // pb_foto
             // 
-            this.cb_estados.FormattingEnabled = true;
-            this.cb_estados.Location = new System.Drawing.Point(12, 88);
-            this.cb_estados.Name = "cb_estados";
-            this.cb_estados.Size = new System.Drawing.Size(337, 21);
-            this.cb_estados.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(370, 129);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 13);
-            this.label3.TabIndex = 39;
-            this.label3.Text = "Cod. Municipio";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 129);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 38;
-            this.label1.Text = "Cidade";
+            this.pb_foto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pb_foto.Location = new System.Drawing.Point(440, 24);
+            this.pb_foto.Name = "pb_foto";
+            this.pb_foto.Size = new System.Drawing.Size(85, 113);
+            this.pb_foto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb_foto.TabIndex = 33;
+            this.pb_foto.TabStop = false;
             // 
             // tb_id
             // 
-            this.tb_id.Location = new System.Drawing.Point(12, 27);
+            this.tb_id.Location = new System.Drawing.Point(14, 24);
             this.tb_id.Name = "tb_id";
             this.tb_id.ReadOnly = true;
             this.tb_id.Size = new System.Drawing.Size(70, 20);
-            this.tb_id.TabIndex = 37;
+            this.tb_id.TabIndex = 21;
             this.tb_id.TabStop = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(199, 126);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 13);
+            this.label6.TabIndex = 31;
+            this.label6.Text = "Nível de Acesso";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(87, 8);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Nome";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 11);
+            this.label5.Location = new System.Drawing.Point(11, 126);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(18, 13);
-            this.label5.TabIndex = 36;
-            this.label5.Text = "ID";
+            this.label5.Size = new System.Drawing.Size(37, 13);
+            this.label5.TabIndex = 30;
+            this.label5.Text = "Status";
+            // 
+            // tb_nome
+            // 
+            this.tb_nome.Enabled = false;
+            this.tb_nome.Location = new System.Drawing.Point(90, 24);
+            this.tb_nome.Name = "tb_nome";
+            this.tb_nome.Size = new System.Drawing.Size(310, 20);
+            this.tb_nome.TabIndex = 23;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(199, 68);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 29;
+            this.label4.Text = "Senha";
+            // 
+            // tb_login
+            // 
+            this.tb_login.Enabled = false;
+            this.tb_login.Location = new System.Drawing.Point(14, 84);
+            this.tb_login.Name = "tb_login";
+            this.tb_login.Size = new System.Drawing.Size(182, 20);
+            this.tb_login.TabIndex = 24;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 68);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "Usuário";
+            // 
+            // cb_status
+            // 
+            this.cb_status.Enabled = false;
+            this.cb_status.FormattingEnabled = true;
+            this.cb_status.Location = new System.Drawing.Point(14, 142);
+            this.cb_status.Name = "cb_status";
+            this.cb_status.Size = new System.Drawing.Size(182, 21);
+            this.cb_status.TabIndex = 26;
+            // 
+            // n_nivel
+            // 
+            this.n_nivel.Enabled = false;
+            this.n_nivel.Location = new System.Drawing.Point(202, 143);
+            this.n_nivel.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.n_nivel.Name = "n_nivel";
+            this.n_nivel.Size = new System.Drawing.Size(198, 20);
+            this.n_nivel.TabIndex = 27;
             // 
             // openFileDialog1
             // 
@@ -300,8 +376,6 @@
             this.tsb_incluir,
             this.tsb_alterar,
             this.tsb_excluir,
-            this.toolStripSeparator5,
-            this.tsb_funcoes,
             this.toolStripSeparator2,
             this.tsb_sair,
             this.toolStripSeparator3});
@@ -316,64 +390,6 @@
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 54);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 54);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 54);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 54);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 54);
-            // 
-            // gb_filtros
-            // 
-            this.gb_filtros.Controls.Add(this.tb_filtroNome);
-            this.gb_filtros.Controls.Add(this.label2);
-            this.gb_filtros.Dock = System.Windows.Forms.DockStyle.Top;
-            this.gb_filtros.Location = new System.Drawing.Point(0, 0);
-            this.gb_filtros.Name = "gb_filtros";
-            this.gb_filtros.Size = new System.Drawing.Size(971, 44);
-            this.gb_filtros.TabIndex = 21;
-            this.gb_filtros.TabStop = false;
-            // 
-            // tb_filtroNome
-            // 
-            this.tb_filtroNome.Location = new System.Drawing.Point(50, 14);
-            this.tb_filtroNome.Name = "tb_filtroNome";
-            this.tb_filtroNome.Size = new System.Drawing.Size(271, 20);
-            this.tb_filtroNome.TabIndex = 4;
-            this.tb_filtroNome.TextChanged += new System.EventHandler(this.tb_filtroNome_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Nome:";
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.lb_registros);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 535);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(971, 20);
-            this.panel2.TabIndex = 20;
             // 
             // tsb_primeiro
             // 
@@ -423,6 +439,11 @@
             this.tsb_ultimo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsb_ultimo.Click += new System.EventHandler(this.tsb_ultimo_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 54);
+            // 
             // tsb_incluir
             // 
             this.tsb_incluir.AutoSize = false;
@@ -459,25 +480,10 @@
             this.tsb_excluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsb_excluir.Click += new System.EventHandler(this.tsb_excluir_Click);
             // 
-            // tsb_funcoes
+            // toolStripSeparator2
             // 
-            this.tsb_funcoes.AutoSize = false;
-            this.tsb_funcoes.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importarEstadosToolStripMenuItem});
-            this.tsb_funcoes.Image = global::Biblion.Properties.Resources.funcoes2;
-            this.tsb_funcoes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsb_funcoes.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsb_funcoes.Name = "tsb_funcoes";
-            this.tsb_funcoes.Size = new System.Drawing.Size(65, 51);
-            this.tsb_funcoes.Text = "Funções";
-            this.tsb_funcoes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // importarEstadosToolStripMenuItem
-            // 
-            this.importarEstadosToolStripMenuItem.Name = "importarEstadosToolStripMenuItem";
-            this.importarEstadosToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.importarEstadosToolStripMenuItem.Text = "Importar Cidades";
-            this.importarEstadosToolStripMenuItem.Click += new System.EventHandler(this.importarEstadosToolStripMenuItem_Click);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 54);
             // 
             // tsb_sair
             // 
@@ -490,7 +496,70 @@
             this.tsb_sair.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsb_sair.Click += new System.EventHandler(this.tsb_sair_Click);
             // 
-            // F_Cidades
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 54);
+            // 
+            // gb_filtros
+            // 
+            this.gb_filtros.Controls.Add(this.cb_filtroStatus);
+            this.gb_filtros.Controls.Add(this.label1);
+            this.gb_filtros.Controls.Add(this.tb_filtroNome);
+            this.gb_filtros.Controls.Add(this.label2);
+            this.gb_filtros.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gb_filtros.Location = new System.Drawing.Point(0, 0);
+            this.gb_filtros.Name = "gb_filtros";
+            this.gb_filtros.Size = new System.Drawing.Size(971, 44);
+            this.gb_filtros.TabIndex = 21;
+            this.gb_filtros.TabStop = false;
+            // 
+            // cb_filtroStatus
+            // 
+            this.cb_filtroStatus.FormattingEnabled = true;
+            this.cb_filtroStatus.Location = new System.Drawing.Point(393, 14);
+            this.cb_filtroStatus.Name = "cb_filtroStatus";
+            this.cb_filtroStatus.Size = new System.Drawing.Size(153, 21);
+            this.cb_filtroStatus.TabIndex = 6;
+            this.cb_filtroStatus.SelectedValueChanged += new System.EventHandler(this.cb_filtroStatus_SelectedValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(347, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Status:";
+            // 
+            // tb_filtroNome
+            // 
+            this.tb_filtroNome.Location = new System.Drawing.Point(50, 14);
+            this.tb_filtroNome.Name = "tb_filtroNome";
+            this.tb_filtroNome.Size = new System.Drawing.Size(271, 20);
+            this.tb_filtroNome.TabIndex = 4;
+            this.tb_filtroNome.TextChanged += new System.EventHandler(this.tb_filtroNome_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Nome:";
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.lb_registros);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 535);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(971, 20);
+            this.panel2.TabIndex = 20;
+            // 
+            // F_Livros
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(971, 555);
@@ -499,18 +568,20 @@
             this.Controls.Add(this.gb_filtros);
             this.Controls.Add(this.panel2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "F_Cidades";
+            this.Name = "F_Livros";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Gestão de Cidades";
-            this.Load += new System.EventHandler(this.F_Cidades_Load);
-            this.Shown += new System.EventHandler(this.F_Cidades_Shown);
+            this.Text = "Gestão de Livros";
+            this.Load += new System.EventHandler(this.F_Usuarios_Load);
+            this.Shown += new System.EventHandler(this.F_Usuarios_Shown);
             this.tbc_control.ResumeLayout(false);
             this.tbp_lista.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_cidades)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_usuarios)).EndInit();
             this.tbp_dados.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb_foto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.n_nivel)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -527,12 +598,26 @@
 
         private System.Windows.Forms.TabControl tbc_control;
         private System.Windows.Forms.TabPage tbp_lista;
-        private System.Windows.Forms.DataGridView dgv_cidades;
+        private System.Windows.Forms.DataGridView dgv_usuarios;
         private System.Windows.Forms.TabPage tbp_dados;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.Button btn_gravar;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox tb_senha;
+        private System.Windows.Forms.Button btn_addFoto;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.PictureBox pb_foto;
+        private System.Windows.Forms.TextBox tb_id;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tb_nome;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tb_login;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cb_status;
+        private System.Windows.Forms.NumericUpDown n_nivel;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label lb_registros;
         private System.Windows.Forms.Panel panel1;
@@ -550,19 +635,10 @@
         private System.Windows.Forms.ToolStripButton tsb_sair;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.GroupBox gb_filtros;
+        private System.Windows.Forms.ComboBox cb_filtroStatus;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tb_filtroNome;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ToolStripSplitButton tsb_funcoes;
-        public System.Windows.Forms.ToolStripMenuItem importarEstadosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.TextBox tb_codMunicipio;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cb_estados;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tb_id;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tb_cidade;
     }
 }

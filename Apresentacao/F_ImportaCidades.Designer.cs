@@ -29,20 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_ImportaCidades));
-            this.checkedListBoxEstados = new System.Windows.Forms.CheckedListBox();
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_importar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.progressBarImportacao = new System.Windows.Forms.ProgressBar();
+            this.checkedListBoxEstados = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
-            // 
-            // checkedListBoxEstados
-            // 
-            this.checkedListBoxEstados.FormattingEnabled = true;
-            this.checkedListBoxEstados.Location = new System.Drawing.Point(12, 27);
-            this.checkedListBoxEstados.Name = "checkedListBoxEstados";
-            this.checkedListBoxEstados.Size = new System.Drawing.Size(560, 184);
-            this.checkedListBoxEstados.TabIndex = 0;
             // 
             // btn_cancelar
             // 
@@ -81,6 +73,15 @@
             this.progressBarImportacao.Size = new System.Drawing.Size(560, 45);
             this.progressBarImportacao.TabIndex = 5;
             // 
+            // checkedListBoxEstados
+            // 
+            this.checkedListBoxEstados.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.checkedListBoxEstados.FormattingEnabled = true;
+            this.checkedListBoxEstados.Location = new System.Drawing.Point(12, 27);
+            this.checkedListBoxEstados.Name = "checkedListBoxEstados";
+            this.checkedListBoxEstados.Size = new System.Drawing.Size(560, 180);
+            this.checkedListBoxEstados.TabIndex = 0;
+            // 
             // F_ImportaCidades
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -103,11 +104,10 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.CheckedListBox checkedListBoxEstados;
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.Button btn_importar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ProgressBar progressBarImportacao;
+        private System.Windows.Forms.CheckedListBox checkedListBoxEstados;
     }
 }
