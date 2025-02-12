@@ -61,7 +61,6 @@ public class UsuarioController
         return usuarios;
     }
 
-
     public void PreencherDataGridView(DataGridView grid)
     {
         var usuarios = ObterUsuarios();

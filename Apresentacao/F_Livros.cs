@@ -18,10 +18,10 @@ namespace Biblion.Apresentacao
         public F_Livros()
         {
             InitializeComponent();
-            usuarioController = new UsuarioController(); // Inicializa o controller
+            livroController = new LivroController(); // Inicializa o controller
         }
 
-        private UsuarioController usuarioController;
+        private LivroController livroController;
         private string idSelecionado = "";
         private string tipoAcao = "";
         private string destinoCompleto = "";
@@ -33,28 +33,28 @@ namespace Biblion.Apresentacao
 
         private void tsb_primeiro_Click(object sender, EventArgs e)
         {
-            Globais.primeiro(dgv_usuarios);
+            Globais.primeiro(dgv_livros);
         }
 
         private void tsb_anterior_Click(object sender, EventArgs e)
         {
-            Globais.anterior(dgv_usuarios);
+            Globais.anterior(dgv_livros);
         }
 
         private void tsb_proximo_Click(object sender, EventArgs e)
         {
-            Globais.proximo(dgv_usuarios);
+            Globais.proximo(dgv_livros);
         }
 
         private void tsb_ultimo_Click(object sender, EventArgs e)
         {
-            Globais.ultimo(dgv_usuarios);
+            Globais.ultimo(dgv_livros);
         }
 
         private string contaResultados()
         {
             //Função para pegar resultados de um grid e informar em um lb
-            string resultados = dgv_usuarios.Rows.Count.ToString();
+            string resultados = dgv_livros.Rows.Count.ToString();
             return lb_registros.Text = resultados + " Regs";
         }
 
@@ -75,11 +75,11 @@ namespace Biblion.Apresentacao
         {
             try
             {
-                // Inicializa o controlador responsável pelos usuários
-                usuarioController = new UsuarioController();
+                // Inicializa o controlador responsável pelos Registros
+                livroController = new LivroController();
 
-                // Popula o DataGridView com os dados da tabela Usuarios
-                usuarioController.PreencherDataGridView(dgv_usuarios); // 'dgv_usuarios' é o nome do DataGridView
+                // Popula o DataGridView com os dados da tabela
+                livroController.PreencherDataGridView(dgv_livros); 
             }
             catch (Exception ex)
             {
@@ -89,13 +89,13 @@ namespace Biblion.Apresentacao
             try
             {
                 // Definindo tamanho da DataGridView
-                dgv_usuarios.Columns[0].Width = (int)(dgv_usuarios.Width * 0.1);
-                dgv_usuarios.Columns[1].Width = (int)(dgv_usuarios.Width * 0.4);
-                dgv_usuarios.Columns[2].Width = (int)(dgv_usuarios.Width * 0.2);
-                dgv_usuarios.Columns[3].Width = (int)(dgv_usuarios.Width * 0.15);
-                dgv_usuarios.Columns[4].Width = (int)(dgv_usuarios.Width * 0.15);
+                dgv_livros.Columns[0].Width = (int)(dgv_livros.Width * 0.1);
+                dgv_livros.Columns[1].Width = (int)(dgv_livros.Width * 0.4);
+                dgv_livros.Columns[2].Width = (int)(dgv_livros.Width * 0.2);
+                dgv_livros.Columns[3].Width = (int)(dgv_livros.Width * 0.15);
+                dgv_livros.Columns[4].Width = (int)(dgv_livros.Width * 0.15);
 
-                idSelecionado = dgv_usuarios.Columns[0].ToString();
+                idSelecionado = dgv_livros.Columns[0].ToString();
             }
             catch (Exception ex)
             {
@@ -121,10 +121,10 @@ namespace Biblion.Apresentacao
                 }
 
                 // Chama o método de filtro
-                var usuariosFiltrados = usuarioController.FiltrarUsuarios(termo, status);
+                var livrosFiltrados = livroController.FiltrarLivros(termo, status);
 
                 // Atualiza o DataGridView
-                usuarioController.AtualizarDataGridView(dgv_usuarios, usuariosFiltrados);
+                livroController.AtualizarDataGridView(dgv_livros, livrosFiltrados);
 
                 //contando registros do grid
                 contaResultados();
@@ -145,7 +145,7 @@ namespace Biblion.Apresentacao
             pb_foto.ImageLocation = null;
         }
 
-        private void F_Usuarios_Load(object sender, EventArgs e)
+        private void F_Livros_Load(object sender, EventArgs e)
         {
             //Popular ComboBox Status (Ativo = A | Bloqueado = B | Cancelado = C | Todos = T)
             Dictionary<string, string> st = new Dictionary<string, string>();
@@ -168,21 +168,21 @@ namespace Biblion.Apresentacao
             cb_status.DisplayMember = "Value";
             cb_status.ValueMember = "Key";
 
-            idSelecionado = dgv_usuarios.Rows[0].Cells[0].Value.ToString();
+            idSelecionado = dgv_livros.Rows[0].Cells[0].Value.ToString();
 
             // Carregando dados na Grid
             carregarGrid();
 
             // Verificar se existem linhas na grid
-            if (dgv_usuarios.Rows.Count > 0)
+            if (dgv_livros.Rows.Count > 0)
             {
                 // Selecionar a primeira linha
-                dgv_usuarios.CurrentCell = dgv_usuarios.Rows[0].Cells[0];
-                dgv_usuarios.Rows[0].Selected = true;
+                dgv_livros.CurrentCell = dgv_livros.Rows[0].Cells[0];
+                dgv_livros.Rows[0].Selected = true;
             }
 
             // Adicionar o foco à grid
-            dgv_usuarios.Focus();
+            dgv_livros.Focus();
 
         }
 
@@ -202,10 +202,10 @@ namespace Biblion.Apresentacao
             switch (tecla)
             {
                 case 40: //baixo
-                    Globais.proximo(dgv_usuarios);
+                    Globais.proximo(dgv_livros);
                     break;
                 case 38: //cima
-                    Globais.anterior(dgv_usuarios);
+                    Globais.anterior(dgv_livros);
                     break;
                 case 39: //direita
                     Globais.MoverParaProximaAba(tbc_control); // Usando a classe global
@@ -220,13 +220,13 @@ namespace Biblion.Apresentacao
 
         private void F_Usuarios_Shown(object sender, EventArgs e)
         {
-            dgv_usuarios.Focus();
+            dgv_livros.Focus();
         }
 
         private void tsb_excluir_Click(object sender, EventArgs e)
         {
             // Verifica se tem algum usuário Selecionado para Excluir, caso não avisa
-            if (dgv_usuarios.CurrentRow == null)
+            if (dgv_livros.CurrentRow == null)
             {
                 MessageBox.Show("Selecione um registro para excluir.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -235,12 +235,12 @@ namespace Biblion.Apresentacao
             // Obter o usuário da linha selecionada
             var usuarioSelecionado = new Usuarios
             {
-                Id = Convert.ToInt32(dgv_usuarios.CurrentRow.Cells["Id"].Value),
-                Nome = dgv_usuarios.CurrentRow.Cells["Nome"].Value.ToString(),
-                Login = dgv_usuarios.CurrentRow.Cells["Login"].Value.ToString(),
-                Status = dgv_usuarios.CurrentRow.Cells["Status"].Value.ToString(),
-                Acesso = Convert.ToInt32(dgv_usuarios.CurrentRow.Cells["Acesso"].Value),
-                Img = dgv_usuarios.CurrentRow.Cells["Img"].Value.ToString()
+                Id = Convert.ToInt32(dgv_livros.CurrentRow.Cells["Id"].Value),
+                Nome = dgv_livros.CurrentRow.Cells["Nome"].Value.ToString(),
+                Login = dgv_livros.CurrentRow.Cells["Login"].Value.ToString(),
+                Status = dgv_livros.CurrentRow.Cells["Status"].Value.ToString(),
+                Acesso = Convert.ToInt32(dgv_livros.CurrentRow.Cells["Acesso"].Value),
+                Img = dgv_livros.CurrentRow.Cells["Img"].Value.ToString()
             };
 
             // Confirmação do usuário
@@ -257,7 +257,7 @@ namespace Biblion.Apresentacao
                 // Excluir do banco e do grid
                 if (usuarioController.ExcluirUsuario(usuarioSelecionado))
                 {
-                    dgv_usuarios.Rows.Remove(dgv_usuarios.CurrentRow);
+                    dgv_livros.Rows.Remove(dgv_livros.CurrentRow);
 
                     MessageBox.Show("Registro excluído com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -326,7 +326,7 @@ namespace Biblion.Apresentacao
 
             if (tipoAcao == "alteracao")
             {
-                idSelecionado = dgv_usuarios.Rows[0].Cells[0].Value.ToString();
+                idSelecionado = dgv_livros.Rows[0].Cells[0].Value.ToString();
             }
             else
             {

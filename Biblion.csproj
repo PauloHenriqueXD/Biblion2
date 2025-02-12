@@ -132,6 +132,7 @@
     <Compile Include="Services\ClienteController.cs" />
     <Compile Include="Services\EstadoController.cs" />
     <Compile Include="Services\EstadoService.cs" />
+    <Compile Include="Services\LivroController.cs" />
     <Compile Include="Services\UsuarioController.cs" />
     <EmbeddedResource Include="Apresentacao\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

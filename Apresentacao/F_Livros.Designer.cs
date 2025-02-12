@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(F_Livros));
             this.tbc_control = new System.Windows.Forms.TabControl();
             this.tbp_lista = new System.Windows.Forms.TabPage();
-            this.dgv_usuarios = new System.Windows.Forms.DataGridView();
+            this.dgv_livros = new System.Windows.Forms.DataGridView();
             this.tbp_dados = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btn_cancelar = new System.Windows.Forms.Button();
@@ -76,7 +76,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.tbc_control.SuspendLayout();
             this.tbp_lista.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_usuarios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_livros)).BeginInit();
             this.tbp_dados.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -102,7 +102,7 @@
             // 
             // tbp_lista
             // 
-            this.tbp_lista.Controls.Add(this.dgv_usuarios);
+            this.tbp_lista.Controls.Add(this.dgv_livros);
             this.tbp_lista.Location = new System.Drawing.Point(4, 22);
             this.tbp_lista.Name = "tbp_lista";
             this.tbp_lista.Padding = new System.Windows.Forms.Padding(3);
@@ -111,12 +111,12 @@
             this.tbp_lista.Text = "Lista";
             this.tbp_lista.UseVisualStyleBackColor = true;
             // 
-            // dgv_usuarios
+            // dgv_livros
             // 
-            this.dgv_usuarios.AllowUserToAddRows = false;
-            this.dgv_usuarios.AllowUserToDeleteRows = false;
-            this.dgv_usuarios.AllowUserToResizeRows = false;
-            this.dgv_usuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_livros.AllowUserToAddRows = false;
+            this.dgv_livros.AllowUserToDeleteRows = false;
+            this.dgv_livros.AllowUserToResizeRows = false;
+            this.dgv_livros.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -124,20 +124,20 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_usuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgv_usuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_usuarios.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_usuarios.EnableHeadersVisualStyles = false;
-            this.dgv_usuarios.Location = new System.Drawing.Point(3, 3);
-            this.dgv_usuarios.MultiSelect = false;
-            this.dgv_usuarios.Name = "dgv_usuarios";
-            this.dgv_usuarios.ReadOnly = true;
-            this.dgv_usuarios.RowHeadersVisible = false;
-            this.dgv_usuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_usuarios.Size = new System.Drawing.Size(957, 402);
-            this.dgv_usuarios.TabIndex = 13;
-            this.dgv_usuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_usuarios_CellDoubleClick);
-            this.dgv_usuarios.SelectionChanged += new System.EventHandler(this.dgv_usuarios_SelectionChanged);
+            this.dgv_livros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_livros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_livros.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_livros.EnableHeadersVisualStyles = false;
+            this.dgv_livros.Location = new System.Drawing.Point(3, 3);
+            this.dgv_livros.MultiSelect = false;
+            this.dgv_livros.Name = "dgv_livros";
+            this.dgv_livros.ReadOnly = true;
+            this.dgv_livros.RowHeadersVisible = false;
+            this.dgv_livros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_livros.Size = new System.Drawing.Size(957, 402);
+            this.dgv_livros.TabIndex = 13;
+            this.dgv_livros.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_usuarios_CellDoubleClick);
+            this.dgv_livros.SelectionChanged += new System.EventHandler(this.dgv_usuarios_SelectionChanged);
             // 
             // tbp_dados
             // 
@@ -575,7 +575,7 @@
             this.Shown += new System.EventHandler(this.F_Usuarios_Shown);
             this.tbc_control.ResumeLayout(false);
             this.tbp_lista.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_usuarios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_livros)).EndInit();
             this.tbp_dados.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -598,7 +598,7 @@
 
         private System.Windows.Forms.TabControl tbc_control;
         private System.Windows.Forms.TabPage tbp_lista;
-        private System.Windows.Forms.DataGridView dgv_usuarios;
+        private System.Windows.Forms.DataGridView dgv_livros;
         private System.Windows.Forms.TabPage tbp_dados;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btn_cancelar;
