@@ -32,10 +32,10 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.gerenciamentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuáriosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.estadosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.cidadesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cidadesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.estadosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.relatóriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.utilitáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,12 +80,12 @@
             this.usuáriosToolStripMenuItem1.Text = "Usuários";
             this.usuáriosToolStripMenuItem1.Click += new System.EventHandler(this.usuáriosToolStripMenuItem1_Click);
             // 
-            // estadosToolStripMenuItem1
+            // clientesToolStripMenuItem2
             // 
-            this.estadosToolStripMenuItem1.Name = "estadosToolStripMenuItem1";
-            this.estadosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.estadosToolStripMenuItem1.Text = "Estados";
-            this.estadosToolStripMenuItem1.Click += new System.EventHandler(this.estadosToolStripMenuItem1_Click);
+            this.clientesToolStripMenuItem2.Name = "clientesToolStripMenuItem2";
+            this.clientesToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.clientesToolStripMenuItem2.Text = "Clientes";
+            this.clientesToolStripMenuItem2.Click += new System.EventHandler(this.clientesToolStripMenuItem2_Click);
             // 
             // cidadesToolStripMenuItem1
             // 
@@ -94,18 +94,19 @@
             this.cidadesToolStripMenuItem1.Text = "Cidades";
             this.cidadesToolStripMenuItem1.Click += new System.EventHandler(this.cidadesToolStripMenuItem1_Click);
             // 
+            // estadosToolStripMenuItem1
+            // 
+            this.estadosToolStripMenuItem1.Name = "estadosToolStripMenuItem1";
+            this.estadosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.estadosToolStripMenuItem1.Text = "Estados";
+            this.estadosToolStripMenuItem1.Click += new System.EventHandler(this.estadosToolStripMenuItem1_Click);
+            // 
             // clientesToolStripMenuItem1
             // 
             this.clientesToolStripMenuItem1.Name = "clientesToolStripMenuItem1";
             this.clientesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.clientesToolStripMenuItem1.Text = "Livros";
-            // 
-            // clientesToolStripMenuItem2
-            // 
-            this.clientesToolStripMenuItem2.Name = "clientesToolStripMenuItem2";
-            this.clientesToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-            this.clientesToolStripMenuItem2.Text = "Clientes";
-            this.clientesToolStripMenuItem2.Click += new System.EventHandler(this.clientesToolStripMenuItem2_Click);
+            this.clientesToolStripMenuItem1.Click += new System.EventHandler(this.clientesToolStripMenuItem1_Click);
             // 
             // relatóriosToolStripMenuItem
             // 

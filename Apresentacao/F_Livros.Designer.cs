@@ -38,20 +38,16 @@
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_gravar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.tb_senha = new System.Windows.Forms.TextBox();
             this.btn_addFoto = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.pb_foto = new System.Windows.Forms.PictureBox();
             this.tb_id = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.tb_nome = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tb_login = new System.Windows.Forms.TextBox();
+            this.tb_ISBN = new System.Windows.Forms.TextBox();
+            this.tb_titulo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cb_status = new System.Windows.Forms.ComboBox();
-            this.n_nivel = new System.Windows.Forms.NumericUpDown();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lb_registros = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -74,6 +70,10 @@
             this.tb_filtroNome = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tb_autores = new System.Windows.Forms.TextBox();
+            this.dtp_dataPublicacao = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
             this.tbc_control.SuspendLayout();
             this.tbp_lista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_livros)).BeginInit();
@@ -81,7 +81,6 @@
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_foto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.n_nivel)).BeginInit();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.gb_filtros.SuspendLayout();
@@ -136,8 +135,8 @@
             this.dgv_livros.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_livros.Size = new System.Drawing.Size(957, 402);
             this.dgv_livros.TabIndex = 13;
-            this.dgv_livros.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_usuarios_CellDoubleClick);
-            this.dgv_livros.SelectionChanged += new System.EventHandler(this.dgv_usuarios_SelectionChanged);
+            this.dgv_livros.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_livros_CellDoubleClick);
+            this.dgv_livros.SelectionChanged += new System.EventHandler(this.dgv_livros_SelectionChanged);
             // 
             // tbp_dados
             // 
@@ -187,42 +186,33 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.tb_senha);
+            this.panel3.Controls.Add(this.dtp_dataPublicacao);
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.Add(this.tb_autores);
             this.panel3.Controls.Add(this.btn_addFoto);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.pb_foto);
             this.panel3.Controls.Add(this.tb_id);
-            this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.tb_nome);
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.tb_login);
+            this.panel3.Controls.Add(this.tb_ISBN);
+            this.panel3.Controls.Add(this.tb_titulo);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.cb_status);
-            this.panel3.Controls.Add(this.n_nivel);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(957, 356);
             this.panel3.TabIndex = 34;
             // 
-            // tb_senha
-            // 
-            this.tb_senha.Enabled = false;
-            this.tb_senha.Location = new System.Drawing.Point(202, 84);
-            this.tb_senha.Name = "tb_senha";
-            this.tb_senha.PasswordChar = '*';
-            this.tb_senha.Size = new System.Drawing.Size(198, 20);
-            this.tb_senha.TabIndex = 25;
-            // 
             // btn_addFoto
             // 
             this.btn_addFoto.Enabled = false;
-            this.btn_addFoto.Location = new System.Drawing.Point(440, 143);
+            this.btn_addFoto.Location = new System.Drawing.Point(865, 127);
             this.btn_addFoto.Name = "btn_addFoto";
             this.btn_addFoto.Size = new System.Drawing.Size(85, 23);
-            this.btn_addFoto.TabIndex = 32;
+            this.btn_addFoto.TabIndex = 6;
             this.btn_addFoto.Text = "Add Imagem";
             this.btn_addFoto.UseVisualStyleBackColor = true;
             this.btn_addFoto.Click += new System.EventHandler(this.btn_addFoto_Click);
@@ -239,7 +229,7 @@
             // pb_foto
             // 
             this.pb_foto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pb_foto.Location = new System.Drawing.Point(440, 24);
+            this.pb_foto.Location = new System.Drawing.Point(865, 8);
             this.pb_foto.Name = "pb_foto";
             this.pb_foto.Size = new System.Drawing.Size(85, 113);
             this.pb_foto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -255,88 +245,57 @@
             this.tb_id.TabIndex = 21;
             this.tb_id.TabStop = false;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(199, 126);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 13);
-            this.label6.TabIndex = 31;
-            this.label6.Text = "Nível de Acesso";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(87, 8);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.Size = new System.Drawing.Size(32, 13);
             this.label7.TabIndex = 22;
-            this.label7.Text = "Nome";
+            this.label7.Text = "ISBN";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 126);
+            this.label5.Location = new System.Drawing.Point(11, 141);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 13);
             this.label5.TabIndex = 30;
             this.label5.Text = "Status";
             // 
-            // tb_nome
+            // tb_ISBN
             // 
-            this.tb_nome.Enabled = false;
-            this.tb_nome.Location = new System.Drawing.Point(90, 24);
-            this.tb_nome.Name = "tb_nome";
-            this.tb_nome.Size = new System.Drawing.Size(310, 20);
-            this.tb_nome.TabIndex = 23;
+            this.tb_ISBN.Enabled = false;
+            this.tb_ISBN.Location = new System.Drawing.Point(90, 24);
+            this.tb_ISBN.Name = "tb_ISBN";
+            this.tb_ISBN.Size = new System.Drawing.Size(195, 20);
+            this.tb_ISBN.TabIndex = 1;
             // 
-            // label4
+            // tb_titulo
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(199, 68);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
-            this.label4.TabIndex = 29;
-            this.label4.Text = "Senha";
-            // 
-            // tb_login
-            // 
-            this.tb_login.Enabled = false;
-            this.tb_login.Location = new System.Drawing.Point(14, 84);
-            this.tb_login.Name = "tb_login";
-            this.tb_login.Size = new System.Drawing.Size(182, 20);
-            this.tb_login.TabIndex = 24;
+            this.tb_titulo.Enabled = false;
+            this.tb_titulo.Location = new System.Drawing.Point(291, 24);
+            this.tb_titulo.Name = "tb_titulo";
+            this.tb_titulo.Size = new System.Drawing.Size(568, 20);
+            this.tb_titulo.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 68);
+            this.label3.Location = new System.Drawing.Point(288, 8);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 28;
-            this.label3.Text = "Usuário";
+            this.label3.Text = "Título";
             // 
             // cb_status
             // 
             this.cb_status.Enabled = false;
             this.cb_status.FormattingEnabled = true;
-            this.cb_status.Location = new System.Drawing.Point(14, 142);
+            this.cb_status.Location = new System.Drawing.Point(14, 157);
             this.cb_status.Name = "cb_status";
             this.cb_status.Size = new System.Drawing.Size(182, 21);
-            this.cb_status.TabIndex = 26;
-            // 
-            // n_nivel
-            // 
-            this.n_nivel.Enabled = false;
-            this.n_nivel.Location = new System.Drawing.Point(202, 143);
-            this.n_nivel.Maximum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.n_nivel.Name = "n_nivel";
-            this.n_nivel.Size = new System.Drawing.Size(198, 20);
-            this.n_nivel.TabIndex = 27;
+            this.cb_status.TabIndex = 4;
             // 
             // openFileDialog1
             // 
@@ -559,6 +518,44 @@
             this.panel2.Size = new System.Drawing.Size(971, 20);
             this.panel2.TabIndex = 20;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(11, 72);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.TabIndex = 34;
+            this.label4.Text = "Autores";
+            // 
+            // tb_autores
+            // 
+            this.tb_autores.Enabled = false;
+            this.tb_autores.Location = new System.Drawing.Point(14, 88);
+            this.tb_autores.Name = "tb_autores";
+            this.tb_autores.Size = new System.Drawing.Size(845, 20);
+            this.tb_autores.TabIndex = 3;
+            // 
+            // dtp_dataPublicacao
+            // 
+            this.dtp_dataPublicacao.Enabled = false;
+            this.dtp_dataPublicacao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_dataPublicacao.Location = new System.Drawing.Point(207, 158);
+            this.dtp_dataPublicacao.MaxDate = new System.DateTime(2200, 12, 31, 0, 0, 0, 0);
+            this.dtp_dataPublicacao.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtp_dataPublicacao.Name = "dtp_dataPublicacao";
+            this.dtp_dataPublicacao.Size = new System.Drawing.Size(116, 20);
+            this.dtp_dataPublicacao.TabIndex = 5;
+            this.dtp_dataPublicacao.Value = new System.DateTime(2024, 3, 25, 0, 0, 0, 0);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(204, 142);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(101, 13);
+            this.label6.TabIndex = 96;
+            this.label6.Text = "Data de Públicação";
+            // 
             // F_Livros
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -571,8 +568,8 @@
             this.Name = "F_Livros";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestão de Livros";
-            this.Load += new System.EventHandler(this.F_Usuarios_Load);
-            this.Shown += new System.EventHandler(this.F_Usuarios_Shown);
+            this.Load += new System.EventHandler(this.F_Livros_Load);
+            this.Shown += new System.EventHandler(this.F_Livros_Shown);
             this.tbc_control.ResumeLayout(false);
             this.tbp_lista.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_livros)).EndInit();
@@ -581,7 +578,6 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_foto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.n_nivel)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -604,20 +600,16 @@
         private System.Windows.Forms.Button btn_cancelar;
         private System.Windows.Forms.Button btn_gravar;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox tb_senha;
         private System.Windows.Forms.Button btn_addFoto;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pb_foto;
         private System.Windows.Forms.TextBox tb_id;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tb_nome;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tb_login;
+        private System.Windows.Forms.TextBox tb_ISBN;
+        private System.Windows.Forms.TextBox tb_titulo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cb_status;
-        private System.Windows.Forms.NumericUpDown n_nivel;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label lb_registros;
         private System.Windows.Forms.Panel panel1;
@@ -640,5 +632,9 @@
         private System.Windows.Forms.TextBox tb_filtroNome;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tb_autores;
+        private System.Windows.Forms.DateTimePicker dtp_dataPublicacao;
+        private System.Windows.Forms.Label label6;
     }
 }

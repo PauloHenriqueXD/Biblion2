@@ -61,11 +61,11 @@ namespace Biblion.Apresentacao
         private void alterarDados()
         {
             tbc_control.SelectedTab = tbp_dados;
-            tb_nome.Enabled = true;
-            tb_login.Enabled = true;
-            tb_senha.Enabled = true;
+            tb_ISBN.Enabled = true;
+            tb_titulo.Enabled = true;
+            tb_autores.Enabled = true;
             cb_status.Enabled = true;
-            n_nivel.Enabled = true;
+            dtp_dataPublicacao.Enabled = true;
             btn_addFoto.Enabled = true;
             btn_gravar.Enabled = true;
             btn_cancelar.Enabled = true;
@@ -137,11 +137,11 @@ namespace Biblion.Apresentacao
 
         private void LimparFormulario()
         {
-            tb_nome.Clear();
-            tb_login.Clear();
-            tb_senha.Clear();
+            tb_ISBN.Clear();
+            tb_titulo.Clear();
+            tb_autores.Clear();
             cb_status.SelectedIndex = 0;
-            n_nivel.Value = 0;
+            dtp_dataPublicacao.Checked = false;
             pb_foto.ImageLocation = null;
         }
 
@@ -168,7 +168,14 @@ namespace Biblion.Apresentacao
             cb_status.DisplayMember = "Value";
             cb_status.ValueMember = "Key";
 
-            idSelecionado = dgv_livros.Rows[0].Cells[0].Value.ToString();
+            if (dgv_livros.Rows.Count > 0 && dgv_livros.Rows[0].Cells.Count > 0)
+            {
+                idSelecionado = dgv_livros.Rows[0].Cells[0].Value?.ToString();
+            }
+            else
+            {
+                idSelecionado = string.Empty;
+            }
 
             // Carregando dados na Grid
             carregarGrid();
@@ -218,33 +225,33 @@ namespace Biblion.Apresentacao
             }
         }
 
-        private void F_Usuarios_Shown(object sender, EventArgs e)
+        private void F_Livros_Shown(object sender, EventArgs e)
         {
             dgv_livros.Focus();
         }
 
         private void tsb_excluir_Click(object sender, EventArgs e)
         {
-            // Verifica se tem algum usuário Selecionado para Excluir, caso não avisa
+            // Verifica se tem algum registro Selecionado para Excluir, caso não avisa
             if (dgv_livros.CurrentRow == null)
             {
                 MessageBox.Show("Selecione um registro para excluir.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Obter o usuário da linha selecionada
-            var usuarioSelecionado = new Usuarios
+            // Obter o registro da linha selecionada
+            var livroSelecionado = new Livros
             {
                 Id = Convert.ToInt32(dgv_livros.CurrentRow.Cells["Id"].Value),
-                Nome = dgv_livros.CurrentRow.Cells["Nome"].Value.ToString(),
-                Login = dgv_livros.CurrentRow.Cells["Login"].Value.ToString(),
-                Status = dgv_livros.CurrentRow.Cells["Status"].Value.ToString(),
-                Acesso = Convert.ToInt32(dgv_livros.CurrentRow.Cells["Acesso"].Value),
-                Img = dgv_livros.CurrentRow.Cells["Img"].Value.ToString()
+                ISBN = dgv_livros.CurrentRow.Cells["ISBN"].Value.ToString(),
+                Titulo = dgv_livros.CurrentRow.Cells["Titulo"].Value.ToString(),
+                Autores = dgv_livros.CurrentRow.Cells["Autores"].Value.ToString(),
+                DataPublicacao = dgv_livros.CurrentRow.Cells["Data da Publicação"].Value.ToString(),
+                Status = dgv_livros.CurrentRow.Cells["Status"].Value.ToString()
             };
 
             // Confirmação do usuário
-            var confirmacao = MessageBox.Show($"Tem certeza de que deseja excluir o usuário {usuarioSelecionado.Nome}?",
+            var confirmacao = MessageBox.Show($"Tem certeza de que deseja excluir o registro {livroSelecionado.Titulo}?",
                                               "Confirmar Exclusão",
                                               MessageBoxButtons.YesNo,
                                               MessageBoxIcon.Warning, // Ícone de alerta
@@ -252,10 +259,10 @@ namespace Biblion.Apresentacao
 
             if (confirmacao == DialogResult.Yes)
             {
-                var usuarioController = new UsuarioController();
+                var livroController = new LivroController();
 
                 // Excluir do banco e do grid
-                if (usuarioController.ExcluirUsuario(usuarioSelecionado))
+                if (livroController.ExcluirLivros(livroSelecionado))
                 {
                     dgv_livros.Rows.Remove(dgv_livros.CurrentRow);
 
@@ -268,13 +275,13 @@ namespace Biblion.Apresentacao
             }
         }
 
-        private void dgv_usuarios_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_livros_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             tipoAcao = "alteracao";
             alterarDados();
         }
 
-        private void dgv_usuarios_SelectionChanged(object sender, EventArgs e)
+        private void dgv_livros_SelectionChanged(object sender, EventArgs e)
         {
             DataGridView dgv = (DataGridView)sender;
             int contlinhas = dgv.SelectedRows.Count;
@@ -285,18 +292,17 @@ namespace Biblion.Apresentacao
 
                 if (int.TryParse(vid, out int idSelecionado))
                 {
-                    UsuarioController usuarioController = new UsuarioController();
-                    Usuarios usuarioSelecionado = usuarioController.ObterUsuarioPorId(idSelecionado);
+                    LivroController livroController = new LivroController();
+                    Livros livroSelecionado = livroController.ObterLivrosPorId(idSelecionado);
 
-                    if (usuarioSelecionado != null)
+                    if (livroSelecionado != null)
                     {
-                        tb_id.Text = usuarioSelecionado.Id.ToString();
-                        tb_nome.Text = usuarioSelecionado.Nome;
-                        tb_login.Text = usuarioSelecionado.Login;
-                        tb_senha.Text = usuarioSelecionado.Senha;
-                        cb_status.SelectedValue = usuarioSelecionado.Status;
-                        n_nivel.Value = usuarioSelecionado.Acesso;
-                        pb_foto.ImageLocation = usuarioSelecionado.Img;
+                        tb_id.Text = livroSelecionado.Id.ToString();
+                        tb_ISBN.Text = livroSelecionado.ISBN;
+                        tb_titulo.Text = livroSelecionado.Titulo;
+                        tb_autores.Text = livroSelecionado.Autores;
+                        cb_status.SelectedValue = livroSelecionado.Status;
+                        dtp_dataPublicacao.Value = DateTime.Parse(livroSelecionado.DataPublicacao);
                     }
                 }
                 else
@@ -315,11 +321,11 @@ namespace Biblion.Apresentacao
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
             tbc_control.SelectedTab = tbp_lista;
-            tb_nome.Enabled = false;
-            tb_login.Enabled = false;
-            tb_senha.Enabled = false;
+            tb_ISBN.Enabled = false;
+            tb_titulo.Enabled = false;
+            tb_autores.Enabled = false;
             cb_status.Enabled = false;
-            n_nivel.Enabled = false;
+            dtp_dataPublicacao.Enabled = false;
             btn_addFoto.Enabled = false;
             btn_gravar.Enabled = false;
             btn_cancelar.Enabled = false;
@@ -365,12 +371,12 @@ namespace Biblion.Apresentacao
         private void tsb_incluir_Click(object sender, EventArgs e)
         {
             //Corrigindo campos após Cadastro
-            tb_id.Text = Globais.gerarNovoID("tbusuarios").ToString();
-            tb_nome.Clear();
-            tb_login.Clear();
-            tb_senha.Clear();
+            tb_id.Text = Globais.gerarNovoID("tblivros").ToString();
+            tb_ISBN.Clear();
+            tb_titulo.Clear();
+            tb_autores.Clear();
             cb_status.SelectedIndex = 0;
-            n_nivel.Value = 0;
+            dtp_dataPublicacao.Checked = false;
             pb_foto.ImageLocation = "";
             tipoAcao = "inclusao";
             alterarDados();
@@ -391,31 +397,31 @@ namespace Biblion.Apresentacao
             {
                 try
                 {
-                    Usuarios usuario = new Usuarios
+                    Livros livro = new Livros
                     {
                         Id = int.Parse(tb_id.Text),
-                        Nome = tb_nome.Text,
-                        Login = tb_login.Text,
-                        Senha = tb_senha.Text,
+                        ISBN = tb_ISBN.Text,
+                        Titulo = tb_titulo.Text,
+                        Autores = tb_autores.Text,
                         Status = cb_status.SelectedValue.ToString(),
-                        Acesso = (int)n_nivel.Value,
-                        Img = pb_foto.ImageLocation // Caminho atual da imagem
+                        //DataPublicacao = (int)n_nivel.Value,
+                        //Img = pb_foto.ImageLocation // Caminho atual da imagem
                     };
 
                     // Chama o método para atualizar o usuário
                     string caminhoImagemSelecionada = destinoCompleto; // Caminho da imagem carregada pelo usuário
-                    usuarioController.AtualizarUsuario(usuario, caminhoImagemSelecionada);
+                    livroController.AtualizarLivros(livro, caminhoImagemSelecionada);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Erro ao salvar alterações: {ex.Message}");
                 }
                 tbc_control.SelectedTab = tbp_lista;
-                tb_nome.Enabled = false;
-                tb_login.Enabled = false;
-                tb_senha.Enabled = false;
+                tb_ISBN.Enabled = false;
+                tb_titulo.Enabled = false;
+                tb_autores.Enabled = false;
                 cb_status.Enabled = false;
-                n_nivel.Enabled = false;
+                dtp_dataPublicacao.Enabled = false;
                 btn_addFoto.Enabled = false;
                 btn_gravar.Enabled = false;
                 btn_cancelar.Enabled = false;
@@ -424,18 +430,18 @@ namespace Biblion.Apresentacao
             {
                 try
                 {
-                    Usuarios novoUsuario = new Usuarios
+                    Livros novoLivro = new Livros
                     {
-                        Nome = tb_nome.Text,
-                        Login = tb_login.Text,
-                        Senha = tb_senha.Text,
+                        ISBN = tb_ISBN.Text,
+                        Titulo = tb_titulo.Text,
+                        Autores = tb_autores.Text,
                         Status = cb_status.SelectedValue.ToString(),
-                        Acesso = (int)n_nivel.Value,
-                        Img = !string.IsNullOrEmpty(pb_foto.ImageLocation) ? pb_foto.ImageLocation : null
+                        //Acesso = (int)n_nivel.Value,
+                        //Img = !string.IsNullOrEmpty(pb_foto.ImageLocation) ? pb_foto.ImageLocation : null
                     };
 
-                    UsuarioController usuarioController = new UsuarioController();
-                    bool sucesso = usuarioController.InserirUsuario(novoUsuario);
+                    LivroController livroController = new LivroController();
+                    bool sucesso = livroController.InserirLivros(novoLivro);
 
                     if (sucesso)
                     {
@@ -446,7 +452,7 @@ namespace Biblion.Apresentacao
                         carregarGrid();
 
                         //Gera novo id após cadastro de usuario
-                        tb_id.Text = Globais.gerarNovoID("tbusuarios").ToString();
+                        tb_id.Text = Globais.gerarNovoID("tblivros").ToString();
 
                         //Verifica se foi selecionada foto e pergunta se deseja continuar
                         if (MessageBox.Show("Deseja Cadastrar mais um registro?", "Atenção!", MessageBoxButtons.YesNo) == DialogResult.No)
