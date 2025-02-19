@@ -9,12 +9,11 @@ namespace Biblion.Entities
     public class Livros
     {
         public int Id { get; set; }
-        public string Guid { get; set; }
         public string ISBN { get; set; }
         public string Titulo { get; set; }
         public string Autores { get; set; }
         public string Editora { get; set; }
-        public string DataPublicacao { get; set; }
+        public DateTime? DataPublicacao { get; set; }
         public string Descricao { get; set; }
         public int NumeroPaginas { get; set; }
         public string Categoria { get; set; }
@@ -26,10 +25,9 @@ namespace Biblion.Entities
         public Livros() { }
 
         // Construtor com parâmetros
-        public Livros(int id, string guid, string iSBN, string titulo, string autores, string editora, string dataPublicacao, string descricao, int numeroPaginas, string categoria, string idioma, string urlCapa, string status)
+        public Livros(int id, string iSBN, string titulo, string autores, string editora, DateTime dataPublicacao, string descricao, int numeroPaginas, string categoria, string idioma, string urlCapa, string status)
         {
             Id = id;
-            Guid = guid;
             ISBN = iSBN;
             Titulo = titulo;
             Autores = autores;

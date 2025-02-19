@@ -38,6 +38,10 @@
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_gravar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.dtp_dataPublicacao = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tb_autores = new System.Windows.Forms.TextBox();
             this.btn_addFoto = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.pb_foto = new System.Windows.Forms.PictureBox();
@@ -70,10 +74,16 @@
             this.tb_filtroNome = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tb_autores = new System.Windows.Forms.TextBox();
-            this.dtp_dataPublicacao = new System.Windows.Forms.DateTimePicker();
-            this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tb_editora = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tb_numeroPaginas = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tb_categoria = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tb_idioma = new System.Windows.Forms.TextBox();
+            this.gb_descricao = new System.Windows.Forms.GroupBox();
+            this.rtb_descricao = new System.Windows.Forms.RichTextBox();
             this.tbc_control.SuspendLayout();
             this.tbp_lista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_livros)).BeginInit();
@@ -85,6 +95,7 @@
             this.toolStrip1.SuspendLayout();
             this.gb_filtros.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.gb_descricao.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbc_control
@@ -186,6 +197,15 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.gb_descricao);
+            this.panel3.Controls.Add(this.label12);
+            this.panel3.Controls.Add(this.tb_idioma);
+            this.panel3.Controls.Add(this.label11);
+            this.panel3.Controls.Add(this.tb_categoria);
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Controls.Add(this.tb_numeroPaginas);
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.tb_editora);
             this.panel3.Controls.Add(this.dtp_dataPublicacao);
             this.panel3.Controls.Add(this.label6);
             this.panel3.Controls.Add(this.label4);
@@ -205,6 +225,44 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(957, 356);
             this.panel3.TabIndex = 34;
+            // 
+            // dtp_dataPublicacao
+            // 
+            this.dtp_dataPublicacao.Enabled = false;
+            this.dtp_dataPublicacao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_dataPublicacao.Location = new System.Drawing.Point(14, 118);
+            this.dtp_dataPublicacao.MaxDate = new System.DateTime(2200, 12, 31, 0, 0, 0, 0);
+            this.dtp_dataPublicacao.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtp_dataPublicacao.Name = "dtp_dataPublicacao";
+            this.dtp_dataPublicacao.Size = new System.Drawing.Size(116, 20);
+            this.dtp_dataPublicacao.TabIndex = 5;
+            this.dtp_dataPublicacao.Value = new System.DateTime(2024, 3, 25, 0, 0, 0, 0);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 102);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(101, 13);
+            this.label6.TabIndex = 96;
+            this.label6.Text = "Data de Públicação";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(11, 52);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.TabIndex = 34;
+            this.label4.Text = "Autores";
+            // 
+            // tb_autores
+            // 
+            this.tb_autores.Enabled = false;
+            this.tb_autores.Location = new System.Drawing.Point(14, 68);
+            this.tb_autores.Name = "tb_autores";
+            this.tb_autores.Size = new System.Drawing.Size(417, 20);
+            this.tb_autores.TabIndex = 3;
             // 
             // btn_addFoto
             // 
@@ -257,7 +315,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 141);
+            this.label5.Location = new System.Drawing.Point(674, 102);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 13);
             this.label5.TabIndex = 30;
@@ -292,7 +350,7 @@
             // 
             this.cb_status.Enabled = false;
             this.cb_status.FormattingEnabled = true;
-            this.cb_status.Location = new System.Drawing.Point(14, 157);
+            this.cb_status.Location = new System.Drawing.Point(677, 118);
             this.cb_status.Name = "cb_status";
             this.cb_status.Size = new System.Drawing.Size(182, 21);
             this.cb_status.TabIndex = 4;
@@ -518,43 +576,92 @@
             this.panel2.Size = new System.Drawing.Size(971, 20);
             this.panel2.TabIndex = 20;
             // 
-            // label4
+            // label9
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 72);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 13);
-            this.label4.TabIndex = 34;
-            this.label4.Text = "Autores";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(434, 52);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(40, 13);
+            this.label9.TabIndex = 98;
+            this.label9.Text = "Editora";
             // 
-            // tb_autores
+            // tb_editora
             // 
-            this.tb_autores.Enabled = false;
-            this.tb_autores.Location = new System.Drawing.Point(14, 88);
-            this.tb_autores.Name = "tb_autores";
-            this.tb_autores.Size = new System.Drawing.Size(845, 20);
-            this.tb_autores.TabIndex = 3;
+            this.tb_editora.Enabled = false;
+            this.tb_editora.Location = new System.Drawing.Point(437, 68);
+            this.tb_editora.Name = "tb_editora";
+            this.tb_editora.Size = new System.Drawing.Size(422, 20);
+            this.tb_editora.TabIndex = 97;
             // 
-            // dtp_dataPublicacao
+            // label10
             // 
-            this.dtp_dataPublicacao.Enabled = false;
-            this.dtp_dataPublicacao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_dataPublicacao.Location = new System.Drawing.Point(207, 158);
-            this.dtp_dataPublicacao.MaxDate = new System.DateTime(2200, 12, 31, 0, 0, 0, 0);
-            this.dtp_dataPublicacao.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtp_dataPublicacao.Name = "dtp_dataPublicacao";
-            this.dtp_dataPublicacao.Size = new System.Drawing.Size(116, 20);
-            this.dtp_dataPublicacao.TabIndex = 5;
-            this.dtp_dataPublicacao.Value = new System.DateTime(2024, 3, 25, 0, 0, 0, 0);
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(133, 102);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(77, 13);
+            this.label10.TabIndex = 100;
+            this.label10.Text = "Nº De Páginas";
             // 
-            // label6
+            // tb_numeroPaginas
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(204, 142);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(101, 13);
-            this.label6.TabIndex = 96;
-            this.label6.Text = "Data de Públicação";
+            this.tb_numeroPaginas.Enabled = false;
+            this.tb_numeroPaginas.Location = new System.Drawing.Point(136, 118);
+            this.tb_numeroPaginas.Name = "tb_numeroPaginas";
+            this.tb_numeroPaginas.Size = new System.Drawing.Size(119, 20);
+            this.tb_numeroPaginas.TabIndex = 99;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(258, 102);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(52, 13);
+            this.label11.TabIndex = 102;
+            this.label11.Text = "Categoria";
+            // 
+            // tb_categoria
+            // 
+            this.tb_categoria.Enabled = false;
+            this.tb_categoria.Location = new System.Drawing.Point(261, 118);
+            this.tb_categoria.Name = "tb_categoria";
+            this.tb_categoria.Size = new System.Drawing.Size(234, 20);
+            this.tb_categoria.TabIndex = 101;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(498, 102);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(38, 13);
+            this.label12.TabIndex = 104;
+            this.label12.Text = "Idioma";
+            // 
+            // tb_idioma
+            // 
+            this.tb_idioma.Enabled = false;
+            this.tb_idioma.Location = new System.Drawing.Point(501, 118);
+            this.tb_idioma.Name = "tb_idioma";
+            this.tb_idioma.Size = new System.Drawing.Size(170, 20);
+            this.tb_idioma.TabIndex = 103;
+            // 
+            // gb_descricao
+            // 
+            this.gb_descricao.Controls.Add(this.rtb_descricao);
+            this.gb_descricao.Location = new System.Drawing.Point(14, 153);
+            this.gb_descricao.Name = "gb_descricao";
+            this.gb_descricao.Size = new System.Drawing.Size(936, 196);
+            this.gb_descricao.TabIndex = 105;
+            this.gb_descricao.TabStop = false;
+            this.gb_descricao.Text = "Descrição";
+            // 
+            // rtb_descricao
+            // 
+            this.rtb_descricao.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtb_descricao.Location = new System.Drawing.Point(3, 16);
+            this.rtb_descricao.Name = "rtb_descricao";
+            this.rtb_descricao.Size = new System.Drawing.Size(930, 177);
+            this.rtb_descricao.TabIndex = 0;
+            this.rtb_descricao.Text = "";
             // 
             // F_Livros
             // 
@@ -586,6 +693,7 @@
             this.gb_filtros.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.gb_descricao.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -636,5 +744,15 @@
         private System.Windows.Forms.TextBox tb_autores;
         private System.Windows.Forms.DateTimePicker dtp_dataPublicacao;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tb_numeroPaginas;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox tb_editora;
+        private System.Windows.Forms.GroupBox gb_descricao;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tb_idioma;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox tb_categoria;
+        private System.Windows.Forms.RichTextBox rtb_descricao;
     }
 }

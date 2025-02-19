@@ -40,12 +40,11 @@ public class LivroController
                         Livros livro = new Livros
                         {
                             Id = Convert.ToInt32(reader["id"]),
-                            Guid = reader["guid"].ToString(),
                             ISBN = reader["isbn"].ToString(),
                             Titulo = reader["titulo"].ToString(),
                             Autores = reader["autores"].ToString(),
                             Editora = reader["editora"].ToString(),
-                            DataPublicacao = reader["data_publicacao"].ToString(),
+                            DataPublicacao = Convert.ToDateTime(reader["data_publicacao"].ToString()),
                             Descricao = reader["descricao"].ToString(),
                             NumeroPaginas = Convert.ToInt32(reader["numero_paginas"]),
                             Categoria = reader["categoria"].ToString(),
@@ -124,12 +123,11 @@ public class LivroController
                     Livros livro = new Livros
                     {
                         Id = Convert.ToInt32(reader["id"]),
-                        Guid = reader["guid"].ToString(),
                         ISBN = reader["isbn"].ToString(),
                         Titulo = reader["titulo"].ToString(),
                         Autores = reader["autores"].ToString(),
                         Editora = reader["editora"].ToString(),
-                        DataPublicacao = reader["data_publicacao"].ToString(),
+                        DataPublicacao = Convert.ToDateTime(reader["data_publicacao"].ToString()),
                         Descricao = reader["descricao"].ToString(),
                         NumeroPaginas = Convert.ToInt32(reader["numero_paginas"]),
                         Categoria = reader["categoria"].ToString(),
@@ -159,12 +157,12 @@ public class LivroController
         table.Columns.Add("ISBN", typeof(string));
         table.Columns.Add("Título", typeof(string));
         table.Columns.Add("Autores", typeof(string));
-        table.Columns.Add("Data da Publicação", typeof(string));
+        table.Columns.Add("Data da Publicação", typeof(DateTime));
         table.Columns.Add("Status", typeof(string));
 
         foreach (var livro in livros)
         {
-            table.Rows.Add(livro.Id, livro.ISBN, livro.Titulo, livro.Autores, livro.DataPublicacao, livro.Status);
+            table.Rows.Add(livro.Id, livro.ISBN, livro.Titulo, livro.Autores, livro.DataPublicacao.HasValue ? livro.DataPublicacao.Value : (object)DBNull.Value, livro.Status);
         }
 
         grid.DataSource = table;
@@ -254,12 +252,11 @@ public class LivroController
                             livro = new Livros
                             {
                                 Id = Convert.ToInt32(reader["id"]),
-                                Guid = reader["guid"].ToString(),
                                 ISBN = reader["isbn"].ToString(),
                                 Titulo = reader["titulo"].ToString(),
                                 Autores = reader["autores"].ToString(),
                                 Editora = reader["editora"].ToString(),
-                                DataPublicacao = reader["data_publicacao"].ToString(),
+                                DataPublicacao = Convert.ToDateTime(reader["data_publicacao"].ToString()),
                                 Descricao = reader["descricao"].ToString(),
                                 NumeroPaginas = Convert.ToInt32(reader["numero_paginas"]),
                                 Categoria = reader["categoria"].ToString(),
@@ -342,10 +339,9 @@ public class LivroController
             // Atualiza o banco de dados
             using (var conexao = new Conexao())
             {
-                string query = "UPDATE tblivros SET guid = @guid, isbn = @isbn, titulo = @titulo, autores = @autores, editora = @editora, data_publicacao = @data_publicacao, descricao = @descricao, numero_paginas = @numero_paginas, categoria = @categoria, idioma = @idioma, url_capa = @url_capa, status = @status WHERE id = @id";
+                string query = "UPDATE tblivros SET isbn = @isbn, titulo = @titulo, autores = @autores, editora = @editora, data_publicacao = @data_publicacao, descricao = @descricao, numero_paginas = @numero_paginas, categoria = @categoria, idioma = @idioma, url_capa = @url_capa, status = @status WHERE id = @id";
                 using (var comando = conexao.CriarComando(query))
                 {
-                    comando.Parameters.AddWithValue("@guid", livro.Guid);
                     comando.Parameters.AddWithValue("@isbn", livro.ISBN);
                     comando.Parameters.AddWithValue("@titulo", livro.Titulo);
                     comando.Parameters.AddWithValue("@autores", livro.Autores);

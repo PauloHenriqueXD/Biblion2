@@ -51,6 +51,11 @@ namespace Biblion.Apresentacao
             Globais.ultimo(dgv_livros);
         }
 
+        private void tbc_control_KeyDown(object sender, KeyEventArgs e)
+        {
+            Globais.ControleDeKeys(dgv_livros, tbc_control, e, tipoAcao);
+        }
+
         private string contaResultados()
         {
             //Função para pegar resultados de um grid e informar em um lb
@@ -64,11 +69,14 @@ namespace Biblion.Apresentacao
             tb_ISBN.Enabled = true;
             tb_titulo.Enabled = true;
             tb_autores.Enabled = true;
-            cb_status.Enabled = true;
+            tb_editora.Enabled = true;
             dtp_dataPublicacao.Enabled = true;
-            btn_addFoto.Enabled = true;
-            btn_gravar.Enabled = true;
-            btn_cancelar.Enabled = true;
+            tb_numeroPaginas.Enabled = true;
+            tb_categoria.Enabled = true;
+            tb_idioma.Enabled = true;
+            cb_status.Enabled = true;
+            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar, btn_addFoto };
+            Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
         }
 
         private void carregarGrid()
@@ -90,8 +98,8 @@ namespace Biblion.Apresentacao
             {
                 // Definindo tamanho da DataGridView
                 dgv_livros.Columns[0].Width = (int)(dgv_livros.Width * 0.1);
-                dgv_livros.Columns[1].Width = (int)(dgv_livros.Width * 0.4);
-                dgv_livros.Columns[2].Width = (int)(dgv_livros.Width * 0.2);
+                dgv_livros.Columns[1].Width = (int)(dgv_livros.Width * 0.3);
+                dgv_livros.Columns[2].Width = (int)(dgv_livros.Width * 0.3);
                 dgv_livros.Columns[3].Width = (int)(dgv_livros.Width * 0.15);
                 dgv_livros.Columns[4].Width = (int)(dgv_livros.Width * 0.15);
 
@@ -140,6 +148,10 @@ namespace Biblion.Apresentacao
             tb_ISBN.Clear();
             tb_titulo.Clear();
             tb_autores.Clear();
+            tb_editora.Clear();
+            tb_numeroPaginas.Clear();
+            tb_categoria.Clear();
+            tb_idioma.Clear();
             cb_status.SelectedIndex = 0;
             dtp_dataPublicacao.Checked = false;
             pb_foto.ImageLocation = null;
@@ -203,28 +215,6 @@ namespace Biblion.Apresentacao
             atualizaDados();
         }
 
-        private void tbc_control_KeyDown(object sender, KeyEventArgs e)
-        {
-            int tecla = e.KeyValue;
-            switch (tecla)
-            {
-                case 40: //baixo
-                    Globais.proximo(dgv_livros);
-                    break;
-                case 38: //cima
-                    Globais.anterior(dgv_livros);
-                    break;
-                case 39: //direita
-                    Globais.MoverParaProximaAba(tbc_control); // Usando a classe global
-                    e.Handled = true;
-                    break;
-                case 37: //esquerda
-                    Globais.MoverParaAbaAnterior(tbc_control); // Usando a classe global
-                    e.Handled = true;
-                    break;
-            }
-        }
-
         private void F_Livros_Shown(object sender, EventArgs e)
         {
             dgv_livros.Focus();
@@ -246,7 +236,7 @@ namespace Biblion.Apresentacao
                 ISBN = dgv_livros.CurrentRow.Cells["ISBN"].Value.ToString(),
                 Titulo = dgv_livros.CurrentRow.Cells["Titulo"].Value.ToString(),
                 Autores = dgv_livros.CurrentRow.Cells["Autores"].Value.ToString(),
-                DataPublicacao = dgv_livros.CurrentRow.Cells["Data da Publicação"].Value.ToString(),
+                DataPublicacao = Convert.ToDateTime(dgv_livros.CurrentRow.Cells["Data da Publicação"].Value.ToString()),
                 Status = dgv_livros.CurrentRow.Cells["Status"].Value.ToString()
             };
 
@@ -302,7 +292,7 @@ namespace Biblion.Apresentacao
                         tb_titulo.Text = livroSelecionado.Titulo;
                         tb_autores.Text = livroSelecionado.Autores;
                         cb_status.SelectedValue = livroSelecionado.Status;
-                        dtp_dataPublicacao.Value = DateTime.Parse(livroSelecionado.DataPublicacao);
+                        dtp_dataPublicacao.Value = livroSelecionado.DataPublicacao ?? DateTime.Today;
                     }
                 }
                 else
@@ -339,7 +329,9 @@ namespace Biblion.Apresentacao
                 carregarGrid();
             }
 
-            tipoAcao = "";
+            tipoAcao = null;
+            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
+            Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
 
         }
 
@@ -372,12 +364,7 @@ namespace Biblion.Apresentacao
         {
             //Corrigindo campos após Cadastro
             tb_id.Text = Globais.gerarNovoID("tblivros").ToString();
-            tb_ISBN.Clear();
-            tb_titulo.Clear();
-            tb_autores.Clear();
-            cb_status.SelectedIndex = 0;
-            dtp_dataPublicacao.Checked = false;
-            pb_foto.ImageLocation = "";
+            LimparFormulario();
             tipoAcao = "inclusao";
             alterarDados();
         }
