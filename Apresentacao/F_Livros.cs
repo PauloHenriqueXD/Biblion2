@@ -71,6 +71,7 @@ namespace Biblion.Apresentacao
             tb_autores.Enabled = true;
             tb_editora.Enabled = true;
             dtp_dataPublicacao.Enabled = true;
+            rtb_descricao.Enabled = true;
             tb_numeroPaginas.Enabled = true;
             tb_categoria.Enabled = true;
             tb_idioma.Enabled = true;
@@ -97,11 +98,12 @@ namespace Biblion.Apresentacao
             try
             {
                 // Definindo tamanho da DataGridView
-                dgv_livros.Columns[0].Width = (int)(dgv_livros.Width * 0.1);
-                dgv_livros.Columns[1].Width = (int)(dgv_livros.Width * 0.3);
+                dgv_livros.Columns[0].Width = (int)(dgv_livros.Width * 0.05);
+                dgv_livros.Columns[1].Width = (int)(dgv_livros.Width * 0.2);
                 dgv_livros.Columns[2].Width = (int)(dgv_livros.Width * 0.3);
-                dgv_livros.Columns[3].Width = (int)(dgv_livros.Width * 0.15);
+                dgv_livros.Columns[3].Width = (int)(dgv_livros.Width * 0.3);
                 dgv_livros.Columns[4].Width = (int)(dgv_livros.Width * 0.15);
+                dgv_livros.Columns[5].Width = (int)(dgv_livros.Width * 0.1);
 
                 idSelecionado = dgv_livros.Columns[0].ToString();
             }
@@ -154,6 +156,7 @@ namespace Biblion.Apresentacao
             tb_idioma.Clear();
             cb_status.SelectedIndex = 0;
             dtp_dataPublicacao.Checked = false;
+            rtb_descricao.Clear();
             pb_foto.ImageLocation = null;
         }
 
@@ -291,8 +294,14 @@ namespace Biblion.Apresentacao
                         tb_ISBN.Text = livroSelecionado.ISBN;
                         tb_titulo.Text = livroSelecionado.Titulo;
                         tb_autores.Text = livroSelecionado.Autores;
-                        cb_status.SelectedValue = livroSelecionado.Status;
+                        tb_editora.Text = livroSelecionado.Editora;
                         dtp_dataPublicacao.Value = livroSelecionado.DataPublicacao ?? DateTime.Today;
+                        rtb_descricao.Text = livroSelecionado.Descricao;
+                        tb_numeroPaginas.Text = livroSelecionado.NumeroPaginas.ToString();
+                        tb_categoria.Text = livroSelecionado.Categoria;
+                        tb_idioma.Text = livroSelecionado.Idioma;
+                        cb_status.SelectedValue = livroSelecionado.Status;
+                        pb_foto.ImageLocation = livroSelecionado.UrlCapa;
                     }
                 }
                 else
@@ -314,11 +323,13 @@ namespace Biblion.Apresentacao
             tb_ISBN.Enabled = false;
             tb_titulo.Enabled = false;
             tb_autores.Enabled = false;
-            cb_status.Enabled = false;
+            tb_editora.Enabled = false;
             dtp_dataPublicacao.Enabled = false;
-            btn_addFoto.Enabled = false;
-            btn_gravar.Enabled = false;
-            btn_cancelar.Enabled = false;
+            rtb_descricao.Enabled = false;
+            tb_numeroPaginas.Enabled = false;
+            tb_categoria.Enabled = false;
+            tb_idioma.Enabled = false;
+            cb_status.Enabled = false;
 
             if (tipoAcao == "alteracao")
             {
@@ -330,7 +341,7 @@ namespace Biblion.Apresentacao
             }
 
             tipoAcao = null;
-            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar };
+            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar, btn_addFoto };
             Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
 
         }
@@ -390,28 +401,48 @@ namespace Biblion.Apresentacao
                         ISBN = tb_ISBN.Text,
                         Titulo = tb_titulo.Text,
                         Autores = tb_autores.Text,
+                        Editora = tb_editora.Text,
+                        DataPublicacao = dtp_dataPublicacao.Value,
+                        Descricao = rtb_descricao.Text,
+                        NumeroPaginas = int.Parse(tb_numeroPaginas.Text),
+                        Categoria = tb_categoria.Text,
+                        Idioma = tb_idioma.Text,
                         Status = cb_status.SelectedValue.ToString(),
-                        //DataPublicacao = (int)n_nivel.Value,
-                        //Img = pb_foto.ImageLocation // Caminho atual da imagem
+                        UrlCapa = !string.IsNullOrEmpty(pb_foto.ImageLocation) ? pb_foto.ImageLocation : null
                     };
 
-                    // Chama o método para atualizar o usuário
+                    // Chama o método para atualizar o registro
                     string caminhoImagemSelecionada = destinoCompleto; // Caminho da imagem carregada pelo usuário
                     livroController.AtualizarLivros(livro, caminhoImagemSelecionada);
+
+                    // limpa o formulário
+                    LimparFormulario();
+
+                    // Atualiza lista do formulário
+                    carregarGrid();
+
+                    MessageBox.Show("Livro atualizado com sucesso!");
+
+                    tbc_control.SelectedTab = tbp_lista;
+                    tb_ISBN.Enabled = false;
+                    tb_titulo.Enabled = false;
+                    tb_autores.Enabled = false;
+                    tb_editora.Enabled = false;
+                    dtp_dataPublicacao.Enabled = false;
+                    rtb_descricao.Enabled = false;
+                    tb_numeroPaginas.Enabled = false;
+                    tb_categoria.Enabled = false;
+                    tb_idioma.Enabled = false;
+                    cb_status.Enabled = false;
+                    tipoAcao = null;
+                    List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar, btn_addFoto };
+                    Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Erro ao salvar alterações: {ex.Message}");
                 }
-                tbc_control.SelectedTab = tbp_lista;
-                tb_ISBN.Enabled = false;
-                tb_titulo.Enabled = false;
-                tb_autores.Enabled = false;
-                cb_status.Enabled = false;
-                dtp_dataPublicacao.Enabled = false;
-                btn_addFoto.Enabled = false;
-                btn_gravar.Enabled = false;
-                btn_cancelar.Enabled = false;
+               
             }
             else if (tipoAcao == "inclusao")
             {
@@ -422,9 +453,14 @@ namespace Biblion.Apresentacao
                         ISBN = tb_ISBN.Text,
                         Titulo = tb_titulo.Text,
                         Autores = tb_autores.Text,
+                        Editora = tb_editora.Text,
+                        DataPublicacao = dtp_dataPublicacao.Value,
+                        Descricao = rtb_descricao.Text,
+                        NumeroPaginas = int.Parse(tb_numeroPaginas.Text),
+                        Categoria = tb_categoria.Text,
+                        Idioma = tb_idioma.Text,
                         Status = cb_status.SelectedValue.ToString(),
-                        //Acesso = (int)n_nivel.Value,
-                        //Img = !string.IsNullOrEmpty(pb_foto.ImageLocation) ? pb_foto.ImageLocation : null
+                        UrlCapa = !string.IsNullOrEmpty(pb_foto.ImageLocation) ? pb_foto.ImageLocation : null
                     };
 
                     LivroController livroController = new LivroController();
@@ -441,10 +477,31 @@ namespace Biblion.Apresentacao
                         //Gera novo id após cadastro de usuario
                         tb_id.Text = Globais.gerarNovoID("tblivros").ToString();
 
+                        MessageBox.Show("Livro cadastrado com sucesso!");
+
                         //Verifica se foi selecionada foto e pergunta se deseja continuar
                         if (MessageBox.Show("Deseja Cadastrar mais um registro?", "Atenção!", MessageBoxButtons.YesNo) == DialogResult.No)
                         {
                             tbc_control.SelectedTab = tbp_lista;
+                            tb_ISBN.Enabled = false;
+                            tb_titulo.Enabled = false;
+                            tb_autores.Enabled = false;
+                            tb_editora.Enabled = false;
+                            dtp_dataPublicacao.Enabled = false;
+                            rtb_descricao.Enabled = false;
+                            tb_numeroPaginas.Enabled = false;
+                            tb_categoria.Enabled = false;
+                            tb_idioma.Enabled = false;
+                            cb_status.Enabled = false;
+                            tipoAcao = null;
+                            List<Button> listaDeBotoes = new List<Button> { btn_gravar, btn_cancelar, btn_addFoto };
+                            Globais.ConfiguraBotoes(tipoAcao, listaDeBotoes, tsb_primeiro, tsb_anterior, tsb_proximo, tsb_ultimo, tsb_excluir, tsb_incluir, tsb_alterar, tsb_sair);
+                        }
+                        else
+                        {
+                            // limpa o formulário
+                            LimparFormulario();
+
                             return;
                         }
                     }

@@ -38,6 +38,16 @@
             this.btn_cancelar = new System.Windows.Forms.Button();
             this.btn_gravar = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.gb_descricao = new System.Windows.Forms.GroupBox();
+            this.rtb_descricao = new System.Windows.Forms.RichTextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tb_idioma = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tb_categoria = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tb_numeroPaginas = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tb_editora = new System.Windows.Forms.TextBox();
             this.dtp_dataPublicacao = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -74,28 +84,18 @@
             this.tb_filtroNome = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.tb_editora = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.tb_numeroPaginas = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.tb_categoria = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.tb_idioma = new System.Windows.Forms.TextBox();
-            this.gb_descricao = new System.Windows.Forms.GroupBox();
-            this.rtb_descricao = new System.Windows.Forms.RichTextBox();
             this.tbc_control.SuspendLayout();
             this.tbp_lista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_livros)).BeginInit();
             this.tbp_dados.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.gb_descricao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb_foto)).BeginInit();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.gb_filtros.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.gb_descricao.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbc_control
@@ -225,6 +225,94 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(957, 356);
             this.panel3.TabIndex = 34;
+            // 
+            // gb_descricao
+            // 
+            this.gb_descricao.Controls.Add(this.rtb_descricao);
+            this.gb_descricao.Location = new System.Drawing.Point(14, 153);
+            this.gb_descricao.Name = "gb_descricao";
+            this.gb_descricao.Size = new System.Drawing.Size(936, 196);
+            this.gb_descricao.TabIndex = 105;
+            this.gb_descricao.TabStop = false;
+            this.gb_descricao.Text = "Descrição";
+            // 
+            // rtb_descricao
+            // 
+            this.rtb_descricao.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtb_descricao.Enabled = false;
+            this.rtb_descricao.Location = new System.Drawing.Point(3, 16);
+            this.rtb_descricao.Name = "rtb_descricao";
+            this.rtb_descricao.Size = new System.Drawing.Size(930, 177);
+            this.rtb_descricao.TabIndex = 0;
+            this.rtb_descricao.Text = "";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(498, 102);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(38, 13);
+            this.label12.TabIndex = 104;
+            this.label12.Text = "Idioma";
+            // 
+            // tb_idioma
+            // 
+            this.tb_idioma.Enabled = false;
+            this.tb_idioma.Location = new System.Drawing.Point(501, 118);
+            this.tb_idioma.Name = "tb_idioma";
+            this.tb_idioma.Size = new System.Drawing.Size(170, 20);
+            this.tb_idioma.TabIndex = 103;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(258, 102);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(52, 13);
+            this.label11.TabIndex = 102;
+            this.label11.Text = "Categoria";
+            // 
+            // tb_categoria
+            // 
+            this.tb_categoria.Enabled = false;
+            this.tb_categoria.Location = new System.Drawing.Point(261, 118);
+            this.tb_categoria.Name = "tb_categoria";
+            this.tb_categoria.Size = new System.Drawing.Size(234, 20);
+            this.tb_categoria.TabIndex = 101;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(133, 102);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(77, 13);
+            this.label10.TabIndex = 100;
+            this.label10.Text = "Nº De Páginas";
+            // 
+            // tb_numeroPaginas
+            // 
+            this.tb_numeroPaginas.Enabled = false;
+            this.tb_numeroPaginas.Location = new System.Drawing.Point(136, 118);
+            this.tb_numeroPaginas.Name = "tb_numeroPaginas";
+            this.tb_numeroPaginas.Size = new System.Drawing.Size(119, 20);
+            this.tb_numeroPaginas.TabIndex = 99;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(434, 52);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(40, 13);
+            this.label9.TabIndex = 98;
+            this.label9.Text = "Editora";
+            // 
+            // tb_editora
+            // 
+            this.tb_editora.Enabled = false;
+            this.tb_editora.Location = new System.Drawing.Point(437, 68);
+            this.tb_editora.Name = "tb_editora";
+            this.tb_editora.Size = new System.Drawing.Size(422, 20);
+            this.tb_editora.TabIndex = 97;
             // 
             // dtp_dataPublicacao
             // 
@@ -576,93 +664,6 @@
             this.panel2.Size = new System.Drawing.Size(971, 20);
             this.panel2.TabIndex = 20;
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(434, 52);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(40, 13);
-            this.label9.TabIndex = 98;
-            this.label9.Text = "Editora";
-            // 
-            // tb_editora
-            // 
-            this.tb_editora.Enabled = false;
-            this.tb_editora.Location = new System.Drawing.Point(437, 68);
-            this.tb_editora.Name = "tb_editora";
-            this.tb_editora.Size = new System.Drawing.Size(422, 20);
-            this.tb_editora.TabIndex = 97;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(133, 102);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(77, 13);
-            this.label10.TabIndex = 100;
-            this.label10.Text = "Nº De Páginas";
-            // 
-            // tb_numeroPaginas
-            // 
-            this.tb_numeroPaginas.Enabled = false;
-            this.tb_numeroPaginas.Location = new System.Drawing.Point(136, 118);
-            this.tb_numeroPaginas.Name = "tb_numeroPaginas";
-            this.tb_numeroPaginas.Size = new System.Drawing.Size(119, 20);
-            this.tb_numeroPaginas.TabIndex = 99;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(258, 102);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(52, 13);
-            this.label11.TabIndex = 102;
-            this.label11.Text = "Categoria";
-            // 
-            // tb_categoria
-            // 
-            this.tb_categoria.Enabled = false;
-            this.tb_categoria.Location = new System.Drawing.Point(261, 118);
-            this.tb_categoria.Name = "tb_categoria";
-            this.tb_categoria.Size = new System.Drawing.Size(234, 20);
-            this.tb_categoria.TabIndex = 101;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(498, 102);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(38, 13);
-            this.label12.TabIndex = 104;
-            this.label12.Text = "Idioma";
-            // 
-            // tb_idioma
-            // 
-            this.tb_idioma.Enabled = false;
-            this.tb_idioma.Location = new System.Drawing.Point(501, 118);
-            this.tb_idioma.Name = "tb_idioma";
-            this.tb_idioma.Size = new System.Drawing.Size(170, 20);
-            this.tb_idioma.TabIndex = 103;
-            // 
-            // gb_descricao
-            // 
-            this.gb_descricao.Controls.Add(this.rtb_descricao);
-            this.gb_descricao.Location = new System.Drawing.Point(14, 153);
-            this.gb_descricao.Name = "gb_descricao";
-            this.gb_descricao.Size = new System.Drawing.Size(936, 196);
-            this.gb_descricao.TabIndex = 105;
-            this.gb_descricao.TabStop = false;
-            this.gb_descricao.Text = "Descrição";
-            // 
-            // rtb_descricao
-            // 
-            this.rtb_descricao.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtb_descricao.Location = new System.Drawing.Point(3, 16);
-            this.rtb_descricao.Name = "rtb_descricao";
-            this.rtb_descricao.Size = new System.Drawing.Size(930, 177);
-            this.rtb_descricao.TabIndex = 0;
-            this.rtb_descricao.Text = "";
-            // 
             // F_Livros
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -684,6 +685,7 @@
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.gb_descricao.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pb_foto)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -693,7 +695,6 @@
             this.gb_filtros.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.gb_descricao.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

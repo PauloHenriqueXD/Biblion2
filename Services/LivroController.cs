@@ -44,7 +44,9 @@ public class LivroController
                             Titulo = reader["titulo"].ToString(),
                             Autores = reader["autores"].ToString(),
                             Editora = reader["editora"].ToString(),
-                            DataPublicacao = Convert.ToDateTime(reader["data_publicacao"].ToString()),
+                            DataPublicacao = string.IsNullOrWhiteSpace(reader["data_publicacao"].ToString())
+                            ? (DateTime?)null
+                            : Convert.ToDateTime(reader["data_publicacao"].ToString()),
                             Descricao = reader["descricao"].ToString(),
                             NumeroPaginas = Convert.ToInt32(reader["numero_paginas"]),
                             Categoria = reader["categoria"].ToString(),
@@ -77,7 +79,7 @@ public class LivroController
         table.Columns.Add("Título", typeof(string));
         table.Columns.Add("Autores", typeof(string));
         table.Columns.Add("Data da Publicação", typeof(string));
-        table.Columns.Add("Status", typeof(int));
+        table.Columns.Add("Status", typeof(string));
 
         foreach (var livro in livros)
         {
@@ -127,7 +129,9 @@ public class LivroController
                         Titulo = reader["titulo"].ToString(),
                         Autores = reader["autores"].ToString(),
                         Editora = reader["editora"].ToString(),
-                        DataPublicacao = Convert.ToDateTime(reader["data_publicacao"].ToString()),
+                        DataPublicacao = string.IsNullOrWhiteSpace(reader["data_publicacao"].ToString())
+                        ? (DateTime?)null
+                        : Convert.ToDateTime(reader["data_publicacao"].ToString()),
                         Descricao = reader["descricao"].ToString(),
                         NumeroPaginas = Convert.ToInt32(reader["numero_paginas"]),
                         Categoria = reader["categoria"].ToString(),
@@ -256,7 +260,9 @@ public class LivroController
                                 Titulo = reader["titulo"].ToString(),
                                 Autores = reader["autores"].ToString(),
                                 Editora = reader["editora"].ToString(),
-                                DataPublicacao = Convert.ToDateTime(reader["data_publicacao"].ToString()),
+                                DataPublicacao = string.IsNullOrWhiteSpace(reader["data_publicacao"].ToString())
+                                ? (DateTime?)null
+                                : Convert.ToDateTime(reader["data_publicacao"].ToString()),
                                 Descricao = reader["descricao"].ToString(),
                                 NumeroPaginas = Convert.ToInt32(reader["numero_paginas"]),
                                 Categoria = reader["categoria"].ToString(),
@@ -359,7 +365,6 @@ public class LivroController
                 }
             }
 
-            MessageBox.Show("Livro atualizado com sucesso!");
         }
         catch (Exception ex)
         {
@@ -424,7 +429,6 @@ public class LivroController
                 }
             }
 
-            MessageBox.Show("Livro cadastrado com sucesso!");
         }
         catch (Exception ex)
         {
