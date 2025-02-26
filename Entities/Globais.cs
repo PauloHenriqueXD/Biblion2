@@ -155,5 +155,14 @@ namespace Biblion.Entities
             }
         }
 
+        public static void justNumbers(KeyPressEventArgs e)
+        {
+            // Permitir apenas números e teclas de controle (Backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // Bloqueia a entrada
+            }
+        }
+
     }
 }

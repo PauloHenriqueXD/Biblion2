@@ -306,9 +306,10 @@ public class LivroController
                     comandoBusca.Parameters.AddWithValue("@id", livro.Id);
                     var reader = comandoBusca.ExecuteReader();
 
-                    if (reader.Read())
+                    if (reader.HasRows)
                     {
-                        caminhoImagemAntiga = reader["img"].ToString(); // Obtém o caminho da imagem do banco
+                        reader.Read();
+                        caminhoImagemAntiga = reader["url_capa"].ToString();
                     }
 
                     reader.Close();

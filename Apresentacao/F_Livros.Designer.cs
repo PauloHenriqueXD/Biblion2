@@ -243,7 +243,7 @@
             this.rtb_descricao.Location = new System.Drawing.Point(3, 16);
             this.rtb_descricao.Name = "rtb_descricao";
             this.rtb_descricao.Size = new System.Drawing.Size(930, 177);
-            this.rtb_descricao.TabIndex = 0;
+            this.rtb_descricao.TabIndex = 10;
             this.rtb_descricao.Text = "";
             // 
             // label12
@@ -261,7 +261,7 @@
             this.tb_idioma.Location = new System.Drawing.Point(501, 118);
             this.tb_idioma.Name = "tb_idioma";
             this.tb_idioma.Size = new System.Drawing.Size(170, 20);
-            this.tb_idioma.TabIndex = 103;
+            this.tb_idioma.TabIndex = 8;
             // 
             // label11
             // 
@@ -278,7 +278,7 @@
             this.tb_categoria.Location = new System.Drawing.Point(261, 118);
             this.tb_categoria.Name = "tb_categoria";
             this.tb_categoria.Size = new System.Drawing.Size(234, 20);
-            this.tb_categoria.TabIndex = 101;
+            this.tb_categoria.TabIndex = 7;
             // 
             // label10
             // 
@@ -295,7 +295,8 @@
             this.tb_numeroPaginas.Location = new System.Drawing.Point(136, 118);
             this.tb_numeroPaginas.Name = "tb_numeroPaginas";
             this.tb_numeroPaginas.Size = new System.Drawing.Size(119, 20);
-            this.tb_numeroPaginas.TabIndex = 99;
+            this.tb_numeroPaginas.TabIndex = 6;
+            this.tb_numeroPaginas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_numeroPaginas_KeyPress);
             // 
             // label9
             // 
@@ -312,7 +313,7 @@
             this.tb_editora.Location = new System.Drawing.Point(437, 68);
             this.tb_editora.Name = "tb_editora";
             this.tb_editora.Size = new System.Drawing.Size(422, 20);
-            this.tb_editora.TabIndex = 97;
+            this.tb_editora.TabIndex = 4;
             // 
             // dtp_dataPublicacao
             // 
@@ -358,7 +359,7 @@
             this.btn_addFoto.Location = new System.Drawing.Point(865, 127);
             this.btn_addFoto.Name = "btn_addFoto";
             this.btn_addFoto.Size = new System.Drawing.Size(85, 23);
-            this.btn_addFoto.TabIndex = 6;
+            this.btn_addFoto.TabIndex = 99;
             this.btn_addFoto.Text = "Add Imagem";
             this.btn_addFoto.UseVisualStyleBackColor = true;
             this.btn_addFoto.Click += new System.EventHandler(this.btn_addFoto_Click);
@@ -416,6 +417,7 @@
             this.tb_ISBN.Name = "tb_ISBN";
             this.tb_ISBN.Size = new System.Drawing.Size(195, 20);
             this.tb_ISBN.TabIndex = 1;
+            this.tb_ISBN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_ISBN_KeyPress);
             // 
             // tb_titulo
             // 
@@ -441,7 +443,7 @@
             this.cb_status.Location = new System.Drawing.Point(677, 118);
             this.cb_status.Name = "cb_status";
             this.cb_status.Size = new System.Drawing.Size(182, 21);
-            this.cb_status.TabIndex = 4;
+            this.cb_status.TabIndex = 9;
             // 
             // openFileDialog1
             // 

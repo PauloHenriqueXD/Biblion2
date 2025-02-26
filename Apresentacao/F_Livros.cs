@@ -56,6 +56,16 @@ namespace Biblion.Apresentacao
             Globais.ControleDeKeys(dgv_livros, tbc_control, e, tipoAcao);
         }
 
+        private void tb_ISBN_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Globais.justNumbers(e);
+        }
+
+        private void tb_numeroPaginas_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Globais.justNumbers(e);
+        }
+
         private string contaResultados()
         {
             //Função para pegar resultados de um grid e informar em um lb
@@ -158,6 +168,7 @@ namespace Biblion.Apresentacao
             dtp_dataPublicacao.Checked = false;
             rtb_descricao.Clear();
             pb_foto.ImageLocation = null;
+            destinoCompleto = null;
         }
 
         private void F_Livros_Load(object sender, EventArgs e)
@@ -237,7 +248,7 @@ namespace Biblion.Apresentacao
             {
                 Id = Convert.ToInt32(dgv_livros.CurrentRow.Cells["Id"].Value),
                 ISBN = dgv_livros.CurrentRow.Cells["ISBN"].Value.ToString(),
-                Titulo = dgv_livros.CurrentRow.Cells["Titulo"].Value.ToString(),
+                Titulo = dgv_livros.CurrentRow.Cells["Título"].Value.ToString(),
                 Autores = dgv_livros.CurrentRow.Cells["Autores"].Value.ToString(),
                 DataPublicacao = Convert.ToDateTime(dgv_livros.CurrentRow.Cells["Data da Publicação"].Value.ToString()),
                 Status = dgv_livros.CurrentRow.Cells["Status"].Value.ToString()
@@ -302,6 +313,7 @@ namespace Biblion.Apresentacao
                         tb_idioma.Text = livroSelecionado.Idioma;
                         cb_status.SelectedValue = livroSelecionado.Status;
                         pb_foto.ImageLocation = livroSelecionado.UrlCapa;
+                        destinoCompleto = livroSelecionado.UrlCapa;
                     }
                 }
                 else
